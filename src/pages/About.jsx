@@ -1,7 +1,12 @@
+import { AppNavbar, Footer } from '../components'
 
 const About = () => {
 	return (
-		<h1 className="text-5xl font-semibold h-screen flex justify-center items-center">About Page</h1>
+		<>
+			<AppNavbar />
+			<h1 className="text-5xl font-semibold h-screen flex justify-center items-center bg-defaultColor ">About Page</h1>
+			<Footer />
+		</>
 	)
 }
 
