@@ -42,7 +42,7 @@ const Contact = () => {
 						          Message
 						        </label>
 						      </div>
-						    <div className="flex w-96 md:w-full flex-row gap-1">
+						    <div className="flex w-80 md:w-full flex-row gap-1">
 						    		<Button variant="text" className="outline outline-1 outline-dark/25" >
 						    		  <FaUndo />
 						    		</Button>

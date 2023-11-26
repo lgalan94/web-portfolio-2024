@@ -75,7 +75,10 @@ const Home = () => {
 											      as={Link} to='/' 
 											      className="flex items-center bg-black text-white p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border-2 border-solid border-transparent hover:border-neutral-800"
 											    >Resume <BsArrowUpRightSquare className="w-6 ml-1" /> </Link>
-											    <Link className="ml-4 text-xs md:text-sm lg:text-md font-medium capitalize text-neutral-800 underline">Contact</Link>
+											    <Link 
+											    		as={Link}
+											    		to="/contact"
+											    		className="ml-4 text-xs md:text-sm lg:text-md font-medium capitalize text-neutral-800 underline">Contact</Link>
 											  </motion.div>
 											  </div>
 											</div>
