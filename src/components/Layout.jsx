@@ -1,7 +1,3 @@
-import {
-	Typography
-} from '@material-tailwind/react'
-
 const Layout = ({ children, className="" }) => {
 	return (
 		<div
