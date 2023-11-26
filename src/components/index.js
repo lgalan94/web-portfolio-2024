@@ -4,6 +4,8 @@ import Logo from './Logo'
 import AnimatedText from './AnimatedText'
 import Layout from './Layout'
 import WordAnimation from './WordAnimation'
+import Loading from './Loading'
+import Transition from './Transition'
 
 export {
 	AppNavbar,
@@ -11,5 +13,7 @@ export {
 	Logo,
 	AnimatedText,
 	Layout,
-	WordAnimation
+	WordAnimation,
+	Loading,
+	Transition
 }

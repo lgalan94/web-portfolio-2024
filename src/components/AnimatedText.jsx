@@ -37,6 +37,7 @@ const AnimatedText = ( {text, className=""} ) => {
 										variants={quote}
 										initial="initial"
 										animate="animate"
+										exit={{ opacity: 0 }}
 								>
 								{
 										text.split(" ").map((word, index) => 

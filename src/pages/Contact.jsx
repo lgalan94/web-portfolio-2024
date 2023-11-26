@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, Layout, Logo, AnimatedText } from '../components'
+import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition } from '../components'
 import React from 'react';
 import {
   Typography,
@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { FaUndo } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet';
 
 const Contact = () => {
 
@@ -17,6 +18,9 @@ const Contact = () => {
 
 	return (
 		<>
+				<Helmet>
+					<title>Contact Page</title>
+				</Helmet>
 				<AppNavbar />
 				
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
@@ -59,5 +63,5 @@ const Contact = () => {
 	)
 }
 
-export default Contact
+export default Transition(Contact)
 

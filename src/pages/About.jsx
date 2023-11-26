@@ -1,8 +1,9 @@
-import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation } from '../components'
+import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition } from '../components'
 import {	Typography } from "@material-tailwind/react"
 
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 const AnimatedNumbers = ({ value }) => {
   const ref = useRef(null);
@@ -33,6 +34,9 @@ const AnimatedNumbers = ({ value }) => {
 const About = () => {
 	return (
 		<>
+			<Helmet>
+				<title>About Page</title>
+			</Helmet>
 			<AppNavbar />
 
 						<AnimatedText text="about me" className="mt-4 mb-2 lg:mb-5 capitalize" />
@@ -55,7 +59,14 @@ const About = () => {
 																   ))}
 																 </motion.h2>
 
-																 <AnimatedText text="I am a Full-Stack Web Developer with a passion for building web applications. I can create the user interface (front-end) and the code that makes the website work (back-end). I have experience with a variety of programming languages and technologies, including HTML, CSS, JavaScript, Node.js, MongoDB as database, and the node.js framework, which is express.js. I also have experience in building small projects in React.js." className="!font-medium !text-sm text-justify mb-5 " />
+																 <motion.p 
+																   initial={{ opacity: 0 }}
+																   animate={{ opacity: 1 }}
+																   exit={{ opacity: 0 }}
+																   transition={{ duration: 2.5, delay: 0.2 }}
+																   className="text-sm text-justify mb-6"
+																 >I am a Full-Stack Web Developer with a passion for building web applications. I can create the user interface (front-end) and the code that makes the website work (back-end). I have experience with a variety of programming languages and technologies, including HTML, CSS, JavaScript, Node.js, MongoDB as database, and the node.js framework, which is express.js. I also have experience in building small projects in React.js.
+																 </motion.p>
 
 																 <motion.h2 
 																   className="mb-2 text-lg font-bold uppercase text-black/75" >
@@ -71,16 +82,14 @@ const About = () => {
 																   ))}
 																 </motion.h2>
 
-																 <AnimatedText text="To be able to secure a challenging professional career in a reputable organization with opportunity of challenges and advancement; and to expand my learnings and knowledge for mutual growth success. To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills. Motivated to learn, grow and excel in terms of developing Web Applications." className="!font-medium !text-sm text-justify" />
-
-																 {/*<motion.p 
+																 <motion.p 
 																   initial={{ opacity: 0 }}
 																   animate={{ opacity: 1 }}
 																   exit={{ opacity: 0 }}
 																   transition={{ duration: 2.5, delay: 0.2 }}
-																   className="font-medium text-sm text-justify"
+																   className="text-sm text-justify"
 																 >To be able to secure a challenging professional career in a reputable organization with opportunity of challenges and advancement; and to expand my learnings and knowledge for mutual growth success. To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills. Motivated to learn, grow and excel in terms of developing Web Applications.
-																 </motion.p>*/}
+																 </motion.p>
 																</div>
 											  </div>
 
@@ -117,4 +126,4 @@ const About = () => {
 	)
 }
 
-export default About
+export default Transition(About)
