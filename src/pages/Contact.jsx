@@ -21,7 +21,7 @@ const Contact = () => {
 				
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
 				<AnimatedText text="For further questions, please email galanlito.94@gmail.com or contact using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
-				<Layout className="h-[580px] md:h-[720px] lg:h-[500px]">
+				<Layout className="!h-[580px] md:h-[720px] lg:h-[500px]">
 						<motion.div 
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
@@ -29,11 +29,11 @@ const Contact = () => {
 								transition={{ duration: 2, delay: 0.2 }}
 								className="flex flex-col w-100 justify-center items-center">
 								<div className="">
-						    <div className="flex w-96 md:w-full flex-col md:flex-row gap-2">
+						    <div className="flex w-80 md:w-full flex-col md:flex-row gap-2">
 						    		<Input label="Name" size="lg" />
 						      <Input label="Email" size="lg" />
 						    </div>
-						    <div className="relative my-4 w-96 md:w-full ">
+						    <div className="relative my-4 w-80 md:w-full ">
 						        <textarea
 						          className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
 						          placeholder=" "
