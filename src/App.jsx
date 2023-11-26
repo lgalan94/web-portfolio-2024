@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
-import { Home, Contact, About, PageNotFound } from './pages'
+import { Home, Contact, About, PageNotFound, Login } from './pages'
 
 function App() {
 
@@ -17,6 +17,7 @@ function App() {
       <Route path="/about" element={< About />} />
       <Route path="/not-found" element={< PageNotFound />} />
       <Route path="*" element={< Inaccessible />} />
+      <Route path="/auth-login" element={< Login />} />
     </Routes>
   )
 }

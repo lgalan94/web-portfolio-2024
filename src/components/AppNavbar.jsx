@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   IconButton,
@@ -10,11 +10,13 @@ import {
 import Logo from './Logo';
 import {
   Link,
-  useLocation
+  useLocation,
+  useNavigate
 } from 'react-router-dom';
  
 const AppNavbar = () => {
   const [openNav, setOpenNav] = React.useState(false);
+  const navigate = useNavigate();
  
   React.useEffect(() => {
     window.addEventListener(
@@ -36,7 +38,7 @@ const AppNavbar = () => {
       </Link>
     );
   };
- 
+
   const navList = (
     <ul className="mt-2 mb-4 text-sm flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/" title="Home" className="lg:mr-1" location={location} />
@@ -46,7 +48,7 @@ const AppNavbar = () => {
   );
  
   return (
-    <div className="sticky top-0 max-h-[768px] w-full ">
+    <div className="sticky top-0 z-10 max-h-[768px] w-full ">
       <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
@@ -63,8 +65,9 @@ const AppNavbar = () => {
                 variant="text"
                 size="sm"
                 className="hidden lg:inline-block"
+                onClick={() => navigate('/auth-login')}
               >
-                <span>admin</span>
+                <span>Login</span>
               </Button>
             </div>
             <IconButton
@@ -106,14 +109,18 @@ const AppNavbar = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="text" size="sm" className="">
+            <Button 
+              fullWidth variant="text" 
+              size="sm" 
+              className=""
+              onClick={() => navigate('/auth-login')} >
               <span>admin</span>
             </Button>
           </div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </div>
   );

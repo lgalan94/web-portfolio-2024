@@ -1,13 +1,56 @@
 import { AppNavbar, Footer } from '../components'
+import React from "react";
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
 
 const Contact = () => {
+
+	const [open, setOpen] = React.useState(1);
+	
+	const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
 	return (
 		<>
 				<AppNavbar />
-				<h1 className="text-5xl font-semibold h-screen flex justify-center items-center bg-defaultColor">Contact Page</h1>
+				
+				<div className="min-h-[900px] lg:min-h-[760px] bg-defaultColor p-5">
+					<Accordion open={open === 1}>
+					  <AccordionHeader onClick={() => handleOpen(1)}>What is Material Tailwind?</AccordionHeader>
+					  <AccordionBody>
+					    We&apos;re not always in the position that we want to be at. We&apos;re constantly
+					    growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
+					    ourselves and actualize our dreams.
+					  </AccordionBody>
+					</Accordion>
+					<Accordion open={open === 2}>
+					  <AccordionHeader onClick={() => handleOpen(2)}>
+					    How to use Material Tailwind?
+					  </AccordionHeader>
+					  <AccordionBody>
+					    We&apos;re not always in the position that we want to be at. We&apos;re constantly
+					    growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
+					    ourselves and actualize our dreams.
+					  </AccordionBody>
+					</Accordion>
+					<Accordion open={open === 3}>
+					  <AccordionHeader onClick={() => handleOpen(3)}>
+					    What can I do with Material Tailwind?
+					  </AccordionHeader>
+					  <AccordionBody>
+					    We&apos;re not always in the position that we want to be at. We&apos;re constantly
+					    growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
+					    ourselves and actualize our dreams.
+					  </AccordionBody>
+					</Accordion>
+				</div>
+
 				<Footer />
 		</>
 	)
 }
 
 export default Contact
+
