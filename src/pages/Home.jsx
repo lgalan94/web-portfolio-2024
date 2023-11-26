@@ -25,7 +25,7 @@ const Home = () => {
 									{/*div #2*/}
 									<div className="basis-3/5 flex items-center pl-10 pr-12 lg:pr-32">
 										<div className="">
-											  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-5xl text-center md:text-left" />
+											  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-[40px] text-center md:text-left" />
 										
 
 											  <motion.h1
@@ -65,13 +65,18 @@ const Home = () => {
 											      </motion.span>
 											    ))}
 											  </motion.p>
-											  <div className="flex justify-center md:justify-start items-center mt-1 lg:mt-2">
+											  <motion.div 
+											  		initial={{ opacity: 0 }}
+											  		animate={{ opacity: 1 }}
+											  		exit={{ opacity: 0 }}
+											  		transition={{ duration: 2, delay: 0.3 }}
+											  		className="flex justify-center md:justify-start items-center mt-1 lg:mt-2">
 											    <Link 
 											      as={Link} to='/' 
 											      className="flex items-center bg-black text-white p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border-2 border-solid border-transparent hover:border-neutral-800"
 											    >Resume <BsArrowUpRightSquare className="w-6 ml-1" /> </Link>
 											    <Link className="ml-4 text-xs md:text-sm lg:text-md font-medium capitalize text-neutral-800 underline">Contact</Link>
-											  </div>
+											  </motion.div>
 											  </div>
 											</div>
 

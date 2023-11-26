@@ -31,23 +31,23 @@ const everyWord = {
 const AnimatedText = ( {text, className=""} ) => {
 			return (
 					<div
-							className="w-full mx-auto flex items-center justify-center text-center overflow-hidden">
-								<motion.Typography 
-										className = {`inline-block w-full text-black font-bold capitalize lg:text-7xl text-5xl ${className}`} 
+							className={`${className} w-full mx-auto flex items-center text-center`}>
+								<motion.p 
+										className = {`${className} inline-block w-full text-black font-bold lg:text-7xl text-5xl`} 
 										variants={quote}
 										initial="initial"
 										animate="animate"
 								>
 								{
 										text.split(" ").map((word, index) => 
-												<motion.span key={word+'-'+index} className="inline-block" 
+												<motion.span key={word+'-'+index} className="inline-block " 
 														variants={everyWord}
 												>
 													{word}&nbsp;
 												</motion.span>
 											)
 								}
-								</motion.Typography>
+								</motion.p>
 								
 					</div>
 			)
