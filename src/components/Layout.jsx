@@ -2,10 +2,10 @@ import {
 	Typography
 } from '@material-tailwind/react'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className="" }) => {
 	return (
 		<div
-			className="w-full h-full bg-defaultColor p-10"
+			className={`${className} w-full h-full `}
 		>
 			{children}
 		</div>
