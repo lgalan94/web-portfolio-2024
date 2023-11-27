@@ -43,6 +43,7 @@ const AppNavbar = () => {
     <ul className="mt-2 mb-4 text-sm flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/" title="Home" className="lg:mr-1" location={location} />
       <CustomLink endPoint="/about" title="About" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/skills" title="Skills" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/contact" title="Contact" className="lg:ml-1" location={location} />
     </ul>
   );
@@ -67,7 +68,7 @@ const AppNavbar = () => {
                 className="hidden lg:inline-block"
                 onClick={() => navigate('/auth-login')}
               >
-                <span>Login</span>
+                <span>Admin</span>
               </Button>
             </div>
             <IconButton
@@ -111,7 +112,7 @@ const AppNavbar = () => {
         </div>
         <Collapse open={openNav}>
           {navList}
-          <div className="flex items-center gap-x-1">
+          <div className="flex items-center gap-x-2">
             <Button 
               fullWidth variant="text" 
               size="sm" 

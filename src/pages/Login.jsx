@@ -9,12 +9,14 @@ import {
   Button,
 } from "@material-tailwind/react";
 import {
-  Logo
+  Logo,
+  Transition
 } from '../components'
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
- 
+import { motion } from 'framer-motion';
+  
 const Login = () => {
 
 const navigate = useNavigate();
@@ -29,7 +31,12 @@ const BackToHome = () => {
      <Helmet>
       <title>Login</title>
      </Helmet>
-     <div className="flex relative flex-col h-screen justify-center items-center bg-defaultColor">
+     <motion.div 
+     initial={{ opacity: 0 }}
+     animate={{ opacity: 1 }}
+     exit={{ opacity: 0 }}
+     transition={{ duration: 2, delay: 0.2 }}
+     className="flex relative flex-col h-screen justify-center items-center bg-defaultColor">
        <Typography className="text-3xl mb-5 uppercase font-semibold p-5">Admin Login</Typography>
        <Card className="w-96">
          <CardHeader
@@ -60,10 +67,12 @@ const BackToHome = () => {
            
          </CardFooter>
        </Card>
-     </div>
+     </motion.div>
+
+
    </>
     
   );
 }
 
-export default Login
+export default Transition(Login)

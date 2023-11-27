@@ -6,6 +6,7 @@ import Layout from './Layout'
 import WordAnimation from './WordAnimation'
 import Loading from './Loading'
 import Transition from './Transition'
+import Experience from './Experience'
 
 export {
 	AppNavbar,
@@ -15,5 +16,6 @@ export {
 	Layout,
 	WordAnimation,
 	Loading,
-	Transition
+	Transition,
+	Experience
 }
