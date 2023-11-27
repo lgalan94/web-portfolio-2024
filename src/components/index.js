@@ -7,6 +7,7 @@ import WordAnimation from './WordAnimation'
 import Loading from './Loading'
 import Transition from './Transition'
 import Experience from './Experience'
+import Education from './Education'
 
 export {
 	AppNavbar,
@@ -17,5 +18,6 @@ export {
 	WordAnimation,
 	Loading,
 	Transition,
-	Experience
+	Experience,
+	Education
 }

@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience } from '../components'
+import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience, Education } from '../components'
 import {	Typography } from "@material-tailwind/react"
 
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
@@ -61,7 +61,7 @@ const About = () => {
 																		<div className="flex flex-auto w-full items-center lg:w-64 p-10">
 																					<div className="flex flex-col items-start justify-start">
 																					 <motion.h2 
-																					   className="mb-2 text-lg font-bold uppercase text-black/75" >
+																					   className="mb-2 text-lg font-bold uppercase text-cyan-600" >
 																					   {`Who am I?`.split('').map((letter, index) => (
 																					     <motion.span
 																					       key={index}
@@ -84,7 +84,7 @@ const About = () => {
 																					 </motion.p>
 
 																					 <motion.h2 
-																					   className="mb-2 text-lg font-bold uppercase text-black/75" >
+																					   className="mb-2 text-lg font-bold uppercase text-cyan-600" >
 																					   {`Career Objectives`.split('').map((letter, index) => (
 																					     <motion.span
 																					       key={index}
@@ -125,19 +125,24 @@ const About = () => {
 
 																  <div className="flex flex-row lg:flex-col justify-center flex-auto items-center lg:items-end w-full lg:w-2 p-10 lg:gap-0 gap-12">
 																    	 <div className="flex flex-col items-center lg:items-end justify-center mb-0 lg:mb-8">
-																    	    <span className="inline-block text-5xl font-bold"><AnimatedNumbers value={7} /> +</span>
+																    	    <span className="inline-block text-5xl font-bold text-orange-600"><AnimatedNumbers value={7} /> +</span>
 																    	    <Typography variant="h5" className="text-center font-medium capitalize text-black/75">Personal Projects</Typography>
 																    	 </div>
 																    	 <div className="flex flex-col items-center lg:items-end justify-center">
-																    	    <span className="inline-block text-5xl font-bold"><AnimatedNumbers value={1} /> +</span>
+																    	    <span className="inline-block text-5xl font-bold text-orange-600"><AnimatedNumbers value={1} /> +</span>
 																    	    <Typography variant="h5" className="text-center font-medium capitalize text-black/75" >Years experience</Typography>
 																    	 </div>
 																  </div>
 														</div>
 											</Layout>
 
-											<AnimatedText text="experience" className="mt-4 mb-2 mt-20 lg:mb-5 capitalize" />
-											<Experience />
+											<Layout className="mb-36">
+													<AnimatedText text="experience" className="mt-24 mb-10 capitalize" />
+													<Experience />
+
+													<AnimatedText text="education" className="mt-24 mb-10 capitalize" />
+													<Education />
+											</Layout>
 											         						         				
 								<Footer />
 							</>

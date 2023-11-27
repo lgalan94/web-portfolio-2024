@@ -9,13 +9,13 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
 	const ref = useRef();
 
 	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-center justify-between">
-		<LiIcon reference={ref} stroke="stroke-cyan-500" fill="fill-cyan-500" />
+		<LiIcon reference={ref} stroke="stroke-orange-500" fill="fill-orange-500" />
 		<motion.div
 				initial={{y:50}}
 				whileInView={{y:0}}
 				transition={{duration: 0.5,  type: "spring"}}
 		>
-			<Typography className="capitalize text-cyan-300" variant="h4"> {position}&nbsp; <a href={companyLink} target="_blank" className="text-dark/75" >@{company}</a> </Typography>
+			<Typography className="capitalize text-orange-300" variant="h4"> {position}&nbsp; <a href={companyLink} target="_blank" className="text-dark/75" >@{company}</a> </Typography>
 			<span className="capitalize text-dark/75">
 				{time} | {address}
 			</span>
@@ -26,7 +26,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
 	</li>
 }
 
-const Experience = () => {
+const Education = () => {
 
 const ref = useRef(null);
 const {scrollYProgress} = useScroll(
@@ -41,7 +41,7 @@ const {scrollYProgress} = useScroll(
 
 		<motion.div 
 			style={{scaleY: scrollYProgress}}
-			className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top" />
+			className="absolute left-9 top-0 w-[4px] h-full bg-orange-500 origin-top" />
 
 			<ul className="w-full flex flex-col items-start justify-between ml-4">
 				<Details 
@@ -82,4 +82,4 @@ const {scrollYProgress} = useScroll(
 	)
 }
 
-export default Experience
+export default Education
