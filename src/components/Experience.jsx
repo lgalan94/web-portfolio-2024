@@ -9,7 +9,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
 	const ref = useRef();
 
 	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-center justify-between">
-		<LiIcon reference={ref} stroke="stroke-cyan-500" fill="fill-cyan-500" />
+		<LiIcon reference={ref} stroke="!stroke-cyan-500" fill="!fill-cyan-500" />
 		<motion.div
 				initial={{y:50}}
 				whileInView={{y:0}}

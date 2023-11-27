@@ -125,11 +125,11 @@ const About = () => {
 
 																  <div className="flex flex-row lg:flex-col justify-center flex-auto items-center lg:items-end w-full lg:w-2 p-10 lg:gap-0 gap-12">
 																    	 <div className="flex flex-col items-center lg:items-end justify-center mb-0 lg:mb-8">
-																    	    <span className="inline-block text-5xl font-bold text-orange-600"><AnimatedNumbers value={7} /> +</span>
+																    	    <span className="inline-block text-5xl font-bold text-dark/75"><AnimatedNumbers value={7} /> +</span>
 																    	    <Typography variant="h5" className="text-center font-medium capitalize text-black/75">Personal Projects</Typography>
 																    	 </div>
 																    	 <div className="flex flex-col items-center lg:items-end justify-center">
-																    	    <span className="inline-block text-5xl font-bold text-orange-600"><AnimatedNumbers value={1} /> +</span>
+																    	    <span className="inline-block text-5xl font-bold text-dark/75"><AnimatedNumbers value={1} /> +</span>
 																    	    <Typography variant="h5" className="text-center font-medium capitalize text-black/75" >Years experience</Typography>
 																    	 </div>
 																  </div>

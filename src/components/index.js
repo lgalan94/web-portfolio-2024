@@ -8,6 +8,7 @@ import Loading from './Loading'
 import Transition from './Transition'
 import Experience from './Experience'
 import Education from './Education'
+import MySkills from './MySkills'
 
 export {
 	AppNavbar,
@@ -19,5 +20,6 @@ export {
 	Loading,
 	Transition,
 	Experience,
-	Education
+	Education,
+	MySkills
 }

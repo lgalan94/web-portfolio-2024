@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { Transition, AppNavbar } from '../components'
+import { Transition, AppNavbar, AnimatedText, Layout, MySkills } from '../components'
 
 const Skills = () => {
 		return (
@@ -8,9 +8,10 @@ const Skills = () => {
 							<title>Skills Page</title>
 					</Helmet>
 					<AppNavbar />
-					<div className="h-screen bg-green-200">
-							Skills Page
-					</div>
+					<AnimatedText text="skills" className="mt-4 mb-10 capitalize" />
+					<Layout className="">
+						<MySkills />
+					</Layout>
 				</div>
 		)
 }
