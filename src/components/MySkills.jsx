@@ -15,7 +15,7 @@ const Skill = ({ text }) => {
 }
 
 		return (
-					<div class="w-96 flex flex-row justify-center mx-auto gap-4 flex-wrap">
+					<div className="w-96 flex flex-row justify-center mx-auto gap-4 flex-wrap">
 					  
 					 	<Skill text="html" />
 					 	<Skill text="css" />

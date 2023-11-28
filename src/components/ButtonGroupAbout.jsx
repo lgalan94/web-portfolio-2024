@@ -12,6 +12,11 @@ import {
   CogIcon,
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
+
+import { GrUserWorker } from "react-icons/gr";
+import { GiSkills } from "react-icons/gi";
+import { IoMdSchool } from "react-icons/io";
+import { SiAboutdotme } from "react-icons/si";
  
 export default function ButtonGroupAbout() {
  
@@ -19,13 +24,6 @@ export default function ButtonGroupAbout() {
    const element = document.getElementById(sectionId);
    element.scrollIntoView({ behavior: "smooth" });
  };
-
- /*const labelProps = {
-   variant: "small",
-   color: "blue-gray",
-   className:
-     "absolute top-2/4 -bottom-2/4 -translate-y-2/4 -translate-x-3/4 font-normal",
- };*/
 
  const labelProps = {
    variant: "small",
@@ -36,11 +34,11 @@ export default function ButtonGroupAbout() {
 
 
   return (
-    <div className="sticky top-[65px] lg:top-[90px] w-full">
-      <div className="absolute top-0 right-0">
+    <div className="sticky top-[65px] lg:top-[75px] w-full">
+      <div className="absolute top-1 right-1">
         <SpeedDial placement="bottom">
           <SpeedDialHandler>
-            <IconButton size="sm" className="rounded-full">
+            <IconButton size="sm" color="white" className="rounded-full">
               <PlusIcon className="h-5 w-5 transition-transform group-hover:rotate-45" />
             </IconButton>
           </SpeedDialHandler>
@@ -49,21 +47,28 @@ export default function ButtonGroupAbout() {
               title="About"
               onClick={() => scrollToSection("about-section")}
             >
-              <HomeIcon className="h-4 w-4" />
+              <SiAboutdotme className="h-4 w-4" />
               <Typography {...labelProps}>About Me</Typography>
             </SpeedDialAction>
             <SpeedDialAction
               title="Experience"
               onClick={() => scrollToSection("experience-section")}
             >
-              <CogIcon className="h-4 w-4" />
+              <GrUserWorker className="h-4 w-4" />
               <Typography {...labelProps}>Experience</Typography>
+            </SpeedDialAction>
+            <SpeedDialAction
+              title="Skills"
+              onClick={() => scrollToSection("education-section")}
+            >
+              <IoMdSchool className="h-4 w-4" />
+              <Typography {...labelProps}>Education</Typography>
             </SpeedDialAction>
             <SpeedDialAction
               title="Skills"
               onClick={() => scrollToSection("skills-section")}
             >
-              <Square3Stack3DIcon className="h-4 w-4" />
+              <GiSkills className="h-4 w-4" />
               <Typography {...labelProps}>Skills</Typography>
             </SpeedDialAction>
           </SpeedDialContent>

@@ -29,10 +29,10 @@ const AppNavbar = () => {
     const currentPath = useLocation().pathname;
 
     return (
-      <Link as={Link} to={endPoint} className={`${className} relative group hover:text-neutral-600  ${currentPath === endPoint ? 'text-cyan-500' : 'text-gray-600'}`} >
+      <Link as={Link} to={endPoint} className={`${className} relative group hover:text-dark  ${currentPath === endPoint ? 'text-dark' : 'text-gray-500'}`} >
         {title}
 
-        <span className={`h-[3px] inline-block w-0 lg:bg-cyan-500 bg-none opacity-50 absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
+        <span className={`h-[3px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
           &nbsp;
         </span>
       </Link>
