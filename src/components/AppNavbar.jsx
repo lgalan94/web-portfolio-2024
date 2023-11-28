@@ -29,10 +29,10 @@ const AppNavbar = () => {
     const currentPath = useLocation().pathname;
 
     return (
-      <Link as={Link} to={endPoint} className={`${className} relative group hover:text-neutral-600  ${currentPath === endPoint ? 'text-black' : 'text-gray-600'}`} >
+      <Link as={Link} to={endPoint} className={`${className} relative group hover:text-neutral-600  ${currentPath === endPoint ? 'text-cyan-500' : 'text-gray-600'}`} >
         {title}
 
-        <span className={`h-[3px] inline-block w-0 lg:bg-black bg-none opacity-50 absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
+        <span className={`h-[3px] inline-block w-0 lg:bg-cyan-500 bg-none opacity-50 absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
           &nbsp;
         </span>
       </Link>
@@ -40,10 +40,9 @@ const AppNavbar = () => {
   };
 
   const navList = (
-    <ul className="mt-2 mb-4 text-sm flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/" title="Home" className="lg:mr-1" location={location} />
       <CustomLink endPoint="/about" title="About" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/skills" title="Skills" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/contact" title="Contact" className="lg:ml-1" location={location} />
     </ul>
   );

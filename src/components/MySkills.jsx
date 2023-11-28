@@ -1,45 +1,39 @@
 import { motion } from 'framer-motion';
 
-const Skill = ({ name, x, y }) => {
+const MySkills = () => {
 
-	return (
-					<motion.div
-							className="flex items-center justify-center rounded-full font-semibold bg-neutral-700 text-dark py-4 px-6 shadow-neutral-700 cursor-pointer absolute"
-							whileHover={{scale:1.05}}
-							initial={{x:0, y:0}}
-							whileInView={{x:x, y:y}}
-							transition={{duration: 1.5}}
-							viewport={{once: true}}
-					>
-							{name}
-					</motion.div>
+const Skill = ({ text }) => {
+		return (
+				<motion.div 
+							initial={{y:50}}
+							whileInView={{y:0}}
+							transition={{duration: 0.5,  type: "spring"}}
+							className="text-center px-3 uppercase border border-1 border-dark/25 rounded-md shadow-lg "> 
+							{text} 
+				</motion.div>
 		)
 }
 
-const MySkills = () => {
-			return (
-						<>
-								<div className="w-full h-screen relative flex items-center justify-center bg-circularLight">
-											
-											<motion.div
-													className="flex items-center justify-center rounded-full font-semibold bg-neutral-700 text-dark p-8 shadow-neutral-700 cursor-pointer"
-													whileHover={{scale:1.05}}
-											>
-													WEB
-											</motion.div>
-											<Skill name="HTML" x="-28vw" y="2vw" />
-											<Skill name="Bootstrap" x="20vw" y="6vw" />
-											<Skill name="Tailwind CSS" x="-3vw" y="12vw" />
-											<Skill name="MongoDB" x="-24vw" y="-15vw" />
-											<Skill name="ExpressJS" x="19vw" y="-12vw" />
-											<Skill name="ReactJS" x="35vw" y="-5vw" />
-											<Skill name="NodeJS" x="0vw" y="-20vw" />
-											<Skill name="GIT" x="-22vw" y="16vw" />
-											<Skill name="CSS" x="-7vw" y="-12vw" />
+		return (
+					<div class="w-96 flex flex-row justify-center mx-auto gap-4 flex-wrap">
+					  
+					 	<Skill text="html" />
+					 	<Skill text="css" />
+					 	<Skill text="javascript" />
+					 	<Skill text="react" />
+					 	<Skill text="next.js" />
+					 	<Skill text="node.js" />
+					 	<Skill text="git" />
+					 	<Skill text="tailwind" />
+					 	<Skill text="mongodb" />
+					 	<Skill text="express.js" />
+					 	<Skill text="laravel" />
+					 	<Skill text="php" />
+					 	<Skill text="mysql" />
+					 	<Skill text="framer-motion" />
 
-								</div>
-						</>
-			)
+					</div>
+		)
 }
 
 export default MySkills

@@ -9,6 +9,8 @@ import Transition from './Transition'
 import Experience from './Experience'
 import Education from './Education'
 import MySkills from './MySkills'
+import SpeedDialWithText from './SpeedDialWithText'
+import ButtonGroupAbout from './ButtonGroupAbout'
 
 export {
 	AppNavbar,
@@ -21,5 +23,7 @@ export {
 	Transition,
 	Experience,
 	Education,
-	MySkills
+	MySkills,
+	SpeedDialWithText,
+	ButtonGroupAbout
 }
