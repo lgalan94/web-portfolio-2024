@@ -1,29 +1,72 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Checkbox,
-  Button,
-} from "@material-tailwind/react";
-import {
-  Logo,
-  Transition
-} from '../components'
-import { IoMdArrowBack } from "react-icons/io";
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../UserContext';
+
+import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Button} from "@material-tailwind/react";
+import { Logo, Transition } from '../components'
+import { IoMdArrowBack } from "react-icons/io";
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
   
 const Login = () => {
 
-const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-const BackToHome = () => {
-  return navigate('/');
-}
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
+
+  const BackToHome = () => {
+    return navigate('/');
+  }
+
+  const retrieveUserDetails = (token) => {
+    fetch(`http://localhost:4001/user/user-details`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(result => result.json())
+      .then(data => {
+        setUser({
+          id: data._id,
+          isAdmin: data.isAdmin
+        });
+
+        if (data.isAdmin) {
+          setTimeout(() => navigate('/admin-home'), 900);
+          
+        } else {
+          setTimeout(() => navigate('/admin-home'), 900);
+        }
+      });
+  }; 
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:4001/user/login`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+      .then(result => result.json())
+      .then(data => {
+        console.log(data)
+        if (data === false) {
+          alert("Incorrect email or password!")
+          navigate('/auth-login')
+        } else {
+          alert("Login Successful!")
+          navigate('/admin-home')
+        }
+      });
+  };
 
   return (
 
@@ -53,23 +96,43 @@ const BackToHome = () => {
              
            </Typography>
          </CardHeader>
-         <CardBody className="flex flex-col gap-4">
-           <Input label="Email" size="lg" />
-           <Input label="Password" size="lg" />
+         <CardBody>
+         <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+           <Input 
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              label="Email"
+              size="lg" 
+            />
+           <Input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+              label="Password"
+              size="lg"
+            />
+
+            <div className="pt-0 flex flex-row gap-1">
+            <Button onClick={BackToHome} variant="text" className="outline outline-1 outline-dark/25" >
+              <IoMdArrowBack />
+            </Button>
+
+            <Button type="submit" className="capitalize" fullWidth>
+              login
+            </Button>
+            </div>
+          </form>
          </CardBody>
-         <CardFooter className="pt-0 flex flex-row gap-1">
-               <Button onClick={BackToHome} variant="text" className="outline outline-1 outline-dark/25" >
-                 <IoMdArrowBack />
-               </Button>
-             <Button className="capitalize" variant="gradient" fullWidth>
-               login
-             </Button>
-           
-         </CardFooter>
        </Card>
+
+       
+
      </motion.div>
 
-
+    
    </>
     
   );
