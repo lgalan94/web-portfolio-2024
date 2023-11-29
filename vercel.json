@@ -1,8 +1,5 @@
 {
-  "routes": [
-    {
-      "handle": "filesystem",
-      "match": "/(.*)"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
