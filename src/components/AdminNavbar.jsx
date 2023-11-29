@@ -53,7 +53,7 @@ const AdminNavbar = () => {
           <Typography
             as="a"
             href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
+            className="mr-4 cursor-pointer py-1.5 font-semibold uppercase"
           >
             Admin
           </Typography>
@@ -64,7 +64,7 @@ const AdminNavbar = () => {
                 variant="text"
                 size="sm"
                 className="hidden lg:inline-block"
-                onClick={() => navigate('/auth-login')}
+                onClick={() => navigate('/logout')}
               >
                 <span>Logout</span>
               </Button>

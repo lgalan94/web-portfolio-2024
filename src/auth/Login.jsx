@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 
 import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Button} from "@material-tailwind/react";
-import { Logo, Transition } from '../components'
+import { Logo, Transition, PageTitle } from '../components'
 import { IoMdArrowBack } from "react-icons/io";
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
   
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const BackToHome = () => {
     return navigate('/');
@@ -29,16 +28,17 @@ const Login = () => {
     })
       .then(result => result.json())
       .then(data => {
+        console.log(data)
         setUser({
           id: data._id,
           isAdmin: data.isAdmin
         });
 
         if (data.isAdmin) {
-          setTimeout(() => navigate('/admin-home'), 900);
+          setTimeout(() => navigate('/admin'), 900);
           
         } else {
-          setTimeout(() => navigate('/admin-home'), 900);
+          setTimeout(() => navigate('/'), 900);
         }
       });
   }; 
@@ -60,10 +60,12 @@ const Login = () => {
         console.log(data)
         if (data === false) {
           alert("Incorrect email or password!")
-          navigate('/auth-login')
+          navigate('/login')
         } else {
+          localStorage.setItem('token', data.auth);
+          retrieveUserDetails(data.auth);
           alert("Login Successful!")
-          navigate('/admin-home')
+          navigate('/admin')
         }
       });
   };
@@ -71,9 +73,7 @@ const Login = () => {
   return (
 
    <>
-     <Helmet>
-      <title>Login</title>
-     </Helmet>
+     <PageTitle title="Web Portfolio | Admin Login" />
      <motion.div 
      initial={{ opacity: 0 }}
      animate={{ opacity: 1 }}

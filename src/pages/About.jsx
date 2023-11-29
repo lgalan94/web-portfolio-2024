@@ -1,9 +1,8 @@
-import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience, Education, MySkills, ButtonGroupAbout } from '../components'
+import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience, Education, MySkills, ButtonGroupAbout, PageTitle } from '../components'
 import {	Typography } from "@material-tailwind/react"
 
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 
 const AnimatedNumbers = ({ value }) => {
   const ref = useRef(null);
@@ -43,9 +42,7 @@ const About = () => {
 
 	return (
 		<>
-			<Helmet>
-				<title>About Page</title>
-			</Helmet>
+			<PageTitle title="Web Portfolio | About Me" />
 
 			{
 				isLoading ? (

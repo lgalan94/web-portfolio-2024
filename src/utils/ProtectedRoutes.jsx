@@ -7,7 +7,7 @@ export default function PrivateRoutes(){
 const { user, setUser } = useContext(UserContext);
 
 useEffect(() => {
-	fetch(`http://localhost:9000/user/user-details`, {
+	fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
 	  method: 'GET',
 	  headers: {
 	    Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -17,7 +17,7 @@ useEffect(() => {
 	.then(data => {
 	   	setUser({
 	   	          id: data._id,
-	   	          userName: data.userName,
+	   	          email: data.email,
 	   	          isAdmin: data.isAdmin
 	   	        });
 	})

@@ -1,9 +1,8 @@
-import { AppNavbar, Footer, Layout, AnimatedText, Loading, Transition } from '../components'
+import { AppNavbar, Footer, Layout, AnimatedText, Loading, Transition, PageTitle } from '../components'
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BsArrowUpRightSquare } from "react-icons/bs";
-import { Helmet } from 'react-helmet';
 
 const Home = () => {
 
@@ -17,9 +16,7 @@ const Home = () => {
 
 	return (
 		<>
-			<Helmet>
-				<title>Home Page</title>
-			</Helmet>
+			<PageTitle title="Web Portfolio | Home" />
 
 			{
 				isLoading ? (

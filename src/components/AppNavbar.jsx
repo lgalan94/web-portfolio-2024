@@ -65,7 +65,7 @@ const AppNavbar = () => {
                 variant="text"
                 size="sm"
                 className="hidden lg:inline-block"
-                onClick={() => navigate('/auth-login')}
+                onClick={() => navigate('/login')}
               >
                 <span>Admin</span>
               </Button>
@@ -116,7 +116,7 @@ const AppNavbar = () => {
               fullWidth variant="text" 
               size="sm" 
               className=""
-              onClick={() => navigate('/auth-login')} >
+              onClick={() => navigate('/ogin')} >
               <span>admin</span>
             </Button>
           </div>

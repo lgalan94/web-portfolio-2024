@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import { SettingsCard, Loading } from '../../../components';
+import { SettingsCard, Loading, AdminNavbar } from '../../../components';
+import { Button } from '@material-tailwind/react';
+import { IoMdAdd } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
 const SettingsContent = () => {
+  const navigate = useNavigate();
   const [settings, setSettings] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,14 +20,23 @@ const SettingsContent = () => {
       });
   }, []);
 
+  const AddKeyValue = () => {
+    return navigate("/admin/add-key-value-pair")
+  }
 
 
   return (
     <>
-      {loading ? <Loading /> : (
-        <div className="grid mb-5 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      {loading ? <Loading /> : (   
+        <>
+        <AdminNavbar />
+        <div className="p-5 flex justify-center">
+          <Button onClick={AddKeyValue} variant="gradient" color="blue" size="sm" className="flex flex-row "><IoMdAdd className="h-4 w-4" /> Add key-value pair</Button>
+        </div>
+        <div className="px-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-1">
           {settings}
         </div>
+        </>
       )}
     </>
   )

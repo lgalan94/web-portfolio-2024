@@ -12,6 +12,7 @@ import MySkills from './MySkills'
 import ButtonGroupAbout from './ButtonGroupAbout'
 import AdminNavbar from './AdminNavbar'
 import SettingsCard from './SettingsCard'
+import PageTitle from './PageTitle'
 
 export {
 	AppNavbar,
@@ -27,5 +28,6 @@ export {
 	MySkills,
 	ButtonGroupAbout,
 	AdminNavbar,
-	SettingsCard
+	SettingsCard,
+	PageTitle
 }

@@ -1,10 +1,16 @@
 import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
-import { Home, Contact, About, PageNotFound, Login } from './pages'
+import { Home, Contact, About, PageNotFound} from './pages'
+
+import Login from './auth/Login';
+import Logout from './auth/Logout';
+
 import { AnimatePresence } from 'framer-motion';
-import { AdminHome, UpdateSettingsPage } from './pages/admin';
+import { AdminHome, UpdateSettingsPage, AddKeyValuePair } from './pages/admin';
 import { UserProvider } from './UserContext.js';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import PrivateRoutes from './utils/ProtectedRoutes';
 
 function App() {
 
@@ -21,6 +27,27 @@ function App() {
    return < Navigate to = '/not-found' />
   }
 
+
+  useEffect(() => {
+
+    if (localStorage.getItem('token')) {
+        fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        .then(result => result.json())
+        .then(data=> {
+          console.log(data);
+          setUser({
+            id: data._id,
+            isAdmin: data.isAdmin
+          })
+        })
+    }
+  }, [])
+
   const location = useLocation();
 
   return (
@@ -34,10 +61,17 @@ function App() {
           <Route path="/about" element={< About />} />
           <Route path="/not-found" element={< PageNotFound />} />
           <Route path="*" element={< Inaccessible />} />
-          <Route path="/auth-login" element={< Login />} />
+          <Route path="/login" element={< Login />} />
+          <Route path="/logout" element={< Logout />} />
 
-          <Route path="/admin-home" element={< AdminHome />} />
-          <Route path="/update/:settingsId" element={<UpdateSettingsPage />} />
+          
+          
+
+          <Route element={<PrivateRoutes />}>
+            <Route path="/admin" element={< AdminHome />} />
+            <Route path="/update/:settingsId" element={<UpdateSettingsPage />} />
+            <Route path="/admin/add-key-value-pair" element={<AddKeyValuePair />} />
+          </Route> 
 
         </Routes>
     
