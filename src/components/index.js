@@ -10,6 +10,8 @@ import Experience from './Experience'
 import Education from './Education'
 import MySkills from './MySkills'
 import ButtonGroupAbout from './ButtonGroupAbout'
+import AdminNavbar from './AdminNavbar'
+import SettingsCard from './SettingsCard'
 
 export {
 	AppNavbar,
@@ -23,5 +25,7 @@ export {
 	Experience,
 	Education,
 	MySkills,
-	ButtonGroupAbout
+	ButtonGroupAbout,
+	AdminNavbar,
+	SettingsCard
 }

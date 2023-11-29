@@ -2,7 +2,7 @@ import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { Home, Contact, About, PageNotFound, Login } from './pages'
 import { AnimatePresence } from 'framer-motion';
-import { AdminHome } from './pages/admin';
+import { AdminHome, UpdateSettingsPage } from './pages/admin';
 import { UserProvider } from './UserContext.js';
 import { useState } from 'react'
 
@@ -37,6 +37,7 @@ function App() {
           <Route path="/auth-login" element={< Login />} />
 
           <Route path="/admin-home" element={< AdminHome />} />
+          <Route path="/update/:settingsId" element={<UpdateSettingsPage />} />
 
         </Routes>
     

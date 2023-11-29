@@ -21,7 +21,7 @@ const Login = () => {
   }
 
   const retrieveUserDetails = (token) => {
-    fetch(`http://localhost:4001/user/user-details`, {
+    fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -45,7 +45,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:4001/user/login`, {
+    fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
