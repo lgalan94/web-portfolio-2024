@@ -2,6 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Button} from "@material-tailwind/react";
 import { Logo, Transition, PageTitle } from '../components'
 import { IoMdArrowBack } from "react-icons/io";
@@ -35,7 +38,7 @@ const Login = () => {
         });
 
         if (data.isAdmin) {
-          setTimeout(() => navigate('/admin'), 900);
+          setTimeout(() => navigate('/admin'), 1500);
           
         } else {
           setTimeout(() => navigate('/'), 900);
@@ -59,13 +62,12 @@ const Login = () => {
       .then(data => {
         console.log(data)
         if (data === false) {
-          alert("Incorrect email or password!")
-          navigate('/login')
+          toast.error('Incorrect email or password!');
+          setTimeout(() => 2000);
         } else {
           localStorage.setItem('token', data.auth);
           retrieveUserDetails(data.auth);
-          alert("Login Successful!")
-          navigate('/admin')
+          toast.success("Login Successful!");
         }
       });
   };
@@ -132,7 +134,8 @@ const Login = () => {
 
      </motion.div>
 
-    
+     <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+      
    </>
     
   );

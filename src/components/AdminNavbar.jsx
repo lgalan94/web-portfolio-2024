@@ -28,10 +28,10 @@ const AdminNavbar = () => {
     const currentPath = useLocation().pathname;
 
     return (
-      <Link as={Link} to={endPoint} className={`${className} relative group hover:text-dark  ${currentPath === endPoint ? 'text-dark' : 'text-gray-500'}`} >
+      <Link as={Link} to={endPoint} className={`${className} relative tracking-wider uppercase py-1 lg:py-3 group hover:text-dark  ${currentPath === endPoint ? 'text-dark' : 'text-gray-500'}`} >
         {title}
 
-        <span className={`h-[3px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
+        <span className={`h-[2px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-1.5 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
           &nbsp;
         </span>
       </Link>
@@ -40,15 +40,16 @@ const AdminNavbar = () => {
 
   const navList = (
     <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
-      {/*<CustomLink endPoint="/" title="Home" className="lg:mr-1" location={location} />
-      <CustomLink endPoint="/about" title="About" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/contact" title="Contact" className="lg:ml-1" location={location} />*/}
+      <CustomLink endPoint="/admin" title="home" className="lg:mr-1" location={location} />
+      <CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/admin/experiences" title="education" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/admin/messages" title="Messages" className="lg:ml-1" location={location} />
     </ul>
   );
  
   return (
     <div className="sticky top-0 z-10 max-h-[768px] w-full ">
-      <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-1 lg:px-8">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"

@@ -45,11 +45,11 @@ const AddKeyValuePair = () => {
       .then(data => {
         console.log(data)
         if (data === true) {
-          alert("Successfully Added!")
-          navigate('/admin');
+          toast.success("Add Successful!");
+          setTimeout(() => navigate('/admin'), 1000);
         } else {
-          alert('Error!');
-          navigate('/admin');
+          toast.error('Error adding new data!');
+          setTimeout(() => 1000);
         }
       });
   };
@@ -64,12 +64,12 @@ const AddKeyValuePair = () => {
        <div className="flex relative flex-col mt-10 items-center" >
          <Card className="w-96 " color="" shadow={false}>
           <Typography className="capitalize text-center p-4" variant="h5" color="blue-gray">
-            add key-value pair 
+            add new
           </Typography>
           
           <CardBody>
-            <form className="flex flex-col gap-4">
-              <div className="mb-1 flex flex-col gap-6">
+            <form className="flex flex-col">
+              <div className="mb-1 flex flex-col ">
                 <Input 
                    type="text"
                    value={key}
@@ -78,7 +78,7 @@ const AddKeyValuePair = () => {
                    label="Key"
                    size="lg" 
                  />
-                <div className="relative my-4 w-80 md:w-full ">
+                <div className="relative my-4">
                     <textarea
                       value={value}
                       onChange={e => setValue(e.target.value)} 
@@ -92,7 +92,7 @@ const AddKeyValuePair = () => {
                 
               </div>
 
-              <div className="pt-0 flex flex-row gap-1">
+              <div className="pt-0 mt-2 flex flex-row gap-1">
                 <Button onClick={BackToHome} size="sm" >
                   <IoMdArrowBack />
                 </Button>

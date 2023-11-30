@@ -7,12 +7,22 @@ import { BsArrowUpRightSquare } from "react-icons/bs";
 const Home = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
+	const [name, setName] = useState('');
+	const [bannerSubtitle, setBannerSubtitle] = useState('');
 
 	useEffect(() => {
-	  setTimeout(() => {
-	    setIsLoading(false);
-	  }, 1500);
-	}, []);
+	    fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`)
+	      .then((result) => result.json())
+	      .then((data) => {
+	        const nameSetting = data.find((setting) => setting.key === 'name'); 
+	        const bannerSubtitleSetting = data.find((setting) => setting.key === 'bannerSubtitle');
+	        if (nameSetting && bannerSubtitleSetting) {
+	          setName(nameSetting.value);
+	          setBannerSubtitle(bannerSubtitleSetting.value);
+	        }
+	        setIsLoading(false);
+	      });
+	  }, []);
 
 	return (
 		<>
@@ -53,7 +63,7 @@ const Home = () => {
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`Lito Galan Jr.`.split('').map((letter, index) => (
+																	    {`${name}`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -20 }}
@@ -72,7 +82,7 @@ const Home = () => {
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`Full-stack Web Developer from the Philippines`.split('').map((letter, index) => (
+																	    {`${bannerSubtitle}`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -70 }}

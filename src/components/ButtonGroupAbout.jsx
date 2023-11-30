@@ -34,7 +34,7 @@ export default function ButtonGroupAbout() {
 
 
   return (
-    <div className="sticky top-[65px] lg:top-[75px] w-full">
+    <div className="sticky top-[45px] w-full">
       <div className="absolute top-1 right-1">
         <SpeedDial placement="bottom">
           <SpeedDialHandler>

@@ -8,11 +8,53 @@ import {
 } from "@material-tailwind/react";
 import { FaUndo } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom'
+
+const AlertMessage = ({ message, color }) => {
+		return <Alert color={color}> {message} </Alert>
+}
+
 const Contact = () => {
 
+	const navigate = useNavigate();
+
 	const [open, setOpen] = React.useState(1);
+	const [name, setName] = React.useState('');
+	const [email,  setEmail] = React.useState('');
+	const [message, setMessage] = React.useState('');
 	
 	const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+	const handleFormSubmit = (event) => {
+	  event.preventDefault();
+	  fetch(`${import.meta.env.VITE_API_URL}/messages/send-message`, {
+	    method: 'POST',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify({
+	      name: name,
+	      email: email,
+	      message: message
+	    })
+	  })
+	    .then(result => result.json())
+	    .then(data => {
+	      console.log(data)
+	      if (data === true) {
+	        toast.info("Thank you for your message!");
+	        setName('');
+	        setEmail('');
+	        setMessage('');
+	       	setTimeout(() => navigate('/contact'), 3500);
+	      } else {
+	        toast.error('Error sending message!');
+         setTimeout(() => 2000);
+	      }
+	    });
+	};
 
 	return (
 		<>
@@ -28,13 +70,31 @@ const Contact = () => {
 								exit={{ opacity: 0 }}
 								transition={{ duration: 2, delay: 0.2 }}
 								className="flex flex-col w-100 justify-center items-center">
+								<form onSubmit={handleFormSubmit} >
 								<div className="">
 						    <div className="flex w-80 md:w-full flex-col md:flex-row gap-2">
-						    		<Input label="Name" size="lg" />
-						      <Input label="Email" size="lg" />
+						    		<Input 
+						    				type="text"
+						    				value={name}
+						    				onChange={e => setName(e.target.value)} 
+						    				id="name"
+						    				label="Name" 
+						    				size="lg" 
+						    		/>
+						      <Input 
+						      		type="email"
+						      		label="Email" 
+						      		size="lg" 
+						      		value={email}
+						      		onChange={e => setEmail(e.target.value)} 
+						      		id="email"
+						      />
 						    </div>
 						    <div className="relative my-4 w-80 md:w-full ">
 						        <textarea
+						        		value={message}
+						        		onChange={e => setMessage(e.target.value)} 
+						        		id="message"
 						          className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
 						          placeholder=" "
 						        ></textarea>
@@ -46,14 +106,15 @@ const Contact = () => {
 						    		<Button variant="text" className="outline outline-1 outline-dark/25" >
 						    		  <FaUndo />
 						    		</Button>
-						      <Button className="capitalize" variant="gradient" fullWidth>
+						      <Button type="submit" className="capitalize" variant="gradient" fullWidth>
 						        send message
 						      </Button>
 						    </div>
 						</div>	
+						</form>
 						</motion.div>	
 				</Layout>
-
+				<ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 				<Footer />
 		</>
 	)

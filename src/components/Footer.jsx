@@ -1,6 +1,30 @@
-import { FaYoutube, FaFacebookF, FaTwitter, FaGooglePlusG, FaLinkedinIn } from "react-icons/fa";
+import { useState, useEffect } from 'react';
 
 const Footer = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [facebook, setFacebook] = useState('');
+  const [linkedIn, setLinkedIn] = useState('');
+  const [name, setName] = useState('');
+  const [appVersion, setAppVersion] = useState('');
+
+  useEffect(() => {
+      fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`)
+        .then((result) => result.json())
+        .then((data) => {
+          const fbSetting = data.find((setting) => setting.key === 'Facebook'); 
+          const inSetting = data.find((setting) => setting.key === 'linkedin');
+          const nameSetting = data.find((setting) => setting.key === 'name');
+          const appVersionSetting = data.find((setting) => setting.key === 'App Name & Version');
+          if (fbSetting && inSetting && nameSetting && appVersionSetting) {
+            setFacebook(fbSetting.value);
+            setLinkedIn(inSetting.value);
+            setName(nameSetting.value);
+            setAppVersion(appVersionSetting.value)
+          }
+          setIsLoading(false);
+        });
+    }, []);
 
   return (
     <footer
@@ -8,29 +32,22 @@ const Footer = () => {
       
      <div className="flex flex-col md:flex-row justify-between px-20 text-[12px] bg-neutral-900 p-6 text-center text-neutral-200">
         <div className="order-2 lg:order-1">
-         <span>{ new Date().getFullYear() } &copy; Lito Galan Jr. </span>
+         <span>{ new Date().getFullYear() } &copy; {name} </span>
          <a
            target="_blank"
-           className="font-md text-orange-500"
+           className="font-md uppercase text-orange-500"
            href=""
-         >WEB PORTFOLIO 3.0</a>
+         >{appVersion}</a>
         </div>
 
         <div className="flex order-1 lg:order-2 md:p-1 justify-center text-neutral-100">
-          <a href="" target="_blank" className="p-1.5 hover:text-white hover:bg-red-500">
-            <FaYoutube size={15} />
+         
+          <a href={facebook} target="_blank" className="p-1.5 hover:underline hover:text-white hover:bg-blue-500">
+            Facebook
           </a>
-          <a href="" target="_blank" className="p-1.5 hover:text-white hover:bg-blue-500">
-            <FaFacebookF size={15} />
-          </a>
-          <a href="" target="_blank" className="p-1.5 hover:text-white hover:bg-[#3ebdb4]">
-            <FaTwitter size={15} />
-          </a>
-          <a href="" target="_blank" className="p-1.5 hover:text-white hover:bg-[#e66a74]">
-            <FaGooglePlusG size={15} />
-          </a>
-          <a href="" target="_blank" className="p-1.5 hover:text-white hover:bg-[#18b9d9]">
-            <FaLinkedinIn size={15} />
+         
+          <a href={linkedIn} target="_blank" className="p-1.5 hover:underline hover:text-white hover:bg-[#18b9d9]">
+            LinkedIn
           </a>
         </div>
 
