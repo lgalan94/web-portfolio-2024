@@ -1,5 +1,5 @@
 import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle } from '../components'
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Typography,
   Input,
@@ -24,11 +24,13 @@ const Contact = () => {
 	const [name, setName] = React.useState('');
 	const [email,  setEmail] = React.useState('');
 	const [message, setMessage] = React.useState('');
+	const [isClicked, setIsClicked] = useState(false);
 	
 	const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
 	const handleFormSubmit = (event) => {
 	  event.preventDefault();
+	  setIsClicked(true);
 	  fetch(`${import.meta.env.VITE_API_URL}/messages/send-message`, {
 	    method: 'POST',
 	    headers: {
@@ -48,13 +50,15 @@ const Contact = () => {
 	        setName('');
 	        setEmail('');
 	        setMessage('');
-	       	setTimeout(() => navigate('/contact'), 3500);
+	       	setTimeout(() => navigate('/contact'), 2500);
+	       	setTimeout(() => setIsClicked(false), 2500);
 	      } else {
 	        toast.error('Error sending message!');
          setTimeout(() => 2000);
 	      }
 	    });
 	};
+
 
 	return (
 		<>
@@ -106,9 +110,19 @@ const Contact = () => {
 						    		<Button variant="text" className="outline outline-1 outline-dark/25" >
 						    		  <FaUndo />
 						    		</Button>
-						      <Button type="submit" className="capitalize" variant="gradient" fullWidth>
-						        send message
-						      </Button>
+						      
+						    		{
+						    			!isClicked ? (
+						    					<Button type="submit" className="capitalize" variant="gradient" fullWidth>
+						    					  send message
+						    					</Button>
+						    				) : (
+						    					<Button disabled fullWidth>
+						    					  Processing...
+						    					</Button>
+						    				)
+						    		}
+
 						    </div>
 						</div>	
 						</form>

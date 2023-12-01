@@ -14,6 +14,7 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isClicked, setIsClicked] = useState(false);
 
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
@@ -47,6 +48,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setIsClicked(true);
     fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
       method: 'POST',
       headers: {
@@ -120,9 +122,22 @@ const Login = () => {
               <IoMdArrowBack />
             </Button>
 
-            <Button type="submit" className="capitalize" fullWidth>
-              login
-            </Button>
+              {
+                isClicked ? (
+                    <>
+                    <Button disabled fullWidth>
+                      <svg className="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24"></svg>
+                      Processing...
+                    </Button>
+                    </>
+                  ) : (
+                    
+                    <Button type="submit" className="capitalize" fullWidth>
+                      login
+                    </Button>
+                  )
+              }
+
             </div>
           </form>
          </CardBody>

@@ -25,7 +25,8 @@ const UpdateSettingsPage = () => {
   const { settingsId } = useParams();
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
-  const [isDirty, setIsDirty] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
 
   const BackToHome = () => {
@@ -46,7 +47,7 @@ const UpdateSettingsPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    setIsClicked(true);
     fetch(`${import.meta.env.VITE_API_URL}/settings/${settingsId}`, {
       method: 'PATCH',
       headers: {
@@ -71,7 +72,7 @@ const UpdateSettingsPage = () => {
 
   const handleValueChange = (e) => {
     setValue(e.target.value);
-    setIsDirty(true);
+    setIsDisabled(false)
   };
 
   return (
@@ -102,6 +103,7 @@ const UpdateSettingsPage = () => {
                         />
                         <div className="relative ">
                             <textarea
+                              minLength={3}
                               value={value}
                               onChange={handleValueChange}
                               className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -120,13 +122,13 @@ const UpdateSettingsPage = () => {
                         </Button>
 
                         {
-                          isDirty ? (
-                                <Button onClick={handleSubmit} fullWidth>
-                                  SAVE
-                                </Button>
-                            ) : (
+                          isClicked ? (
                               <Button disabled fullWidth>
-                                No Changes made
+                                Processing...
+                              </Button>
+                            ) : (
+                              <Button disabled={isDisabled} onClick={handleSubmit} fullWidth>
+                                SAVE
                               </Button>
                             )
                         }

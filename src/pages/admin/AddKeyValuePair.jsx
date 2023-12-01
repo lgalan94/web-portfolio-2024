@@ -20,7 +20,7 @@ const AddKeyValuePair = () => {
 
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
-
+  const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
 
   const BackToHome = () => {
@@ -30,6 +30,7 @@ const AddKeyValuePair = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    setIsClicked(true);
     fetch(`${import.meta.env.VITE_API_URL}/settings/add-key-value`, {
       method: 'POST',
       headers: {
@@ -50,6 +51,7 @@ const AddKeyValuePair = () => {
         } else {
           toast.error('Error adding new data!');
           setTimeout(() => 1000);
+          setIsClicked(false);
         }
       });
   };
@@ -71,6 +73,7 @@ const AddKeyValuePair = () => {
             <form className="flex flex-col">
               <div className="mb-1 flex flex-col ">
                 <Input 
+                   className="capitalize"
                    type="text"
                    value={key}
                    onChange={e => setKey(e.target.value)} 
@@ -80,6 +83,7 @@ const AddKeyValuePair = () => {
                  />
                 <div className="relative my-4">
                     <textarea
+                      minLength={3}
                       value={value}
                       onChange={e => setValue(e.target.value)} 
                       className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -96,9 +100,18 @@ const AddKeyValuePair = () => {
                 <Button onClick={BackToHome} size="sm" >
                   <IoMdArrowBack />
                 </Button>
-                <Button onClick={handleFormSubmit} fullWidth>
-                  SAVE
-                </Button>
+                
+                {
+                  !isClicked ? (
+                      <Button onClick={handleFormSubmit} fullWidth>
+                        SAVE
+                      </Button>
+                    ) : (
+                      <Button disabled fullWidth>
+                        Processing...
+                      </Button>
+                    )
+                }
 
                
               </div>
