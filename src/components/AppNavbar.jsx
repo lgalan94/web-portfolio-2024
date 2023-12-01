@@ -116,7 +116,7 @@ const AppNavbar = () => {
               fullWidth variant="text" 
               size="sm" 
               className=""
-              onClick={() => navigate('/ogin')} >
+              onClick={() => navigate('/login')} >
               <span>admin</span>
             </Button>
           </div>

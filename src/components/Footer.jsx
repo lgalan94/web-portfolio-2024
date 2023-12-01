@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaSquareFacebook, FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
 
@@ -42,12 +43,12 @@ const Footer = () => {
 
         <div className="flex order-1 lg:order-2 md:p-1 justify-center text-neutral-100">
          
-          <a href={facebook} target="_blank" className="p-1.5 hover:underline hover:text-white hover:bg-blue-500">
-            Facebook
+          <a href={facebook} target="_blank" className="p-1.5 flex flex-row items-center gap-1 hover:underline hover:text-white hover:bg-blue-500 hover:rounded-sm">
+            <FaSquareFacebook className="h-3.5 w-3.5" / >Facebook
           </a>
          
-          <a href={linkedIn} target="_blank" className="p-1.5 hover:underline hover:text-white hover:bg-[#18b9d9]">
-            LinkedIn
+          <a href={linkedIn} target="_blank" className="p-1.5 flex flex-row items-center gap-1 hover:underline hover:text-white hover:bg-[#18b9d9] hover:rounded-sm">
+            <FaLinkedin className="h-3.5 w-3.5" / > LinkedIn
           </a>
         </div>
 

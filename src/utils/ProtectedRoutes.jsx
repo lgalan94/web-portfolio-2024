@@ -7,28 +7,30 @@ export default function PrivateRoutes(){
 const { user, setUser } = useContext(UserContext);
 
 useEffect(() => {
-	fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
-	  method: 'GET',
-	  headers: {
-	    Authorization: `Bearer ${localStorage.getItem('token')}`
-	  }
-	})
-	.then(result => result.json())
-	.then(data => {
-	   	setUser({
-	   	          id: data._id,
-	   	          email: data.email,
-	   	          isAdmin: data.isAdmin
-	   	        });
-	})
-})
+	if (localStorage.getItem('token')) {
+		fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
+		  method: 'GET',
+		  headers: {
+		    Authorization: `Bearer ${localStorage.getItem('token')}`
+		  }
+		})
+		.then(result => result.json())
+		.then(data => {
+		   	setUser({
+		   	          id: data._id,
+		   	          email: data.email,
+		   	          isAdmin: data.isAdmin
+		   	        });
+		})
+	}
+},  [])
 
 
 
 	return (
 		<>
 		{
-			user.id !== null ? <Outlet /> : <Navigate to = '/login' />
+			user._id !== null ? <Outlet /> : <Navigate to = '/login' />
 		}
 		</>
 	)

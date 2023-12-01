@@ -31,14 +31,13 @@ const Login = () => {
     })
       .then(result => result.json())
       .then(data => {
-        console.log(data)
         setUser({
           id: data._id,
           isAdmin: data.isAdmin
         });
 
         if (data.isAdmin) {
-          setTimeout(() => navigate('/admin'), 1500);
+          setTimeout(() => navigate('/admin'), 1000);
           
         } else {
           setTimeout(() => navigate('/'), 900);
@@ -60,7 +59,6 @@ const Login = () => {
     })
       .then(result => result.json())
       .then(data => {
-        console.log(data)
         if (data === false) {
           toast.error('Incorrect email or password!');
           setTimeout(() => 2000);

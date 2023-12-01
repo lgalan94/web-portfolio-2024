@@ -2,23 +2,67 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Card,
   CardBody,
   CardFooter,
   Typography,
-  Button
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter
 } from "@material-tailwind/react";
 
 const SettingsCard = (props) => {
 
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false); 
+  const handleOpen = () => setOpen(!open);
   const { _id, key, value } = props.settingsProp;
+  const [title, setTitle] = useState('');
+  const [settings, setSettings] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`)
+      .then((result) => result.json())
+      .then((data) => {
+        setTitle(data.key);
+      })
+  }, [_id, key, value]);
+
+  const handleDelete = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/settings/${_id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        if (response.ok) {
+          toast.success("Delete Successful!");
+          setOpen(false)
+
+        } else {
+          toast.error('Delete Error! ');
+          setTimeout(() => 1000);
+        }
+      } catch (error) {
+        alert("unknown error")
+      }
+    };
+
 
   return (
+    <>
     
       <Card className="mt-6">
         <CardBody>
-          <Typography color="light" className="text-sm font-bold tracking-wider bg-defaultColor rounded-full text-center mb-4">
+          <Typography className="text-sm font-bold tracking-wider bg-defaultColor rounded-full text-center mb-4">
             {key.toUpperCase()}
           </Typography>
           <Typography className="text-center text-[12px]">
@@ -31,13 +75,33 @@ const SettingsCard = (props) => {
               <FaRegEdit className="h-3 w-3 hover:text-cyan-500 font-bold" />
             </Button>
           </Link>
-          <Link>
-            <Button className="rounded" variant="gradient" size="sm" color="red">
+            <Button onClick={handleOpen} className="rounded" variant="gradient" size="sm" color="red">
               <AiFillDelete className="h-3 w-3 hover:text-cyan-500 font-bold" />
             </Button>
-          </Link>
         </CardFooter>
       </Card>
+
+      <Dialog open={open} handler={handleOpen}>
+              <DialogHeader>Its a simple dialog.</DialogHeader>
+              <DialogBody>
+                Delete {title}?
+              </DialogBody>
+              <DialogFooter>
+                <Button
+                  variant="text"
+                  color="red"
+                  onClick={handleOpen}
+                  className="mr-1"
+                >
+                  <span>Cancel</span>
+                </Button>
+                <Button variant="gradient" color="green" onClick={handleDelete}>
+                  <span>Confirm</span>
+                </Button>
+              </DialogFooter>
+            </Dialog>
+
+            </>
   );
 };
 

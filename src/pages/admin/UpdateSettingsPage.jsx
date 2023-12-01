@@ -100,7 +100,7 @@ const UpdateSettingsPage = () => {
                             className: "before:content-none after:content-none",
                           }}
                         />
-                        <div className="relative my-4 w-80 md:w-full ">
+                        <div className="relative ">
                             <textarea
                               value={value}
                               onChange={handleValueChange}
@@ -114,7 +114,7 @@ const UpdateSettingsPage = () => {
                         
                       </div>
 
-                      <div className="pt-0 flex flex-row gap-1">
+                      <div className="pt-0 mt-2 flex flex-row gap-1">
                         <Button onClick={BackToHome} size="sm" >
                           <IoMdArrowBack />
                         </Button>

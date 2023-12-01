@@ -39,7 +39,6 @@ function App() {
         })
         .then(result => result.json())
         .then(data=> {
-          console.log(data);
           setUser({
             id: data._id,
             isAdmin: data.isAdmin
@@ -51,7 +50,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
     <UserProvider value = {{ user, setUser, unsetUser }} >
       
    
