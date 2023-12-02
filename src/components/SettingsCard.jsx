@@ -14,7 +14,8 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter
+  DialogFooter,
+  Alert
 } from "@material-tailwind/react";
 
 const SettingsCard = (props) => {
@@ -24,15 +25,16 @@ const SettingsCard = (props) => {
   const handleOpen = () => setOpen(!open);
   const { _id, key, value } = props.settingsProp;
   const [title, setTitle] = useState('');
-  const [settings, setSettings] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`)
+    fetch(`${import.meta.env.VITE_API_URL}/settings/${_id}`)
       .then((result) => result.json())
       .then((data) => {
-        setTitle(data.key);
-      })
-  }, [_id, key, value]);
+        setTitle(data.key)
+      });
+  }, [_id]);
+
+
 
   const handleDelete = async (e) => {
       e.preventDefault();
@@ -44,8 +46,8 @@ const SettingsCard = (props) => {
           }
         });
         if (response.ok) {
-          toast.success("Delete Successful!");
           setOpen(false)
+          navigate('/redirect')
 
         } else {
           toast.error('Delete Error! ');
@@ -56,10 +58,11 @@ const SettingsCard = (props) => {
       }
     };
 
+  
 
   return (
     <>
-    
+     
       <Card className="mt-6">
         <CardBody>
           <Typography className="text-sm font-bold tracking-wider bg-defaultColor rounded-full text-center mb-4">
@@ -80,26 +83,30 @@ const SettingsCard = (props) => {
             </Button>
         </CardFooter>
       </Card>
+      
 
-      <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Its a simple dialog.</DialogHeader>
-              <DialogBody>
-                Delete {title}?
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleDelete}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
-            </Dialog>
+     
+
+
+      <Dialog size="sm" open={open} handler={handleOpen}>
+        <DialogHeader> Confirm to Delete </DialogHeader>
+        <DialogBody>
+          Delete {title}?
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleDelete}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
 
             </>
   );

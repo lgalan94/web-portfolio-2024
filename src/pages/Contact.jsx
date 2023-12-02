@@ -1,5 +1,6 @@
 import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle } from '../components'
 import React, {useState} from 'react';
+import { ImSpinner2 } from "react-icons/im";
 import {
   Typography,
   Input,
@@ -81,7 +82,6 @@ const Contact = () => {
 						    				type="text"
 						    				value={name}
 						    				onChange={e => setName(e.target.value)} 
-						    				id="name"
 						    				label="Name" 
 						    				size="lg" 
 						    		/>
@@ -91,14 +91,12 @@ const Contact = () => {
 						      		size="lg" 
 						      		value={email}
 						      		onChange={e => setEmail(e.target.value)} 
-						      		id="email"
 						      />
 						    </div>
 						    <div className="relative my-4 w-80 md:w-full ">
 						        <textarea
 						        		value={message}
 						        		onChange={e => setMessage(e.target.value)} 
-						        		id="message"
 						          className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
 						          placeholder=" "
 						        ></textarea>
@@ -117,8 +115,8 @@ const Contact = () => {
 						    					  send message
 						    					</Button>
 						    				) : (
-						    					<Button disabled fullWidth>
-						    					  Processing...
+						    					<Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
+						    					  <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
 						    					</Button>
 						    				)
 						    		}

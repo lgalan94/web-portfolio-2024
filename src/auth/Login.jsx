@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
+import { ImSpinner2 } from "react-icons/im";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -102,7 +103,6 @@ const Login = () => {
          <form className="flex flex-col gap-4" onSubmit={handleLogin}>
            <Input 
               type="email"
-              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               label="Email"
@@ -110,7 +110,6 @@ const Login = () => {
             />
            <Input
               type="password"
-              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)} 
               label="Password"
@@ -125,9 +124,8 @@ const Login = () => {
               {
                 isClicked ? (
                     <>
-                    <Button disabled fullWidth>
-                      <svg className="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24"></svg>
-                      Processing...
+                    <Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
+                      <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
                     </Button>
                     </>
                   ) : (

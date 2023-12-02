@@ -1,6 +1,7 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsArrowLeftShort } from "react-icons/bs";
+import { ImSpinner2 } from "react-icons/im";
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
@@ -103,7 +104,6 @@ const UpdateSettingsPage = () => {
                         />
                         <div className="relative ">
                             <textarea
-                              minLength={3}
                               value={value}
                               onChange={handleValueChange}
                               className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
@@ -123,8 +123,8 @@ const UpdateSettingsPage = () => {
 
                         {
                           isClicked ? (
-                              <Button disabled fullWidth>
-                                Processing...
+                              <Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
+                                <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
                               </Button>
                             ) : (
                               <Button disabled={isDisabled} onClick={handleSubmit} fullWidth>

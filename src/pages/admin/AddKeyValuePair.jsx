@@ -1,6 +1,7 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsArrowLeftShort } from "react-icons/bs";
+import { ImSpinner2 } from "react-icons/im";
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -44,9 +45,8 @@ const AddKeyValuePair = () => {
     })
       .then(result => result.json())
       .then(data => {
-        console.log(data)
         if (data === true) {
-          toast.success("Add Successful!");
+          toast.success("New Pair Successfully Added!");
           setTimeout(() => navigate('/admin'), 1000);
         } else {
           toast.error('Error adding new data!');
@@ -77,7 +77,6 @@ const AddKeyValuePair = () => {
                    type="text"
                    value={key}
                    onChange={e => setKey(e.target.value)} 
-                   id="key"
                    label="Key"
                    size="lg" 
                  />
@@ -107,8 +106,8 @@ const AddKeyValuePair = () => {
                         SAVE
                       </Button>
                     ) : (
-                      <Button disabled fullWidth>
-                        Processing...
+                      <Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
+                        <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
                       </Button>
                     )
                 }

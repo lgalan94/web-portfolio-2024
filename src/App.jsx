@@ -6,7 +6,7 @@ import Login from './auth/Login';
 import Logout from './auth/Logout';
 
 import { AnimatePresence } from 'framer-motion';
-import { AdminHome, UpdateSettingsPage, AddKeyValuePair, Messages } from './pages/admin';
+import { AdminHome, UpdateSettingsPage, AddKeyValuePair, Messages, Blank } from './pages/admin';
 import { UserProvider } from './UserContext.js';
 import { useState, useEffect } from 'react'
 
@@ -50,7 +50,6 @@ function App() {
   const location = useLocation();
 
   return (
-    <AnimatePresence>
     <UserProvider value = {{ user, setUser, unsetUser }} >
       
    
@@ -71,12 +70,12 @@ function App() {
             <Route path="/update/:settingsId" element={<UpdateSettingsPage />} />
             <Route path="/admin/add-key-value-pair" element={<AddKeyValuePair />} />
             <Route path="/admin/messages" element={<Messages />} />
+            <Route path="/redirect" element={<Blank />} />
           </Route> 
 
         </Routes>
     
     </UserProvider>
-    </AnimatePresence>
   )
 }
 
