@@ -40,9 +40,11 @@ const Login = () => {
 
         if (data.isAdmin) {
           setTimeout(() => navigate('/admin'), 1000);
+          setTimeout(() => setIsClicked(false), 1000);
           
         } else {
           setTimeout(() => navigate('/'), 900);
+          setTimeout(() => setIsClicked(false), 1000);
         }
       });
   }; 
@@ -64,11 +66,13 @@ const Login = () => {
       .then(data => {
         if (data === false) {
           toast.error('Incorrect email or password!');
-          setTimeout(() => 2000);
+          setTimeout(() => 1500);
+          setTimeout(() => setIsClicked(false), 1000);
         } else {
           localStorage.setItem('token', data.auth);
           retrieveUserDetails(data.auth);
           toast.success("Login Successful!");
+          setTimeout(() => setIsClicked(false), 1000);
         }
       });
   };

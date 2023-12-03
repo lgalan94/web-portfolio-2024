@@ -25,10 +25,10 @@ const Contact = () => {
 	const [name, setName] = React.useState('');
 	const [email,  setEmail] = React.useState('');
 	const [message, setMessage] = React.useState('');
-	const [isClicked, setIsClicked] = useState(false);
+	const [isClicked, setIsClicked] = React.useState(false);
+	const [isDisabled, setIsDisabled] = React.useState(true);
 	
 	const handleOpen = (value) => setOpen(open === value ? 0 : value);
-
 	const handleFormSubmit = (event) => {
 	  event.preventDefault();
 	  setIsClicked(true);

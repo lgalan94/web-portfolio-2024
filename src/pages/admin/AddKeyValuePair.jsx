@@ -21,12 +21,39 @@ const AddKeyValuePair = () => {
 
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);   
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isKeyChecked, setIskeyChecked] = useState(false);
+  const [isValueChecked, setIsValueChecked] = useState(false);
   const navigate = useNavigate();
 
   const BackToHome = () => {
     return navigate('/admin');
   }
+
+  useEffect(() => {
+    if (key.length >= 3 && value.length >= 5) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [key, value]) 
+
+  useEffect(() => {
+    if (key.length >= 3) {
+        setIskeyChecked(true)
+    } else {
+      setIskeyChecked(false)
+    }
+  }, [key])
+
+  useEffect(() => {
+    if (value.length >= 5) {
+        setIsValueChecked(true)
+    } else {
+      setIsValueChecked(false)
+    }
+  }, [value])
 
 
   const handleFormSubmit = (event) => {
@@ -102,7 +129,7 @@ const AddKeyValuePair = () => {
                 
                 {
                   !isClicked ? (
-                      <Button onClick={handleFormSubmit} fullWidth>
+                      <Button disabled={isDisabled} onClick={handleFormSubmit} fullWidth>
                         SAVE
                       </Button>
                     ) : (
@@ -114,15 +141,38 @@ const AddKeyValuePair = () => {
 
                
               </div>
-              
-              
-
-              
+            
               
             </form>
           </CardBody>
           
         </Card>
+
+        <div className="mt-3">
+          <Checkbox  
+            color="green"
+            className="h-5 w-5 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"
+            checked={isKeyChecked}
+            label={
+              <Typography variant="small" color="gray" className="font-normal">
+                Key must be greater than 2 characters.
+              </Typography>
+            }
+          />
+        </div>
+        <div className="-mt-3">
+          <Checkbox  
+            color="green"
+            className="h-5 w-5 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"
+            checked={isValueChecked}
+            label={
+              <Typography variant="small" color="gray" className="font-normal">
+                Value must be greater than 4 characters.
+              </Typography>
+            }
+          />
+        </div>
+
        </div>
 
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />

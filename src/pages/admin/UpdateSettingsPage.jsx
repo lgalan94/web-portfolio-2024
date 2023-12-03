@@ -28,6 +28,7 @@ const UpdateSettingsPage = () => {
   const [value, setValue] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isValueChecked, setIsValueChecked] = useState(false);
 
 
   const BackToHome = () => {
@@ -75,6 +76,22 @@ const UpdateSettingsPage = () => {
     setValue(e.target.value);
     setIsDisabled(false)
   };
+
+  useEffect(() => {
+    if (key.length >= 3 && value.length >= 5) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [key, value])
+
+  useEffect(() => {
+    if (value.length >= 5) {
+        setIsValueChecked(true)
+    } else {
+      setIsValueChecked(false)
+    }
+  }, [value])
 
   return (
     
@@ -143,6 +160,22 @@ const UpdateSettingsPage = () => {
                   </CardBody>
                   
                 </Card>
+
+
+            
+                <div className="mt-3">
+                  <Checkbox  
+                    color="green"
+                    className="h-5 w-5 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"
+                    checked={isValueChecked}
+                    label={
+                      <Typography variant="small" color="gray" className="font-normal">
+                        Value must be greater than 4 characters.
+                      </Typography>
+                    }
+                  />
+                </div>
+
                </div>
 
               <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
