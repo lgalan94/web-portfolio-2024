@@ -6,6 +6,7 @@ import {
   Input,
   Checkbox,
   Button,
+  Alert
 } from "@material-tailwind/react";
 import { FaUndo } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -13,25 +14,38 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
 
-const AlertMessage = ({ message, color }) => {
-		return <Alert color={color}> {message} </Alert>
-}
-
 const Contact = () => {
 
 	const navigate = useNavigate();
 
-	const [open, setOpen] = React.useState(1);
 	const [name, setName] = React.useState('');
 	const [email,  setEmail] = React.useState('');
 	const [message, setMessage] = React.useState('');
 	const [isClicked, setIsClicked] = React.useState(false);
-	const [isDisabled, setIsDisabled] = React.useState(true);
+	const [isNameChecked, setIsNameChecked] = React.useState(false);
+	const [isEmailChecked, setIsEmailChecked] = React.useState(false);
+	const [isMessageChecked, setIsMessageChecked] = React.useState(false);
+
+	const [openNameAlert, setOpenNameAlert] = React.useState(false);
+	const [openEmailAlert, setOpenEmailAlert] = React.useState(false);
+	const [openMessageAlert, setOpenMessageAlert] = React.useState(false);
 	
-	const handleOpen = (value) => setOpen(open === value ? 0 : value);
 	const handleFormSubmit = (event) => {
 	  event.preventDefault();
 	  setIsClicked(true);
+
+	  if (name.length < 1) {
+	  	setOpenNameAlert(true)
+	  } 
+
+	  if (email.length < 1) {
+	  	setOpenEmailAlert(true)
+	  } 
+
+	  if (message.length < 1) {
+	  	setOpenMessageAlert(true)
+	  }  
+
 	  fetch(`${import.meta.env.VITE_API_URL}/messages/send-message`, {
 	    method: 'POST',
 	    headers: {
@@ -55,11 +69,29 @@ const Contact = () => {
 	       	setTimeout(() => setIsClicked(false), 2500);
 	      } else {
 	        toast.error('Error sending message!');
-         setTimeout(() => 2000);
+         	setTimeout(() => 2000);
+         	setIsClicked(false)
 	      }
 	    });
 	};
 
+	React.useEffect(() => {
+		if (name.length > 0) {
+			setOpenNameAlert(false)
+		}
+	}, [name])
+
+	React.useEffect(() => {
+		if (email.length > 0) {
+			setOpenEmailAlert(false)
+		}
+	}, [email])
+
+	React.useEffect(() => {
+		if (name.length > 0) {
+			setOpenMessageAlert(false)
+		}
+	}, [message])
 
 	return (
 		<>
@@ -75,8 +107,43 @@ const Contact = () => {
 								exit={{ opacity: 0 }}
 								transition={{ duration: 2, delay: 0.2 }}
 								className="flex flex-col w-100 justify-center items-center">
+
 								<form onSubmit={handleFormSubmit} >
-								<div className="">
+								
+								<div className="flex flex-col gap-1">
+									<Alert 
+										open={openNameAlert} 
+										color="red"
+										animate={{
+											mount: { y: 0 },
+											unmount : {y: 100},
+										}}
+									>
+										Name must not be empty!
+									</Alert>
+									<Alert 
+										open={openEmailAlert} 
+										color="red"
+										animate={{
+											mount: { y: 0 },
+											unmount : {y: 100},
+										}}
+									>
+										Email must not be empty!
+									</Alert>
+									<Alert 
+										open={openMessageAlert} 
+										color="red"
+										animate={{
+											mount: { y: 0 },
+											unmount : {y: 100},
+										}}
+									>
+										Message must not be empty!
+									</Alert>
+								</div>
+
+								<div className="mt-2">
 						    <div className="flex w-80 md:w-full flex-col md:flex-row gap-2">
 						    		<Input 
 						    				type="text"
@@ -126,6 +193,22 @@ const Contact = () => {
 						</form>
 						</motion.div>	
 				</Layout>
+
+				<div>
+					<div className="mt-3">
+					  <Checkbox  
+					    color="green"
+					    className="h-5 w-5 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"
+					    checked={isNameChecked}
+					    label={
+					      <Typography variant="small" color="gray" className="font-normal">
+					        Key must be greater than 2 characters.
+					      </Typography>
+					    }
+					  />
+					</div>
+				</div>
+
 				<ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 				<Footer />
 		</>

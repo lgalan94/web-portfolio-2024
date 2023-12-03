@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, Layout, AnimatedText, Loading, Transition, PageTitle } from '../components'
+import { AppNavbar, Footer, Layout, AnimatedText, Loading, PageTitle } from '../components'
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -126,4 +126,4 @@ const Home = () => {
 	)
 }
 
-export default Transition(Home)
+export default Home
