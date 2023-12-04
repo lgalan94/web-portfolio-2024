@@ -25,6 +25,7 @@ const SettingsCard = (props) => {
   const handleOpen = () => setOpen(!open);
   const { _id, key, value } = props.settingsProp;
   const [title, setTitle] = useState('');
+  const [settings, setSettings] = useState([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/settings/${_id}`)
@@ -46,8 +47,8 @@ const SettingsCard = (props) => {
           }
         });
         if (response.ok) {
+          toast.success('Successfully Deleted! ');
           setOpen(false)
-          navigate('/redirect')
 
         } else {
           toast.error('Delete Error! ');
@@ -57,7 +58,6 @@ const SettingsCard = (props) => {
         alert("unknown error")
       }
     };
-
   
 
   return (
@@ -73,7 +73,7 @@ const SettingsCard = (props) => {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0 mx-auto">
-          <Link to={`/update/${_id}`}>
+          <Link to={`/admin/update/${_id}`}>
             <Button className="rounded mr-1" variant="gradient" size="sm">
               <FaRegEdit className="h-3 w-3 hover:text-cyan-500 font-bold" />
             </Button>
@@ -85,10 +85,15 @@ const SettingsCard = (props) => {
       </Card>
       
 
-     
-
-
-      <Dialog size="sm" open={open} handler={handleOpen}>
+      <Dialog 
+        size="xs" 
+        open={open} 
+        handler={handleOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+      >
         <DialogHeader> Confirm to Delete </DialogHeader>
         <DialogBody>
           Delete {title}?
@@ -107,6 +112,10 @@ const SettingsCard = (props) => {
           </Button>
         </DialogFooter>
       </Dialog>
+
+      <div className="absolute">
+        <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+      </div>
 
             </>
   );

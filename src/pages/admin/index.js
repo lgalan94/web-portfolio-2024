@@ -1,13 +1,15 @@
 import AdminHome from './AdminHome';
 import UpdateSettingsPage from './UpdateSettingsPage'
 import AddKeyValuePair from './AddKeyValuePair'
-import Messages from './Messages'
-import Blank from './Blank'
+import MyMessages from './MyMessages'
+import ViewMessage from './ViewMessage'
+import ArchiveMessages from './ArchiveMessages'
 
 export {
 	AdminHome,
 	UpdateSettingsPage,
 	AddKeyValuePair,
-	Messages,
-	Blank
+	MyMessages,
+	ViewMessage,
+	ArchiveMessages
 }

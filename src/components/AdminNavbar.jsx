@@ -43,7 +43,7 @@ const AdminNavbar = () => {
       <CustomLink endPoint="/admin" title="home" className="lg:mr-1" location={location} />
       <CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/admin/experiences" title="education" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/admin/messages" title="Messages" className="lg:ml-1" location={location} />
+      <CustomLink endPoint="/admin/messages/inbox" title="Messages" className="lg:ml-1" location={location} />
     </ul>
   );
  

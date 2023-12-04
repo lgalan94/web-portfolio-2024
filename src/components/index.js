@@ -13,6 +13,9 @@ import ButtonGroupAbout from './ButtonGroupAbout'
 import AdminNavbar from './AdminNavbar'
 import SettingsCard from './SettingsCard'
 import PageTitle from './PageTitle'
+import DefaultSidebar from './DefaultSidebar'
+import MessagesList from './MessagesList'
+import MessageCard from './MessageCard'
 
 export {
 	AppNavbar,
@@ -29,5 +32,8 @@ export {
 	ButtonGroupAbout,
 	AdminNavbar,
 	SettingsCard,
-	PageTitle
+	PageTitle,
+	DefaultSidebar,
+	MessagesList,
+	MessageCard
 }

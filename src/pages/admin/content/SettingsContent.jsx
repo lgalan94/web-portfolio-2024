@@ -22,7 +22,7 @@ const SettingsContent = () => {
         }
         setLoading(false);
       });
-  }, []);
+  }, [settings]);
 
 
   const AddKeyValue = () => {

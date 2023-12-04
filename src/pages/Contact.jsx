@@ -12,7 +12,8 @@ import { FaUndo } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { MdError } from "react-icons/md";
 
 const Contact = () => {
 
@@ -34,7 +35,7 @@ const Contact = () => {
 	  event.preventDefault();
 	  setIsClicked(true);
 
-	  if (name.length < 1) {
+	  if (name.length < 2) {
 	  	setOpenNameAlert(true)
 	  } 
 
@@ -42,7 +43,7 @@ const Contact = () => {
 	  	setOpenEmailAlert(true)
 	  } 
 
-	  if (message.length < 1) {
+	  if (message.length < 2) {
 	  	setOpenMessageAlert(true)
 	  }  
 
@@ -76,7 +77,7 @@ const Contact = () => {
 	};
 
 	React.useEffect(() => {
-		if (name.length > 0) {
+		if (name.length >= 2) {
 			setOpenNameAlert(false)
 		}
 	}, [name])
@@ -88,10 +89,33 @@ const Contact = () => {
 	}, [email])
 
 	React.useEffect(() => {
-		if (name.length > 0) {
+		if (message.length >= 2) {
 			setOpenMessageAlert(false)
 		}
 	}, [message])
+
+	const Reset = () => {
+		setName('');
+		setEmail('');
+		setMessage('');
+	}
+
+	function Icon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-4 w-4"
+    >
+      <path
+        fillRule="evenodd"
+        d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
 
 	return (
 		<>
@@ -99,7 +123,7 @@ const Contact = () => {
 				<AppNavbar />
 				
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
-				<AnimatedText text="For further questions, please email galanlito.94@gmail.com or contact using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
+				<AnimatedText text="For further questions, please email galanlito.94@gmail.com or message using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
 				<Layout className="!h-[580px] md:h-[720px] lg:h-[500px]">
 						<motion.div 
 								initial={{ opacity: 0 }}
@@ -112,34 +136,40 @@ const Contact = () => {
 								
 								<div className="flex flex-col gap-1">
 									<Alert 
+										className="text-xs"
+										icon={<Icon />}
 										open={openNameAlert} 
 										color="red"
 										animate={{
 											mount: { y: 0 },
-											unmount : {y: 100},
+											unmount : {y: 1},
 										}}
 									>
-										Name must not be empty!
+										Name must not be empty and characters must be greater than 1!
 									</Alert>
 									<Alert 
+										className="text-xs"
+										icon={<Icon />}
 										open={openEmailAlert} 
 										color="red"
 										animate={{
 											mount: { y: 0 },
-											unmount : {y: 100},
+											unmount : {y: 1},
 										}}
 									>
 										Email must not be empty!
 									</Alert>
 									<Alert 
+										className="text-xs"
+										icon={<Icon />}
 										open={openMessageAlert} 
 										color="red"
 										animate={{
 											mount: { y: 0 },
-											unmount : {y: 100},
+											unmount : {y: 1},
 										}}
 									>
-										Message must not be empty!
+										Message must not be empty and characters must be greater than 1!
 									</Alert>
 								</div>
 
@@ -172,7 +202,7 @@ const Contact = () => {
 						        </label>
 						      </div>
 						    <div className="flex w-80 md:w-full flex-row gap-1">
-						    		<Button variant="text" className="outline outline-1 outline-dark/25" >
+						    		<Button onClick={Reset} variant="text" className="outline outline-1 outline-dark/25" >
 						    		  <FaUndo />
 						    		</Button>
 						      
