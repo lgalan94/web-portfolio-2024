@@ -16,6 +16,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import { LuFolderArchive } from "react-icons/lu";
+import { TbGridDots } from "react-icons/tb";
  
 import {
   Link,
@@ -80,11 +81,11 @@ export default function DefaultSidebar() {
 
     <IconButton
       variant="text"
-      className="absolute h-5 w-5 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+      className="absolute p-5 left-1 h-5 w-5 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
       ripple={false}
       onClick={openDrawer}
     >
-      <InboxIcon className="absolute left-1 h-5 w-5" />
+      <TbGridDots className="h-5 w-5" />
     </IconButton>
 
     <React.Fragment>

@@ -62,7 +62,7 @@ const Contact = () => {
 	    .then(data => {
 	      console.log(data)
 	      if (data === true) {
-	        toast.info("Thank you for your message!");
+	        toast.success("Thank you for your message!");
 	        setName('');
 	        setEmail('');
 	        setMessage('');
@@ -134,7 +134,7 @@ const Contact = () => {
 
 								<form onSubmit={handleFormSubmit} >
 								
-								<div className="flex flex-col gap-1">
+								<div className="flex flex-col flex-wrap w-80 md:w-full gap-1">
 									<Alert 
 										className="text-xs"
 										icon={<Icon />}
@@ -225,7 +225,7 @@ const Contact = () => {
 						</motion.div>	
 				</Layout>
 
-				<ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+				<ToastContainer size="sm" position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 				<Footer />
 		</>
 	)

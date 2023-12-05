@@ -63,12 +63,12 @@ const SettingsCard = (props) => {
   return (
     <>
      
-      <Card className="mt-6">
+      <Card floated={true} shadow={true} className="min-w-[20vw]">
         <CardBody>
           <Typography className="text-sm font-bold tracking-wider bg-defaultColor rounded-full text-center mb-4">
             {key.toUpperCase()}
           </Typography>
-          <Typography className="text-center text-[12px]">
+          <Typography className="text-center text-[12px] justify-center flex flex-wrap">
             {value}
           </Typography>
         </CardBody>

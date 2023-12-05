@@ -52,7 +52,7 @@ const ViewMessage = () => {
 				<AdminNavbar />
 					<div className="flex flex-row">
 						<DefaultSidebar />
-						<Layout className="py-10" >
+						<Layout className="py-8 lg:py-2 container mx-auto pr-0 lg:pr-10 h-full" >
 							{
 								loading ? <Loading position="!h-[450px]" /> : (
 									<>
@@ -85,7 +85,7 @@ const ViewMessage = () => {
 													  </Button>
 													</div>
 
-									      <div className="h-full max-h-[26rem] overflow-y-auto">
+									      <div className="h-full max-h-[80vh] lg:max-h-[75vh] transform-none overflow-y-auto">
 									      	<CardHeader
 									      	  floated={false}
 									      	  shadow={false}
