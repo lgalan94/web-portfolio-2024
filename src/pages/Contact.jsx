@@ -124,7 +124,7 @@ const Contact = () => {
 				
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
 				<AnimatedText text="For further questions, please email galanlito.94@gmail.com or message using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
-				<Layout className="!h-[580px] md:h-[720px] lg:h-[500px]">
+				<Layout className="!h-[70vh] ">
 						<motion.div 
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
@@ -181,6 +181,7 @@ const Contact = () => {
 						    				onChange={e => setName(e.target.value)} 
 						    				label="Name" 
 						    				size="lg" 
+						    				className="capitalize"
 						    		/>
 						      <Input 
 						      		type="email"
@@ -223,21 +224,6 @@ const Contact = () => {
 						</form>
 						</motion.div>	
 				</Layout>
-
-				<div>
-					<div className="mt-3">
-					  <Checkbox  
-					    color="green"
-					    className="h-5 w-5 rounded-full border-gray-900/20 bg-gray-900/10 transition-all hover:scale-105 hover:before:opacity-0"
-					    checked={isNameChecked}
-					    label={
-					      <Typography variant="small" color="gray" className="font-normal">
-					        Key must be greater than 2 characters.
-					      </Typography>
-					    }
-					  />
-					</div>
-				</div>
 
 				<ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 				<Footer />

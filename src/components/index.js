@@ -15,7 +15,6 @@ import SettingsCard from './SettingsCard'
 import PageTitle from './PageTitle'
 import DefaultSidebar from './DefaultSidebar'
 import MessagesList from './MessagesList'
-import MessageCard from './MessageCard'
 
 export {
 	AppNavbar,
@@ -34,6 +33,5 @@ export {
 	SettingsCard,
 	PageTitle,
 	DefaultSidebar,
-	MessagesList,
-	MessageCard
+	MessagesList
 }

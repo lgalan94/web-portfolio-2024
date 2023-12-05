@@ -36,14 +36,14 @@ const Home = () => {
 							<>
 
 									<AppNavbar />
-											<Layout className="h-screen">
+											<Layout className="h-[85vh]">
 
-													<div className="flex flex-col md:flex-row ">
+													<div className="flex flex-col lg:flex-row ">
 													{/*div #1*/}
-															<div className="basis-2/5 flex justify-center md:justify-end ">
+															<div className="basis-2/5 flex justify-center lg:justify-end ">
 																	<motion.img 
-																			src="pf2.png"
-																			className="w-96 h-auto" 
+																		src="pf2.png"
+																		className="w-96 h-auto" 
 																	  initial={{ opacity: 0 }}
 																	  animate={{ opacity: 1 }}
 																	  exit={{ opacity: 0 }}
@@ -51,9 +51,9 @@ const Home = () => {
 																	/>		
 															</div>
 															{/*div #2*/}
-															<div className="basis-3/5 flex items-center pl-10 pr-12 lg:pr-32">
+															<div className="basis-3/5 flex justify-center items-center lg:pr-32">
 																<div className="">
-																	  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-[40px] text-center md:text-left" />
+																	  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
 																
 
 																	  <motion.h1
@@ -98,7 +98,7 @@ const Home = () => {
 																	  		animate={{ opacity: 1 }}
 																	  		exit={{ opacity: 0 }}
 																	  		transition={{ duration: 2, delay: 0.3 }}
-																	  		className="flex justify-center md:justify-start items-center mt-1 lg:mt-2">
+																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
 																	    <Link 
 																	      as={Link} to='/' 
 																	      className="flex items-center bg-black text-white p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border-2 border-solid border-transparent hover:border-neutral-800"

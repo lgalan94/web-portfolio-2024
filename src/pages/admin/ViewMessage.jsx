@@ -1,6 +1,6 @@
-import { MessageCard, Loading, AdminNavbar, DefaultSidebar, Layout } from '../../components'
+import { Loading, AdminNavbar, DefaultSidebar, Layout } from '../../components'
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom' 
+import { useParams, Link, useNavigate } from 'react-router-dom' 
 import {
   Card,
   CardHeader,
@@ -9,25 +9,41 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { IoArrowBackSharp } from "react-icons/io5";
+import { LuFolderArchive } from "react-icons/lu";
+import { MdMarkUnreadChatAlt } from "react-icons/md";
 
 const ViewMessage = () => {
-
+	const navigate = useNavigate();
 	const { messageId } = useParams()
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
+	const [dateSent, setDateSent] = useState('');
 	const [loading, setLoading] = useState(true);
 
+
+
 	useEffect(() => {
-	  fetch(`${import.meta.env.VITE_API_URL}/messages/view-message/${messageId}`)
-	    .then((result) => result.json())
-	    .then((data) => {
+	  const fetchMessage = async () => {
+	    try {
+	      const response = await fetch(`${import.meta.env.VITE_API_URL}/messages/view-message/${messageId}`);
+	      const data = await response.json();
+
+	      const d = new Date(data.createdOn);
+	      const saveConverted = d.toLocaleString();
+
 	      setName(data.name);
 	      setEmail(data.email);
 	      setMessage(data.message);
-	      setLoading(false)
-	    });
+	      setDateSent(saveConverted);
+	      setLoading(false);
+	    } catch (error) {
+	      console.error('Error fetching message:', error);
+	    }
+	  };
 
+	  fetchMessage();
 	}, []);
 
 
@@ -36,68 +52,122 @@ const ViewMessage = () => {
 				<AdminNavbar />
 					<div className="flex flex-row">
 						<DefaultSidebar />
-						<Layout className="" >
+						<Layout className="py-10" >
 							{
 								loading ? <Loading position="!h-[450px]" /> : (
-								<Card shadow={false} floated={false} color="transparent" className="w-full rounded-none p-8">
-				      <CardHeader
-				        floated={false}
-				        shadow={false}
-				        color="transparent"
-				        className="m-0 mb-8 rounded-none border-b border-white/10"
-				      >
-				        <Typography
-				          variant="small"
-				          className="font-normal"
-				        >
-				          From: <span className="uppercase font-semibold">{name}</span>
-				        </Typography>
-				        <Typography
-				          variant="small"
-				          className="flex font-normal mt-2"
-				        >
-				          Email: <span className="font-semibold">{email}</span>
-				        </Typography>
-				      </CardHeader>
-				      <CardBody className="p-0">
-				        	<Typography
-				        	  variant="small"
-				        	  className="font-normal uppercase"
-				        	>
-				        	  message
-				        	</Typography>
-				        	<Typography
-				        	  variant="small"
-				        	  className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 mt-1 p-3 font-normal border border-gray-900/30 rounded h-full min-h-[15rem]"
-				        	>
-				        	  {message}
-				        	</Typography>
-				      </CardBody>
-				      <CardFooter className="mt-12 flex gap-3 mx-auto p-0">
-				        <Link to = {`/admin/messages/inbox`}>
-				        	<Button
-				        	  size="sm"
-				        	  className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-				        	  ripple={true}
-				        	>
-				        	  back
-				        	</Button>
-				        </Link>
-				        <Button
-				          size="sm"
-				          className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-				          ripple={true}
-				        >
-				          Archive
-				        </Button>
-				      </CardFooter>
-				    </Card>
+									<>
+										<div className="p-3">
+												<Card shadow={true} floated={false}>
+													<div className="flex items-center p-1 border border-b-gray-900/20 gap-x-1">
+													  <Button
+													    variant="text"
+													    size="sm"
+													    className=""
+													    onClick={() => navigate('/admin/messages/inbox')}
+													  >
+													    <span className="flex items-center gap-1 lowercase"><IoArrowBackSharp /> back</span>
+													  </Button>
+													  <Button
+													    variant="text"
+													    size="sm"
+													    className=""
+													    onClick={() => navigate('/admin/messages/inbox')}
+													  >
+													    <span className="flex items-center gap-1 lowercase"><LuFolderArchive /> archive</span>
+													  </Button>
+													  <Button
+													    variant="text"
+													    size="sm"
+													    className=""
+													    onClick={() => navigate('/admin/messages/inbox')}
+													  >
+													    <span className="flex items-center gap-1 lowercase"><MdMarkUnreadChatAlt /> mark as unread</span>
+													  </Button>
+													</div>
+
+									      <div className="h-full max-h-[26rem] overflow-y-auto">
+									      	<CardHeader
+									      	  floated={false}
+									      	  shadow={false}
+									      	  color="transparent"
+									      	  className="px-2"
+									      	>
+									      	  <div className="mb-2">
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	  From 
+									      	  	</Typography>
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	 <span className="uppercase text-blue-300 font-semibold">{name}</span>
+									      	  	</Typography>
+									      	  </div>
+
+									      	  <div className="mb-2">
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	  Email 
+									      	  	</Typography>
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	 <span className="lowercase text-blue-300 font-semibold">{email}</span>
+									      	  	</Typography>
+									      	  </div>
+
+									      	  <div className="">
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	  Date 
+									      	  	</Typography>
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal"
+									      	  	>
+									      	  	 <span className="text-blue-300 font-semibold">{dateSent}</span>
+									      	  	</Typography>
+									      	  </div>
+
+
+									      	  
+									      	</CardHeader>
+									      	<CardBody className="px-6">
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="font-normal uppercase"
+									      	  	>
+									      	  	  message
+									      	  	</Typography>
+									      	  	<Typography
+									      	  	  variant="small"
+									      	  	  className="tracking-wide focus:scale-[1.02] active:scale-100 mt-1 p-3 font-normal border border-gray-900/30 rounded h-full min-h-[5rem]"
+									      	  	>
+									      	  	  {message}
+									      	  	</Typography>
+									      	</CardBody>
+									      </div>
+									      
+									    </Card>
+										</div>
+									</>
+
 								)
 							}
 						</Layout>
 					</div>
 				
 			</>
+
+
 	)
 }
 

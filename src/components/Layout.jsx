@@ -1,7 +1,7 @@
 const Layout = ({ children, className="" }) => {
 	return (
 		<div
-			className={`${className} w-full h-full `}
+			className={`${className} `}
 		>
 			{children}
 		</div>

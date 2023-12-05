@@ -114,7 +114,7 @@ const UpdateSettingsPage = () => {
                           size="lg"
                           value={key}
                           disabled
-                          className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                          className="capitalize !border-t-blue-gray-200 focus:!border-t-gray-900"
                           labelProps={{
                             className: "before:content-none after:content-none",
                           }}
