@@ -1,2 +1,7 @@
 backend:
 https://web-portfolio-2024-backend.onrender.com
+
+animation 1:
+initial={{y:50}}
+whileInView={{y:0}}
+transition={{duration: 0.5,  type: "spring"}}

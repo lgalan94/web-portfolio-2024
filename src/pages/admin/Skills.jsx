@@ -76,7 +76,6 @@ const handleFormSubmit = (event) => {
   })
     .then(result => result.json())
     .then(data => {
-    	console.log(data)
       	if (data === true) {
       	  toast.success("Successfully Added!");
       	  setOpen(false);
@@ -101,26 +100,34 @@ const handleFormSubmit = (event) => {
 	return (
 		<>
 			<AdminNavbar />
-			<div className="p-5 flex justify-between">
-			  <Chip variant="ghost" value={count} />
-			  <Button onClick={handleOpen} variant="gradient" color="blue" size="sm" className="flex flex-row "><IoMdAdd className="h-4 w-4" /> Add new</Button>
-			  
-			</div>
-			<Alert 
-				open={openAlert}
-				onClose={() => setOpenAlert(false)}
-				className="w-[85vw] mx-auto text-sm"
-				color="red"
-				animate={{
-					mount: { y: 0 },
-					unmount : {y: 1},
-				}}
-			>
-				{inAlertName.toUpperCase()} already exists!
-			</Alert>
-			<div className="p-10 w-full max-w-[92vw] h-full max-h-[80vh] lg:max-h-[70vh] overflow-y-auto mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 gap-y-5">
-					{skills}
-			</div>
+			{
+				loading ? <Loading /> : (
+
+					<>
+						<div className="p-5 flex justify-between">
+						  <Chip variant="ghost" value={count} />
+						  <Button onClick={handleOpen} variant="gradient" color="blue" size="sm" className="flex flex-row "><IoMdAdd className="h-4 w-4" /> Add new</Button>
+						  
+						</div>
+						<Alert 
+							open={openAlert}
+							onClose={() => setOpenAlert(false)}
+							className="w-[85vw] mx-auto text-sm"
+							color="red"
+							animate={{
+								mount: { y: 0 },
+								unmount : {y: 1},
+							}}
+						>
+							{inAlertName.toUpperCase()} already exists!
+						</Alert>
+						<div className="p-10 w-full max-w-[92vw] h-full max-h-[80vh] lg:max-h-[70vh] overflow-y-auto mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 gap-y-5">
+								{skills}
+						</div>
+					</>
+
+				)
+			}
 
 			<Dialog 
 			  size="xs" 
@@ -137,10 +144,9 @@ const handleFormSubmit = (event) => {
 			  		<form className="flex flex-col">
 			  		  <div className="mb-1 flex flex-col ">
 			  		    <Input 
-			  		       className="uppercase"
 			  		       type="text"
-			  		       value={name}
-			  		       onChange={e => setName(e.target.value)} 
+			  		       value={name.toUpperCase()}
+			  		       onChange={e => setName(e.target.value.toUpperCase())} 
 			  		       label="Name"
 			  		       size="lg" 
 			  		     />

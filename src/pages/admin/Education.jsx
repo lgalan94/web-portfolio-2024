@@ -52,13 +52,21 @@ const Education = () => {
 		return (
 				<>
 					<AdminNavbar />
-					<div className="p-5 flex justify-between">
-					  <Chip variant="ghost" value={count} />
-					  <Button variant="gradient" color="blue" size="sm" className="flex flex-row "><IoMdAdd className="h-4 w-4" /> Add new</Button>
-					</div>
-					<div className="p-10 w-full max-w-[92vw] h-full max-h-[80vh] lg:max-h-[70vh] overflow-y-auto mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-5">
-							{education}
-					</div>
+					{
+						loading ? <Loading /> : (
+
+								<>
+										<div className="p-5 flex justify-between">
+										  <Chip variant="ghost" value={count} />
+										  <Button variant="gradient" color="blue" size="sm" className="flex flex-row "><IoMdAdd className="h-4 w-4" /> Add new</Button>
+										</div>
+										<div className="p-10 w-full max-w-[92vw] h-full max-h-[80vh] lg:max-h-[70vh] overflow-y-auto mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 gap-y-5">
+												{education}
+										</div>
+								</>
+
+						)
+					}
 					
 				</>
 		)

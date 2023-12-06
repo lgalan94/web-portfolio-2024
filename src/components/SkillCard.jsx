@@ -64,10 +64,10 @@ const SkillCard = (props) => {
 			<Card shadow={true} className="min-w-[15vw]" >
 	    	<CardBody>
 	    	  <Typography className="text-sm font-bold tracking-wider bg-defaultColor rounded-full text-center mb-4">
-	    	   
+	    	   	{name}
 	    	  </Typography>
 	    	  <Typography className="text-center text-[12px] justify-center flex flex-wrap uppercase">
-	    	    {name}
+	    	    
 	    	  </Typography>
 	    	</CardBody>
 	    	<CardFooter className="pt-0 mx-auto">

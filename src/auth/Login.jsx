@@ -129,7 +129,7 @@ const Login = () => {
                 isClicked ? (
                     <>
                     <Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
-                      <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
+                      <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Logging in...
                     </Button>
                     </>
                   ) : (

@@ -30,7 +30,8 @@ const Contact = () => {
 	const [openNameAlert, setOpenNameAlert] = React.useState(false);
 	const [openEmailAlert, setOpenEmailAlert] = React.useState(false);
 	const [openMessageAlert, setOpenMessageAlert] = React.useState(false);
-	
+	const [messageSentAlert, setMessageSentAlert] = React.useState(false);
+
 	const handleFormSubmit = (event) => {
 	  event.preventDefault();
 	  setIsClicked(true);
@@ -60,14 +61,15 @@ const Contact = () => {
 	  })
 	    .then(result => result.json())
 	    .then(data => {
-	      console.log(data)
 	      if (data === true) {
-	        toast.success("Thank you for your message!");
+	      	toast.success("Message Sent")
+	        setMessageSentAlert(true);
 	        setName('');
 	        setEmail('');
 	        setMessage('');
 	       	setTimeout(() => navigate('/contact'), 2500);
 	       	setTimeout(() => setIsClicked(false), 2500);
+	       	setTimeout(() => setMessageSentAlert(false), 5000);
 	      } else {
 	        toast.error('Error sending message!');
          	setTimeout(() => 2000);
@@ -116,6 +118,24 @@ const Contact = () => {
     </svg>
   );
 }
+	
+	function checkIcon() {
+	  return (
+	    <svg
+	      xmlns="http://www.w3.org/2000/svg"
+	      viewBox="0 0 24 24"
+	      fill="currentColor"
+	      className="h-6 w-6"
+	    >
+	      <path
+	        fillRule="evenodd"
+	        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+	        clipRule="evenodd"
+	      />
+	    </svg>
+	  );
+	}
+
 
 	return (
 		<>
@@ -135,6 +155,17 @@ const Contact = () => {
 								<form onSubmit={handleFormSubmit} >
 								
 								<div className="flex flex-col flex-wrap w-80 md:w-full gap-1">
+									<Alert
+							      icon={<checkIcon />}
+							      animate={{
+							      	mount: { y: 0 },
+							      	unmount : {y: 1},
+							      }}
+							      open={messageSentAlert}
+							      className="rounded-none border-l-4 border-[#2ec946] bg-[#2ec946]/10 font-medium text-[#2ec946]"
+							    >
+							      Thank you for your message. Have a Good day!
+							    </Alert>
 									<Alert 
 										className="text-xs"
 										icon={<Icon />}
@@ -214,7 +245,7 @@ const Contact = () => {
 						    					</Button>
 						    				) : (
 						    					<Button className="flex flex-row items-center capitalize justify-center" disabled fullWidth>
-						    					  <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
+						    					  <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Sending...
 						    					</Button>
 						    				)
 						    		}
@@ -225,7 +256,7 @@ const Contact = () => {
 						</motion.div>	
 				</Layout>
 
-				<ToastContainer size="sm" position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+				<ToastContainer size="sm" position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
 				<Footer />
 		</>
 	)

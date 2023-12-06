@@ -110,7 +110,9 @@ const AppNavbar = () => {
           </div>
         </div>
         <Collapse open={openNav}>
-          {navList}
+          <div className="flex text-center justify-center">
+            {navList}
+          </div>
           <div className="flex items-center gap-x-2">
             <Button 
               fullWidth variant="text" 

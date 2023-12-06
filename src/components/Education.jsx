@@ -1,10 +1,11 @@
 import { Typography } from '@material-tailwind/react';
 import { useScroll, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import LiIcon from './LiIcon'
 
+const Details = (props) => {
 
-const Details = ({ position, company, companyLink, time, address, work }) => {
+	const { title, school, schoolLink, timeRange, address, learnings } = props.educationProps;
 
 	const ref = useRef();
 
@@ -15,18 +16,20 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
 				whileInView={{y:0}}
 				transition={{duration: 0.5,  type: "spring"}}
 		>
-			<Typography className="capitalize text-orange-300" variant="h4"> {position}&nbsp; <a href={companyLink} target="_blank" className="text-dark/75" >@{company}</a> </Typography>
+			<Typography className="capitalize text-orange-300" variant="h4"> {title}&nbsp; <a href={schoolLink} target="_blank" className="text-dark/75" >@{school}</a> </Typography>
 			<span className="capitalize text-dark/75">
-				{time} | {address}
+				{timeRange} | {address}
 			</span>
 			<p className="text-justify">
-				{work}
+				{learnings}
 			</p>
 		</motion.div>
 	</li>
 }
 
 const Education = () => {
+
+const [education, setEducation] = useState([]);
 
 const ref = useRef(null);
 const {scrollYProgress} = useScroll(
@@ -36,6 +39,25 @@ const {scrollYProgress} = useScroll(
 		}
 	)
 
+	const fetchData = () => {
+	  fetch(`${import.meta.env.VITE_API_URL}/education`)
+	    .then(result => result.json())
+	    .then(data => {
+	      if (data.length > 0) {
+	        setEducation(data.map((education) => (
+	        		<Details educationProps={education} key={education._id} />
+	        )))
+	      } else {
+      	setEducation(<div className="font-semibold text-center text-4xl w-[72vw] md:w-[82vw] lg:w-[85vw]">No data in database!</div>
+)
+	      }
+	    });
+	}; 
+
+	useEffect(() => {
+	  fetchData();
+	}, [education]);
+
 	return (
 		<div ref={ref} className="w-[75%] mx-auto relative">
 
@@ -44,38 +66,8 @@ const {scrollYProgress} = useScroll(
 			className="absolute left-9 top-0 w-[4px] h-full bg-orange-500 origin-top" />
 
 			<ul className="w-full flex flex-col items-start justify-between ml-4">
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					companyLink="www.google.com"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					companyLink="www.google.com"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					companyLink="www.google.com"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					companyLink="www.google.com"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
+				
+					{education}
 				
 			</ul>
 		</div>

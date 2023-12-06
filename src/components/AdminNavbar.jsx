@@ -28,10 +28,10 @@ const AdminNavbar = () => {
     const currentPath = useLocation().pathname;
 
     return (
-      <Link as={Link} to={endPoint} className={`${className} relative tracking-wider uppercase py-1 lg:py-3 group hover:text-dark  ${currentPath === endPoint ? 'text-dark' : 'text-gray-500'}`} >
+      <Link as={Link} to={endPoint} className={`${className} relative tracking-wider uppercase py-1 lg:py-3 group hover:text-dark  ${currentPath === endPoint ? 'text-dark font-semibold' : 'text-dark/50'}`} >
         {title}
 
-        <span className={`h-[2px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-1.5 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
+        <span className={`h-[3px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-1.5 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
           &nbsp;
         </span>
       </Link>
@@ -41,7 +41,7 @@ const AdminNavbar = () => {
   const navList = (
     <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/admin" title="home" className="lg:mr-1" location={location} />
-      <CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />
+      {/*<CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />*/}
       <CustomLink endPoint="/admin/education" title="education" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/admin/skills" title="skills" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/admin/messages/inbox" title="Messages" className="lg:ml-1" location={location} />
@@ -109,7 +109,9 @@ const AdminNavbar = () => {
           </div>
         </div>
         <Collapse open={openNav}>
-          {navList}
+          <div className="flex text-center justify-center">
+            {navList}
+          </div>
           <div className="flex items-center gap-x-2">
             <Button 
               fullWidth variant="text" 
