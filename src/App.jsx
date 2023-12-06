@@ -6,7 +6,7 @@ import Login from './auth/Login';
 import Logout from './auth/Logout';
 
 import { AnimatePresence } from 'framer-motion';
-import { AdminHome, UpdateSettingsPage, AddKeyValuePair, MyMessages, ViewMessage, ArchiveMessages } from './pages/admin';
+import { AdminHome, UpdateSettingsPage, AddKeyValuePair, MyMessages, ViewMessage, ArchiveMessages, Skills, Education } from './pages/admin';
 import { UserProvider } from './UserContext.js';
 import { useState, useEffect } from 'react'
 
@@ -70,6 +70,8 @@ function App() {
           </Route>
 
           <Route path="/admin" element={< AdminHome />} />
+          <Route path="/admin/skills" element={< Skills />} />
+          <Route path="/admin/education" element={< Education />} />
           <Route path="/admin/update/:settingsId" element={<UpdateSettingsPage />} />
           <Route path="/admin/add-key-value-pair" element={<AddKeyValuePair />} />
           <Route path="/admin/messages/inbox" element={<MyMessages />} /> 

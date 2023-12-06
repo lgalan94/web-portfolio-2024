@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Chip } from '@material-tailwind/react'
 
 const SettingsContent = () => {
+  let i = 0;
   const navigate = useNavigate();
   const [settings, setSettings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,9 +19,12 @@ const SettingsContent = () => {
         if (data.length === 0) {
           setSettings(<div>No data in the database!</div>);
         } else {
-          setSettings(data.map((settings) => (
-            <SettingsCard key={settings._id} settingsProp={settings} />
-          )));
+          setSettings(data.map((settings) => {
+            i++;
+            return (
+            <SettingsCard number={i} key={settings._id} settingsProp={settings} />
+          )
+          }));
         }
         setCount(data.length);
         setLoading(false);

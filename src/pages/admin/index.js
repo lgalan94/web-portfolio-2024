@@ -4,6 +4,8 @@ import AddKeyValuePair from './AddKeyValuePair'
 import MyMessages from './MyMessages'
 import ViewMessage from './ViewMessage'
 import ArchiveMessages from './ArchiveMessages'
+import Skills from './Skills'
+import Education from './Education'
 
 export {
 	AdminHome,
@@ -11,5 +13,7 @@ export {
 	AddKeyValuePair,
 	MyMessages,
 	ViewMessage,
-	ArchiveMessages
+	ArchiveMessages,
+	Skills,
+	Education
 }

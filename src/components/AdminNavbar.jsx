@@ -42,7 +42,8 @@ const AdminNavbar = () => {
     <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/admin" title="home" className="lg:mr-1" location={location} />
       <CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/admin/experiences" title="education" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/admin/education" title="education" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/admin/skills" title="skills" className="lg:mx-1" location={location} />
       <CustomLink endPoint="/admin/messages/inbox" title="Messages" className="lg:ml-1" location={location} />
     </ul>
   );
@@ -52,8 +53,6 @@ const AdminNavbar = () => {
       <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-1 lg:px-8">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
-            as="a"
-            href="#"
             className="mr-4 cursor-pointer py-1.5 font-semibold uppercase"
           >
             Admin

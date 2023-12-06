@@ -5,6 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ImSpinner2 } from "react-icons/im";
 import {
   Card,
   CardBody,
@@ -16,16 +17,16 @@ import {
   DialogBody,
   DialogFooter,
   Alert
-} from "@material-tailwind/react";
+} from "@material-tailwind/react"; 
 
 const SettingsCard = (props) => {
-
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false); 
   const handleOpen = () => setOpen(!open);
   const { _id, key, value } = props.settingsProp;
   const [title, setTitle] = useState('');
   const [settings, setSettings] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/settings/${_id}`)
@@ -38,6 +39,7 @@ const SettingsCard = (props) => {
 
 
   const handleDelete = async (e) => {
+      setIsClicked(true);
       e.preventDefault();
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/settings/${_id}`, {
@@ -47,7 +49,7 @@ const SettingsCard = (props) => {
           }
         });
         if (response.ok) {
-          toast.success('Successfully Deleted! ');
+          toast.success(`${key} Successfully Deleted!`);
           setOpen(false)
 
         } else {
@@ -94,12 +96,13 @@ const SettingsCard = (props) => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <DialogHeader> Confirm to Delete </DialogHeader>
-        <DialogBody>
-          Delete {title}?
+        <DialogHeader className="border border-b-gray-900/20 rounded-t-lg shadow justify-center"> Confirmation!</DialogHeader>
+        <DialogBody className="text-center font-leading">
+          Delete <span className="text-teal-300 font-semibold uppercase">{title}</span> ?
         </DialogBody>
-        <DialogFooter>
+        <DialogFooter className="justify-center">
           <Button
+            size="sm"
             variant="text"
             color="red"
             onClick={handleOpen}
@@ -107,9 +110,17 @@ const SettingsCard = (props) => {
           >
             <span>Cancel</span>
           </Button>
-          <Button variant="gradient" color="green" onClick={handleDelete}>
-            <span>Confirm</span>
-          </Button>
+
+          {
+            isClicked ? 
+            <Button size="sm" variant="gradient" color="green" className="flex flex-row items-center capitalize justify-center" disabled>
+              <ImSpinner2 className="animate-spin mr-1 w-4 h-4" /> Processing...
+            </Button>
+            :
+            <Button size="sm" variant="gradient" color="green" onClick={handleDelete}>
+              <span>Confirm</span>
+            </Button>
+          }           
         </DialogFooter>
       </Dialog>
 
