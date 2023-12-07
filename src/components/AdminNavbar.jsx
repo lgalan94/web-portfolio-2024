@@ -6,16 +6,21 @@ import {
   Button,
   IconButton,
   Card,
+  Drawer
 } from "@material-tailwind/react";
 import {
   Link,
   useLocation,
   useNavigate
 } from 'react-router-dom';
+import AdminNavLinks from './AdminNavLinks'
  
 const AdminNavbar = () => {
   const [openNav, setOpenNav] = React.useState(false);
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
  
   React.useEffect(() => {
     window.addEventListener(
@@ -24,41 +29,18 @@ const AdminNavbar = () => {
     );
   }, []);
 
-  const CustomLink = ({ endPoint, title, className = "", location }) => {
-    const currentPath = useLocation().pathname;
-
-    return (
-      <Link as={Link} to={endPoint} className={`${className} relative tracking-wider uppercase py-1 lg:py-3 group hover:text-dark  ${currentPath === endPoint ? 'text-dark font-semibold' : 'text-dark/50'}`} >
-        {title}
-
-        <span className={`h-[3px] inline-block w-0 lg:bg-dark bg-none opacity-50 absolute left-0 -bottom-1.5 ${currentPath === endPoint ? 'w-full' : 'w-0'}`}>
-          &nbsp;
-        </span>
-      </Link>
-    );
-  };
-
-  const navList = (
-    <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
-      <CustomLink endPoint="/admin" title="home" className="lg:mr-1" location={location} />
-      {/*<CustomLink endPoint="/admin/experiences" title="Experiences" className="lg:mx-1" location={location} />*/}
-      <CustomLink endPoint="/admin/education" title="education" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/admin/skills" title="skills" className="lg:mx-1" location={location} />
-      <CustomLink endPoint="/admin/messages/inbox" title="Messages" className="lg:ml-1" location={location} />
-    </ul>
-  );
  
   return (
+    <>
     <div className="sticky top-0 z-10 max-h-[768px] w-full ">
-      <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-1 lg:px-8">
+      <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-1 lg:px-8 shadow">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             className="mr-4 cursor-pointer py-1.5 font-semibold uppercase"
           >
-            Admin
+            &copy;<span className="italic"> GALAN </span><span className="font-md uppercase text-orange-500">ADMIN UI</span>
           </Typography>
           <div className="flex items-center gap-4">
-            <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
               <Button
                 variant="text"
@@ -73,7 +55,7 @@ const AdminNavbar = () => {
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
-              onClick={() => setOpenNav(!openNav)}
+              onClick={openDrawer}
             >
               {openNav ? (
                 <svg
@@ -108,22 +90,41 @@ const AdminNavbar = () => {
             </IconButton>
           </div>
         </div>
-        <Collapse open={openNav}>
-          <div className="flex text-center justify-center">
-            {navList}
-          </div>
-          <div className="flex items-center gap-x-2">
-            <Button 
-              fullWidth variant="text" 
-              size="sm" 
-              className=""
-              onClick={() => navigate('/logout')} >
-              <span>Logout</span>
-            </Button>
-          </div>
-        </Collapse>
+        
       </Navbar>
     </div>
+
+    <React.Fragment>
+      <Drawer placement="right" open={open} onClose={closeDrawer}>
+        <div className="mb-2 flex capitalize items-center justify-between p-4">
+          <Typography variant="h5" color="blue-gray">
+            
+          </Typography>
+          <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-5 w-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </IconButton>
+        </div>
+        
+        <AdminNavLinks />
+        
+      </Drawer>
+    </React.Fragment>
+
+    </>
+
   );
 }
 

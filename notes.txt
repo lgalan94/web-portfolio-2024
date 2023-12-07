@@ -5,3 +5,42 @@ animation 1:
 initial={{y:50}}
 whileInView={{y:0}}
 transition={{duration: 0.5,  type: "spring"}}
+
+
+<IconButton
+  variant="text"
+  className="absolute p-5 left-1 h-5 w-5 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+  ripple={false}
+  onClick={openDrawer}
+>
+  <TbGridDots className="h-5 w-5" />
+</IconButton>
+
+<React.Fragment>
+  <Drawer placement="top" open={open} onClose={closeDrawer}>
+    <div className="mb-2 flex capitalize items-center justify-between p-4">
+      <Typography variant="h5" color="blue-gray">
+        messages
+      </Typography>
+      <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="h-5 w-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </IconButton>
+    </div>
+    
+    <AdminNavLinks />
+    
+  </Drawer>
+</React.Fragment>

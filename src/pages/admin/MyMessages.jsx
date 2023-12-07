@@ -18,6 +18,7 @@ const MyMessages = () => {
         })
 	    .then((result) => result.json())
 	    .then((data) => {
+	    	console.log(data)
 	      if (data.length === 0) {
 	        setMessage(<div>No data in the database!</div>);
 	      } else {
@@ -37,7 +38,7 @@ const MyMessages = () => {
 			        			</div>
 	        					)
 	        	)));
-	        setLoading(false)
+	        setLoading(false) 
 	      }
 	    });
 	}, [message]);

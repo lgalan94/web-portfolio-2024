@@ -32,7 +32,7 @@ const MessagesList = (props) => {
   }
 
   return (
-    <div className={`hover:bg-light/75 flex gap-x-1 gap-y-2 items-center border border-b-gray-900/10`}>
+    <div className={`hover:bg-light/75 flex gap-x-1 gap-y-2 items-center`}>
       <div className="flex-none px-1 justify-center items-center">
         <input type="checkbox" className="h-4 w-4 flex hover:border-none items-center transition-all hover:scale-105 hover:before:opacity-0" />
       </div>

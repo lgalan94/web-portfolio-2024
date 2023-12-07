@@ -22,7 +22,7 @@ import {
 
 const EducationCard = (props) => {
 
-	const { title, school, schoolLink, timeRange, address, learnings } = props.educationProps;
+	const { _id, title, school, schoolLink, timeRange, address, learnings } = props.educationProps;
 
 		return (
 					<>
@@ -47,6 +47,16 @@ const EducationCard = (props) => {
 						      {learnings}
 						    </Typography>
 						  </CardBody>
+						  <CardFooter className="pt-0 mx-auto">
+						    <Link to={`/admin/update/${_id}`}>
+						      <Button className="rounded mr-1" variant="gradient" size="sm">
+						        <FaRegEdit className="h-3 w-3 hover:text-cyan-500 font-bold" />
+						      </Button>
+						    </Link>
+						      <Button className="rounded" variant="gradient" size="sm" color="red">
+						        <AiFillDelete className="h-3 w-3 hover:text-cyan-500 font-bold" />
+						      </Button>
+						  </CardFooter>
 						</Card>
 					</>
 		)

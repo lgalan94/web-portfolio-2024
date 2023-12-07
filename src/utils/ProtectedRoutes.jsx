@@ -25,7 +25,7 @@ fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
 	return (
 		<>
 		{
-			user.id !== null ? <Outlet /> : <Navigate to = '/login' />
+			user.id !== null ? (<Outlet />) : (<Navigate to = '/login' />)
 		}
 		</>
 	)

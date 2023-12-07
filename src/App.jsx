@@ -1,16 +1,21 @@
 import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { Home, Contact, About, PageNotFound} from './pages'
-
 import Login from './auth/Login';
 import Logout from './auth/Logout';
-
 import { AnimatePresence } from 'framer-motion';
-import { AdminHome, UpdateSettingsPage, AddKeyValuePair, MyMessages, ViewMessage, ArchiveMessages, Skills, Education } from './pages/admin';
 import { UserProvider } from './UserContext.js';
 import { useState, useEffect } from 'react'
-
 import PrivateRoutes from './utils/ProtectedRoutes';
+import { 
+  AdminHome, 
+  UpdateSettingsPage, 
+  AddKeyValuePair, 
+  MyMessages, 
+  ViewMessage, 
+  ArchiveMessages, 
+  Skills, 
+  Education } from './pages/admin';
 
 function App() {
 
@@ -45,7 +50,7 @@ function App() {
           })
         })
     }
-  }, [])
+  }, [user, setUser])
 
   const location = useLocation();
 
@@ -77,6 +82,8 @@ function App() {
           <Route path="/admin/messages/inbox" element={<MyMessages />} /> 
           <Route path="/admin/messages/archive" element={<ArchiveMessages />} /> 
           <Route path="/admin/messages/view-message/:messageId" element={<ViewMessage />} />
+
+          
 
         </Routes>
     
