@@ -1,12 +1,10 @@
 import {
   Dialog,
   DialogHeader, 
-  DialogBody,
-  DialogFooter,
-  Button
+  DialogBody
 } from "@material-tailwind/react";
 
-const CustomDialogBox = ({ children, title, open, handleOpen, buttonCancel, buttonCancelLabel, handleButtonSubmit, buttonSubmitLabel }) => {
+const CustomDialogBox = ({ children, title, open, handleOpen }) => {
 	 return (
 	 			<Dialog 
 	 			  size="xs" 
@@ -23,21 +21,6 @@ const CustomDialogBox = ({ children, title, open, handleOpen, buttonCancel, butt
 	 			    {children}
 	 			  		
 	 			  </DialogBody>
-	 			  <DialogFooter className="flex flex-row justify-center gap-1 mt-8">
-	 			  			<Button
-	 			  			  size="sm"
-	 			  			  variant="text"
-	 			  			  color="red"
-	 			  			  onClick={buttonCancel}
-	 			  			  className="mr-1"
-	 			  			>
-	 			  			  <span>{buttonCancelLabel}</span>
-	 			  			</Button>
-			  			  <Button onClick={handleButtonSubmit} size="sm" variant="gradient" color="green">
-			  			    <span>{buttonSubmitLabel}</span>
-			  			  </Button>
-	 			  			
-	 			  </DialogFooter>
 	 			</Dialog>
 	 )
 }

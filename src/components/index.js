@@ -21,8 +21,8 @@ import AdminLayout from './AdminLayout'
 import AdminLoading from './AdminLoading'
 import AnimatedNumber from './AnimatedNumber'
 import CustomDialogBox from './CustomDialogBox'
-import ButtonLoading from './ButtonLoading'
 import AdminNavLinks from './AdminNavLinks'
+import CustomButton from './CustomButton'
 
 export {
 	AppNavbar,
@@ -48,6 +48,6 @@ export {
 	AdminLoading,
 	AnimatedNumber,
 	CustomDialogBox,
-	ButtonLoading,
-	AdminNavLinks
+	AdminNavLinks,
+	CustomButton
 }

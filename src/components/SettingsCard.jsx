@@ -12,14 +12,11 @@ import React, { useState, useEffect } from "react";
     CardFooter,
     Typography,
     Button,
-    Dialog,
-    DialogHeader,
-    DialogBody,
     DialogFooter,
     Alert
   } from "@material-tailwind/react"; 
   import CustomDialogBox from './CustomDialogBox';
-  import ButtonLoading from './ButtonLoading';
+  import CustomButton from './CustomButton';
 
   const SettingsCard = (props) => {
     const navigate = useNavigate();
@@ -98,18 +95,23 @@ import React, { useState, useEffect } from "react";
     
         <CustomDialogBox 
               open={open} 
-              handleOpen={handleOpen} 
-              buttonCancel={handleOpen}
-              title="Add New" 
-              buttonCancelLabel="Cancel"
-              buttonSubmitLabel={
-                !isClicked ? "Delete" : (<ButtonLoading label="Deleting..." color="green" />)
-              }
-              handleButtonSubmit={handleDelete}
+              handleOpen={handleOpen}
+              title="Confirmation" 
           >
               Delete <span className="text-teal-300 font-semibold uppercase">{title}</span> ?
 
-          </CustomDialogBox>
+            <div className="mt-10 flex flex-row gap-1">
+              <CustomButton handleClick={handleOpen} label="cancel" color="black" spinner="hidden" />
+              {
+                !isClicked ? (
+                    <CustomButton handleClick={handleDelete} label="delete" color="green" spinner="hidden" />
+                  ) : (
+                    <CustomButton label="deleting..." color="green" />
+                  )
+              }
+            
+            </div>
+        </CustomDialogBox>
 
         <div className="absolute">
           <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
