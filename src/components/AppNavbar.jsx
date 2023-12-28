@@ -60,7 +60,7 @@ const AppNavbar = () => {
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <div className="flex items-center gap-x-1">
+            {/*<div className="flex items-center gap-x-1">
               <Button
                 variant="text"
                 size="sm"
@@ -69,7 +69,7 @@ const AppNavbar = () => {
               >
                 <span>Admin</span>
               </Button>
-            </div>
+            </div>*/}
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -113,7 +113,7 @@ const AppNavbar = () => {
           <div className="flex text-center justify-center">
             {navList}
           </div>
-          <div className="flex items-center gap-x-2">
+          {/*<div className="flex items-center gap-x-2">
             <Button 
               fullWidth variant="text" 
               size="sm" 
@@ -121,7 +121,7 @@ const AppNavbar = () => {
               onClick={() => navigate('/login')} >
               <span>admin</span>
             </Button>
-          </div>
+          </div>*/}
         </Collapse>
       </Navbar>
     </div>

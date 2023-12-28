@@ -6,7 +6,8 @@ import {
   Input,
   Checkbox,
   Button,
-  Alert
+  Alert,
+  Textarea
 } from "@material-tailwind/react";
 import { FaUndo } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -32,20 +33,27 @@ const Contact = () => {
 	const [openMessageAlert, setOpenMessageAlert] = React.useState(false);
 	const [messageSentAlert, setMessageSentAlert] = React.useState(false);
 
+	const [nameError, setNameError] = useState(false);
+	const [emailError, setEmailError] = useState(false);
+	const [messageError, setMessageError] = useState(false);
+
 	const handleFormSubmit = (event) => {
 	  event.preventDefault();
 	  setIsClicked(true);
 
 	  if (name.length < 2) {
 	  	setOpenNameAlert(true)
+	  	setNameError(true)
 	  } 
 
 	  if (email.length < 1) {
 	  	setOpenEmailAlert(true)
+	  	setEmailError(true)
 	  } 
 
 	  if (message.length < 2) {
 	  	setOpenMessageAlert(true)
+	  	setMessageError(true)
 	  }  
 
 	  fetch(`${import.meta.env.VITE_API_URL}/messages/send-message`, {
@@ -62,7 +70,7 @@ const Contact = () => {
 	    .then(result => result.json())
 	    .then(data => {
 	      if (data === true) {
-	      	toast.success("Message Sent")
+	      	toast.success("Your message has successfully sent!")
 	        setMessageSentAlert(true);
 	        setName('');
 	        setEmail('');
@@ -81,18 +89,21 @@ const Contact = () => {
 	React.useEffect(() => {
 		if (name.length >= 2) {
 			setOpenNameAlert(false)
+			setNameError(false)
 		}
 	}, [name])
 
 	React.useEffect(() => {
 		if (email.length > 0) {
 			setOpenEmailAlert(false)
+			setEmailError(false)
 		}
 	}, [email])
 
 	React.useEffect(() => {
 		if (message.length >= 2) {
 			setOpenMessageAlert(false)
+			setMessageError(false)
 		}
 	}, [message])
 
@@ -141,9 +152,8 @@ const Contact = () => {
 		<>
 				<PageTitle title="Web Portfolio | Contact" />
 				<AppNavbar />
-				
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
-				<AnimatedText text="For further questions, please email galanlito.94@gmail.com or message using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
+				<AnimatedText text="For further questions, please email me at galanlito.94@gmail.com or message using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
 				<Layout className="!h-[70vh] ">
 						<motion.div 
 								initial={{ opacity: 0 }}
@@ -151,9 +161,7 @@ const Contact = () => {
 								exit={{ opacity: 0 }}
 								transition={{ duration: 2, delay: 0.2 }}
 								className="flex flex-col w-100 justify-center items-center">
-
 								<form onSubmit={handleFormSubmit} >
-								
 								<div className="flex flex-col flex-wrap w-80 md:w-full gap-1">
 									<Alert
 							      icon={<checkIcon />}
@@ -176,7 +184,7 @@ const Contact = () => {
 											unmount : {y: 1},
 										}}
 									>
-										Name must not be empty and characters must be greater than 1!
+										Name is required!
 									</Alert>
 									<Alert 
 										className="text-xs"
@@ -188,7 +196,7 @@ const Contact = () => {
 											unmount : {y: 1},
 										}}
 									>
-										Email must not be empty!
+										Email is required!
 									</Alert>
 									<Alert 
 										className="text-xs"
@@ -200,11 +208,11 @@ const Contact = () => {
 											unmount : {y: 1},
 										}}
 									>
-										Message must not be empty and characters must be greater than 1!
+										Message must not be empty!
 									</Alert>
 								</div>
 
-								<div className="mt-2">
+								<div className="mt-2 flex flex-col gap-2">
 						    <div className="flex w-80 md:w-full flex-col md:flex-row gap-2">
 						    		<Input 
 						    				type="text"
@@ -213,6 +221,8 @@ const Contact = () => {
 						    				label="Name" 
 						    				size="lg" 
 						    				className="capitalize"
+						    				color="teal"
+						    				error={nameError}
 						    		/>
 						      <Input 
 						      		type="email"
@@ -220,19 +230,21 @@ const Contact = () => {
 						      		size="lg" 
 						      		value={email}
 						      		onChange={e => setEmail(e.target.value)} 
+						      		color="teal"
+						      		error={emailError}
 						      />
 						    </div>
-						    <div className="relative my-4 w-80 md:w-full ">
-						        <textarea
-						        		value={message}
-						        		onChange={e => setMessage(e.target.value)} 
-						          className="peer h-full min-h-[100px] w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-dark/75 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
-						          placeholder=" "
-						        ></textarea>
-						        <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-dark/75 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-dark/75 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-dark/75 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-						          Message
-						        </label>
-						      </div>
+
+						    <div className="w-full">
+		          <Textarea 
+		          		label={`Message (${message.length})`}
+		          		value={message}
+		          		onChange={e => setMessage(e.target.value)}  
+		          		color="teal"
+		          		error={messageError}
+		          		autoComplete
+		          />
+		        </div>
 						    <div className="flex w-80 md:w-full flex-row gap-1">
 						    		<Button onClick={Reset} variant="text" className="outline outline-1 outline-dark/25" >
 						    		  <FaUndo />

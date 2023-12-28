@@ -3,8 +3,7 @@ import { useScroll, motion } from 'framer-motion';
 import { useRef } from 'react';
 import LiIcon from './LiIcon'
 
-
-const Details = ({ position, company, companyLink, time, address, work }) => {
+const Details = ({ position, company, time, address, work }) => {
 
 	const ref = useRef();
 
@@ -16,7 +15,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
 				transition={{duration: 0.5,  type: "spring"}}
 		>
 			<Typography className="capitalize text-cyan-300" variant="h4"> {position} </Typography>
-			<Typography><a href={companyLink} target="_blank" className="text-dark/75 text-[17px] " >@{company}</a></Typography>
+			<Typography variant="h6">@{company}</Typography>
 			<span className="capitalize italic text-dark/75">
 				{time} | {address}
 			</span>
@@ -48,7 +47,6 @@ const {scrollYProgress} = useScroll(
 				<Details 
 					position="Software Engineer"
 					company="Google"
-					companyLink="www.google.com"
 					time="2018-2022"
 					address="Mountain View, CA"
 					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -56,7 +54,6 @@ const {scrollYProgress} = useScroll(
 				<Details 
 					position="Software Engineer"
 					company="Google"
-					companyLink="www.google.com"
 					time="2018-2022"
 					address="Mountain View, CA"
 					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -64,7 +61,6 @@ const {scrollYProgress} = useScroll(
 				<Details 
 					position="Software Engineer"
 					company="Google"
-					companyLink="www.google.com"
 					time="2018-2022"
 					address="Mountain View, CA"
 					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -72,7 +68,6 @@ const {scrollYProgress} = useScroll(
 				<Details 
 					position="Security Guard"
 					company="ABC-RMO Security & Investigation Agency"
-					companyLink=""
 					time="2014-2018"
 					address="Brgy. Bangkal, Makati City"
 					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."

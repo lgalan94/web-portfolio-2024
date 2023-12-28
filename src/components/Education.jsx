@@ -2,6 +2,8 @@ import { Typography } from '@material-tailwind/react';
 import { useScroll, motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import LiIcon from './LiIcon'
+import { Link } from 'react-router-dom';
+import { ImSpinner2 } from "react-icons/im";
 
 const Details = (props) => {
 
@@ -9,15 +11,16 @@ const Details = (props) => {
 
 	const ref = useRef();
 
-	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-center justify-between">
+	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-start justify-between">
 		<LiIcon reference={ref} stroke="stroke-orange-500" fill="fill-orange-500" />
 		<motion.div
 				initial={{y:50}}
 				whileInView={{y:0}}
 				transition={{duration: 0.5,  type: "spring"}}
 		>
-			<Typography className="capitalize text-orange-300" variant="h4"> {title}&nbsp; <a href={schoolLink} target="_blank" className="text-dark/75" >@{school}</a> </Typography>
-			<span className="capitalize text-dark/75">
+			<Typography className="capitalize text-orange-300 leading-relaxed" variant="h4"> {title} </Typography>
+			<Typography variant="h6">@ {school}</Typography>
+			<span className="capitalize text-dark/75 italic">
 				{timeRange} | {address}
 			</span>
 			<p className="text-justify">
@@ -30,6 +33,7 @@ const Details = (props) => {
 const Education = () => {
 
 const [education, setEducation] = useState([]);
+const [isLoading, setIsLoading] = useState(true);
 
 const ref = useRef(null);
 const {scrollYProgress} = useScroll(
@@ -47,7 +51,9 @@ const {scrollYProgress} = useScroll(
 	        setEducation(data.map((education) => (
 	        		<Details educationProps={education} key={education._id} />
 	        )))
+	        setIsLoading(false);
 	      } else {
+	      setIsLoading(false);
       	setEducation(<div className="font-semibold text-center text-4xl w-[72vw] md:w-[82vw] lg:w-[85vw]">No data in database!</div>
 )
 	      }
@@ -58,6 +64,12 @@ const {scrollYProgress} = useScroll(
 	  fetchData();
 	}, [education]);
 
+	let loading = (
+						<div className="flex flex-row gap-2 items-center mx-auto">
+								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching data... </span>
+						</div>
+		)
+
 	return (
 		<div ref={ref} className="w-[75%] mx-auto relative">
 
@@ -67,7 +79,9 @@ const {scrollYProgress} = useScroll(
 
 			<ul className="w-full flex flex-col items-start justify-between ml-4">
 				
-					{education}
+					{
+						 isLoading ? loading : education
+					}
 				
 			</ul>
 		</div>

@@ -1,93 +1,70 @@
 import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { Home, Contact, About, PageNotFound} from './pages'
-import Login from './auth/Login';
-import Logout from './auth/Logout';
 import { AnimatePresence } from 'framer-motion';
-import { UserProvider } from './UserContext.js';
+import { DataProvider } from './DataContext.js';
 import { useState, useEffect } from 'react'
-import PrivateRoutes from './utils/ProtectedRoutes';
-import { 
-  AdminHome, 
-  UpdateSettingsPage, 
-  AddKeyValuePair, 
-  MyMessages, 
-  ViewMessage, 
-  ArchiveMessages, 
-  Skills, 
-  Education } from './pages/admin';
 
 function App() {
 
-  const [user, setUser] = useState({
-    id: null,
-    isAdmin: null
+  const [data, setData] = useState({
+    name: null,
+    banner: null,
+    fbLink: null,
+    lnLink: null,
+    title: null,
+    whoAmIContent: null,
+    careerObjContent: null
   })
 
-  const unsetUser = () => {
-    localStorage.clear();
+  const fetchData = () => {
+      fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`, {
+        method: 'GET'
+      })
+      .then(result => result.json())
+      .then(data=> {
+          let NAME = data.find((name) => name.key === 'Name'); 
+          let BANNER = data.find((banner) => banner.key === 'Banner');
+          let FBLINK = data.find((fb) => fb.key === 'Facebook Link');
+          let LNLINK = data.find((ln) => ln.key === 'LinkedIn Link');
+          let TITLE = data.find((tit) => tit.key === 'Title & Version');
+          let WHOAMI = data.find((whoAmI) => whoAmI.key === 'Who Am I Content');
+          let CAREEROBJECTIVES = data.find((careerObjectives) => careerObjectives.key === 'Career Objectives Content');
+          if (NAME || BANNER || FBLINK || LNLINK || TITLE || WHOAMI || CAREEROBJECTIVES) {
+            setData({
+              name: NAME.value,
+              banner: BANNER.value,
+              fbLink: FBLINK.value,
+              lnLink: LNLINK.value,
+              title: TITLE.value,
+              whoAmIContent: WHOAMI.value,
+              careerObjContent: CAREEROBJECTIVES.value
+            })
+          }
+      })
   }
+
+  useEffect(() => {
+      fetchData()
+  }, [])
+  
+
+  const location = useLocation();
 
   const Inaccessible = () => {
    return < Navigate to = '/not-found' />
   }
 
-
-  useEffect(() => {
-
-    if (localStorage.getItem('token')) {
-        fetch(`${import.meta.env.VITE_API_URL}/user/user-details`, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        .then(result => result.json())
-        .then(data=> {
-          setUser({
-            id: data._id,
-            isAdmin: data.isAdmin
-          })
-        })
-    }
-  }, [user, setUser])
-
-  const location = useLocation();
-
   return (
-    <UserProvider value = {{ user, setUser, unsetUser }} >
-      
-   
-        <Routes location={location} key={location.pathname} >
-          <Route index element={< Home />} />
-          <Route path="/contact" element={< Contact />} />
-          <Route path="/about" element={< About />} />
-          <Route path="/not-found" element={< PageNotFound />} />
-          <Route path="*" element={< Inaccessible />} />
-          <Route path="/login" element={< Login />} />
-          <Route path="/logout" element={< Logout />} />
-
-          
-          
-
-          <Route element={<PrivateRoutes />}>
-            
-          </Route>
-
-          <Route path="/admin" element={< AdminHome />} />
-          <Route path="/admin/skills" element={< Skills />} />
-          <Route path="/admin/education" element={< Education />} />
-          <Route path="/admin/update/:settingsId" element={<UpdateSettingsPage />} />
-          <Route path="/admin/add-key-value-pair" element={<AddKeyValuePair />} />
-          <Route path="/admin/messages/inbox" element={<MyMessages />} /> 
-          <Route path="/admin/messages/archive" element={<ArchiveMessages />} /> 
-          <Route path="/admin/messages/view-message/:messageId" element={<ViewMessage />} />
-
-          
-
-        </Routes>
-    
-    </UserProvider>
+    <DataProvider value = {{ data, setData }} >
+      <Routes location={location} key={location.pathname} >
+        <Route index element={< Home />} />
+        <Route path="/contact" element={< Contact />} />
+        <Route path="/about" element={< About />} />
+        <Route path="/not-found" element={< PageNotFound />} />
+        <Route path="*" element={< Inaccessible />} />
+      </Routes>
+    </DataProvider>
   )
 }
 

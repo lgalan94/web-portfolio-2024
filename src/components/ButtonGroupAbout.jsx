@@ -17,6 +17,7 @@ import { GrUserWorker } from "react-icons/gr";
 import { GiSkills } from "react-icons/gi";
 import { IoMdSchool } from "react-icons/io";
 import { SiAboutdotme } from "react-icons/si";
+import { GoProjectSymlink } from "react-icons/go";
  
 export default function ButtonGroupAbout() {
  
@@ -70,6 +71,13 @@ export default function ButtonGroupAbout() {
             >
               <GiSkills className="h-4 w-4" />
               <Typography {...labelProps}>Skills</Typography>
+            </SpeedDialAction>
+            <SpeedDialAction
+              title="Projects"
+              onClick={() => scrollToSection("projects-section")}
+            >
+              <GoProjectSymlink className="h-4 w-4" />
+              <Typography {...labelProps}>Projects</Typography>
             </SpeedDialAction>
           </SpeedDialContent>
 

@@ -1,16 +1,17 @@
-import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience, Education, MySkills, ButtonGroupAbout, PageTitle } from '../components'
+import { AppNavbar, Footer, AnimatedText, Layout, WordAnimation, Transition, Loading, Experience, Education, MySkills, ButtonGroupAbout, PageTitle, MyProjects, MyCertificates } from '../components'
 import {	Typography } from "@material-tailwind/react"
 
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
+import DataContext from '../DataContext.js';
 
 const AnimatedNumbers = ({ value }) => {
   const ref = useRef(null);
+  
 
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { duration: 2500 });
   const isInView = useInView(ref, {once: true});
-
 
   useEffect(() => {
      if(isInView){
@@ -31,14 +32,14 @@ const AnimatedNumbers = ({ value }) => {
 }
 
 const About = () => {
-
 	const [isLoading, setIsLoading] = useState(true);
+	const { data } = useContext(DataContext);
 
 	useEffect(() => {
-	  setTimeout(() => {
-	    setIsLoading(false);
-	  }, 1000);
-	}, []);
+			if (data.whoAmIContent !== null && data.careerObjContent !== null) {
+						setIsLoading(false)
+			}
+	}, [data])
 
 	return (
 		<>
@@ -55,7 +56,7 @@ const About = () => {
 								<ButtonGroupAbout />
 											
 
-											<Layout>
+											<Layout className="">
 												<div id="about-section"> 
 														<AnimatedText text="about me" className="mt-4 mb-2 lg:mb-5 capitalize" />
 																	<div className="flex flex-col lg:flex-row gap-4 lg:gap-12">
@@ -81,7 +82,8 @@ const About = () => {
 																								   exit={{ opacity: 0 }}
 																								   transition={{ duration: 1, delay: 0.1 }}
 																								   className="text-sm text-justify mb-6"
-																								 >I am a Full-Stack Web Developer with a passion for building web applications. I can create the user interface (front-end) and the code that makes the website work (back-end). I have experience with a variety of programming languages and technologies, including HTML, CSS, JavaScript, Node.js, MongoDB as database, and the node.js framework, which is express.js. I also have experience in building small projects in React.js.
+																								 >
+																								 {data.whoAmIContent}
 																								 </motion.p>
 
 																								 <motion.h2 
@@ -104,7 +106,8 @@ const About = () => {
 																								   exit={{ opacity: 0 }}
 																								   transition={{ duration: 1, delay: 0.1 }}
 																								   className="text-sm text-justify"
-																								 >To be able to secure a challenging professional career in a reputable organization with opportunity of challenges and advancement; and to expand my learnings and knowledge for mutual growth success. To seek and maintain full-time position that offers professional challenges utilizing interpersonal skills, excellent time management and problem-solving skills. Motivated to learn, grow and excel in terms of developing Web Applications.
+																								 >
+																								 {data.careerObjContent}
 																								 </motion.p>
 																								</div>
 																			  </div>
@@ -126,7 +129,7 @@ const About = () => {
 
 																			  <div className="flex flex-row lg:flex-col justify-center flex-auto items-center lg:items-end w-full lg:w-2 p-10 lg:gap-0 gap-12">
 																			    	 <div className="flex flex-col items-center lg:items-end justify-center mb-0 lg:mb-8">
-																			    	    <span className="inline-block text-5xl font-bold text-dark/75"><AnimatedNumbers value={7} /> +</span>
+																			    	    <span className="inline-block text-5xl font-bold text-dark/75"><AnimatedNumbers value={5} /> +</span>
 																			    	    <Typography variant="h5" className="text-center font-medium capitalize text-black/75">Personal Projects</Typography>
 																			    	 </div>
 																			    	 <div className="flex flex-col items-center lg:items-end justify-center">
@@ -153,6 +156,16 @@ const About = () => {
 													<div id="skills-section">
 															<AnimatedText text="skills" className="mt-24 mb-10 capitalize" />
 															<MySkills />
+													</div>
+
+													<div id="projects-section">
+															<AnimatedText text="projects" className="mt-24 mb-10 capitalize" />
+															<MyProjects />
+													</div>
+
+													<div id="certificates-section">
+															<AnimatedText text="certifications" className="mt-24 mb-10 capitalize" />
+															<MyCertificates />
 													</div>
 
 											</Layout>

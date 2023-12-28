@@ -1,28 +1,21 @@
 import { AppNavbar, Footer, Layout, AnimatedText, Loading, PageTitle } from '../components'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BsArrowUpRightSquare } from "react-icons/bs";
+import DataContext from '../DataContext';
 
 const Home = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
-	const [name, setName] = useState('');
-	const [bannerSubtitle, setBannerSubtitle] = useState('');
+
+	const { data } = useContext(DataContext);
 
 	useEffect(() => {
-	    fetch(`${import.meta.env.VITE_API_URL}/settings/all-settings`)
-	      .then((result) => result.json())
-	      .then((data) => {
-	        const nameSetting = data.find((setting) => setting.key === 'name'); 
-	        const bannerSubtitleSetting = data.find((setting) => setting.key === 'bannerSubtitle');
-	        if (nameSetting && bannerSubtitleSetting) {
-	          setName(nameSetting.value);
-	          setBannerSubtitle(bannerSubtitleSetting.value);
-	        }
-	        setIsLoading(false);
-	      });
-	  }, []);
+	  if (data.name !== null && data.banner !== null) {
+	    setTimeout(() => setIsLoading(false), 1000)
+	  }
+	}, [data]);
 
 	return (
 		<>
@@ -63,7 +56,7 @@ const Home = () => {
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`${name}`.split('').map((letter, index) => (
+																	    {`${data.name}`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -20 }}
@@ -82,7 +75,7 @@ const Home = () => {
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`${bannerSubtitle}`.split('').map((letter, index) => (
+																	    {`${data.banner}`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -70 }}

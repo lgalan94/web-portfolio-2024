@@ -6,7 +6,7 @@ const MySkills = () => {
 
 const Skill = ({ text }) => {
 		return (
-				<div className="text-center px-3 uppercase border border-1 border-dark/25 rounded-md shadow-lg"> 
+				<div className="text-center px-3 hover:scale-105 uppercase border border-1 border-dark/25 rounded-md shadow-lg"> 
 							{text} 
 				</div>
 		)
@@ -17,8 +17,8 @@ const Skill = ({ text }) => {
 	    .then(result => result.json())
 	    .then(data => {
 	      if (data.length > 0) {
-	        setSkills(data.map((skills) => (
-	        		<Skill text={skills.name} key={skills._id} />
+	        setSkills(data.map((skill) => (
+	        		<Skill text={skill.name} key={skill._id} />
 	        )))
 	      } else {
       	setSkills(<div className="font-semibold text-center text-4xl w-[72vw] md:w-[82vw] lg:w-[85vw]">No data in database!</div>
