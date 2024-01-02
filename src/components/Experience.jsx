@@ -1,13 +1,16 @@
 import { Typography } from '@material-tailwind/react';
 import { useScroll, motion } from 'framer-motion';
-import { useRef } from 'react';
-import LiIcon from './LiIcon'
+import { useRef, useEffect, useState } from 'react';
+import LiIcon from './LiIcon';
+import { ImSpinner2 } from "react-icons/im";
 
-const Details = ({ position, company, time, address, work }) => {
+const Details = (props) => {
+
+	const { position, company, timeRange, address, work } = props.itemProps;
 
 	const ref = useRef();
 
-	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-center justify-between">
+	return <li ref={ref} className="my-8 first:mt-0 last:mb-0 w-[70%] md:w-[60%] mx-auto flex flex-col items-start justify-between">
 		<LiIcon reference={ref} stroke="!stroke-cyan-500" fill="!fill-cyan-500" />
 		<motion.div
 				initial={{y:50}}
@@ -17,7 +20,7 @@ const Details = ({ position, company, time, address, work }) => {
 			<Typography className="capitalize text-cyan-300" variant="h4"> {position} </Typography>
 			<Typography variant="h6">@{company}</Typography>
 			<span className="capitalize italic text-dark/75">
-				{time} | {address}
+				{timeRange} | {address}
 			</span>
 			<p className="text-justify tracking-normal">
 				{work}
@@ -28,6 +31,8 @@ const Details = ({ position, company, time, address, work }) => {
 
 const Experience = () => {
 
+const [experience, setExperience] = useState([]);
+const [isLoading, setIsLoading] = useState(true);
 const ref = useRef(null);
 const {scrollYProgress} = useScroll(
 		{
@@ -36,45 +41,49 @@ const {scrollYProgress} = useScroll(
 		}
 	)
 
+	const fetchData = () => {
+	  fetch(`${import.meta.env.VITE_API_URL}/experience`)
+	    .then(result => result.json())
+	    .then(data => {
+	    	data.sort((a, b) => b.createdOn.localeCompare(a.createdOn));
+	      if (data.length > 0) {
+	        setExperience(data.map((item) => (
+	        		<Details itemProps={item} key={item._id} />
+	        )))
+	        setIsLoading(false);
+	      } else {
+	      setIsLoading(false);
+      	setExperience(<div className="font-semibold text-center text-4xl w-[72vw] md:w-[82vw] lg:w-[85vw]">No data in database!</div>
+)
+	      }
+	    });
+	}; 
+
+	useEffect(() => {
+	  fetchData();
+	}, [experience]);
+
+	let loading = (
+						<div className="flex flex-row gap-2 items-center mx-auto">
+								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching data... </span>
+						</div>
+		)
+
 	return (
 		<div ref={ref} className="w-[75%] mx-auto relative">
 
-		<motion.div 
-			style={{scaleY: scrollYProgress}}
-			className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top" />
+				<motion.div 
+					style={{scaleY: scrollYProgress}}
+					className="absolute left-9 top-0 w-[4px] h-full bg-cyan-500 origin-top" />
 
-			<ul className="w-full flex flex-col items-start justify-between ml-4">
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Software Engineer"
-					company="Google"
-					time="2018-2022"
-					address="Mountain View, CA"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				<Details 
-					position="Security Guard"
-					company="ABC-RMO Security & Investigation Agency"
-					time="2014-2018"
-					address="Brgy. Bangkal, Makati City"
-					work="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-				/>
-				
-			</ul>
-		</div>
+					<ul className="w-full flex flex-col items-start justify-between ml-4">
+						
+							{
+								 isLoading ? loading : experience
+							}
+						
+					</ul>
+				</div>
 	)
 }
 

@@ -41,12 +41,13 @@ const {scrollYProgress} = useScroll(
 			target: ref,
 			offset: ["start end", "center start"]
 		}
-	)
+	) 
 
 	const fetchData = () => {
 	  fetch(`${import.meta.env.VITE_API_URL}/education`)
 	    .then(result => result.json())
 	    .then(data => {
+	    	data.sort((a, b) => b.createdOn.localeCompare(a.createdOn));
 	      if (data.length > 0) {
 	        setEducation(data.map((education) => (
 	        		<Details educationProps={education} key={education._id} />

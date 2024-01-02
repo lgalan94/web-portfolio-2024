@@ -13,7 +13,7 @@ const Home = () => {
 
 	useEffect(() => {
 	  if (data.name !== null && data.banner !== null) {
-	    setTimeout(() => setIsLoading(false), 1000)
+	    setIsLoading(false);
 	  }
 	}, [data]);
 

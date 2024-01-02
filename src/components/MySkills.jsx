@@ -4,18 +4,19 @@ const MySkills = () => {
 
 	const [skills, setSkills] = useState([]);
 
-const Skill = ({ text }) => {
-		return (
-				<div className="text-center px-3 hover:scale-105 uppercase border border-1 border-dark/25 rounded-md shadow-lg"> 
-							{text} 
-				</div>
-		)
-}
+	const Skill = ({ text }) => {
+			return (
+					<div className="text-center px-3 hover:scale-105 uppercase border border-1 border-dark/25 rounded-md shadow-lg"> 
+								{text} 
+					</div>
+			)
+	}
 
 	const fetchSkills = () => {
 	  fetch(`${import.meta.env.VITE_API_URL}/skills`)
 	    .then(result => result.json())
 	    .then(data => {
+	    		data.sort((a, b) => a.name.localeCompare(b.name));
 	      if (data.length > 0) {
 	        setSkills(data.map((skill) => (
 	        		<Skill text={skill.name} key={skill._id} />
@@ -32,10 +33,8 @@ const Skill = ({ text }) => {
 	}, [skills]);
 
 		return (
-					<div className="w-96 flex flex-row justify-center mx-auto gap-4 flex-wrap">
-					  
+					<div className="w-full md:w-[85vw] lg:w-[80vw] flex flex-row justify-center mx-auto gap-4 flex-wrap">
 					 {skills}
-
 					</div>
 		)
 }

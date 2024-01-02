@@ -70,7 +70,7 @@ const MyCertificates = () => {
 						})
 						.then(response => response.json())
 						.then(data => {
-									data.sort();
+							data.sort((a, b) => b.createdOn.localeCompare(a.createdOn));
 									if (data.length > 0) {
 												setCertificates(data.map(item => {
 															return (
@@ -88,7 +88,7 @@ const MyCertificates = () => {
 
 	useEffect(() => {
 	  fetchCertificates();
-	}, []);
+	}, [certificates]);
 
 	let loading = (
 						<div className="flex flex-row gap-2 items-center mx-auto">
