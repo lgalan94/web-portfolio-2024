@@ -18,6 +18,7 @@ import { GiSkills } from "react-icons/gi";
 import { IoMdSchool } from "react-icons/io";
 import { SiAboutdotme } from "react-icons/si";
 import { GoProjectSymlink } from "react-icons/go";
+import { PiCertificateBold } from "react-icons/pi";
  
 export default function ButtonGroupAbout() {
  
@@ -78,6 +79,13 @@ export default function ButtonGroupAbout() {
             >
               <GoProjectSymlink className="h-4 w-4" />
               <Typography {...labelProps}>Projects</Typography>
+            </SpeedDialAction>
+            <SpeedDialAction
+              title="Certificates"
+              onClick={() => scrollToSection("certificates-section")}
+            >
+              <PiCertificateBold className="h-4 w-4" />
+              <Typography {...labelProps}>Certificates</Typography>
             </SpeedDialAction>
           </SpeedDialContent>
 

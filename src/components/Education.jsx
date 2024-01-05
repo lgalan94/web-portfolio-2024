@@ -20,10 +20,10 @@ const Details = (props) => {
 		>
 			<Typography className="capitalize text-orange-300 leading-relaxed" variant="h4"> {title} </Typography>
 			<Typography variant="h6">@ {school}</Typography>
-			<span className="capitalize text-dark/75 italic">
+			<span className="capitalize text-dark/50 italic">
 				{timeRange} | {address}
 			</span>
-			<p className="text-justify">
+			<p className="tracking-wide">
 				{learnings}
 			</p>
 		</motion.div>

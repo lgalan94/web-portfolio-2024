@@ -92,10 +92,11 @@ const Home = () => {
 																	  		exit={{ opacity: 0 }}
 																	  		transition={{ duration: 2, delay: 0.3 }}
 																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
-																	    <Link 
-																	      as={Link} to='/' 
+																	    <a 
+																	      href="/resume.pdf"
+																	      download
 																	      className="flex items-center bg-black text-white p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border-2 border-solid border-transparent hover:border-neutral-800"
-																	    >Resume <BsArrowUpRightSquare className="w-6 ml-1" /> </Link>
+																	    >Resume <BsArrowUpRightSquare className="w-6 ml-1" /> </a>
 																	    <Link 
 																	    		as={Link}
 																	    		to="/contact"

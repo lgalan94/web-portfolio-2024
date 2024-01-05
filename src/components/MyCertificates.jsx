@@ -88,7 +88,7 @@ const MyCertificates = () => {
 
 	useEffect(() => {
 	  fetchCertificates();
-	}, [certificates]);
+	}, []);
 
 	let loading = (
 						<div className="flex flex-row gap-2 items-center mx-auto">
@@ -97,16 +97,13 @@ const MyCertificates = () => {
 		)
 
 		return (
-				
-
-									<div className="flex flex-row flex-wrap justify-center mx-auto px-4 lg:px-10 gap-4 ">
-									  
-									 {
-									 		isLoading ? loading : certificates
-									 }
-
-									</div>
-
+						<>	
+								<div className="flex flex-row flex-wrap justify-center mx-auto px-4 lg:px-10 gap-4 ">
+								 {
+								 		isLoading ? loading : certificates
+								 }
+								</div>
+						</>
 		)
 }
 

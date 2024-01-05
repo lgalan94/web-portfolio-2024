@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Typography, Accordion, AccordionHeader, AccordionBody } from '@material-tailwind/react';
 import { ImSpinner2 } from "react-icons/im";
+import { BsArrowUpRightSquare } from "react-icons/bs";
 
 const MyProjects = () => {
 
@@ -10,7 +11,7 @@ const MyProjects = () => {
 
 	let CustomCard = (props) => {
 
-		const { _id, title, imgUrl, technologiesUsed, description } = props.itemProps;
+		const { _id, title, imgUrl, technologiesUsed, description, projectLink } = props.itemProps;
 		const [open, setOpen] = useState(0);
 
 		const handleOpen = (value) => setOpen(open === value ? 0 : value);
@@ -37,8 +38,12 @@ const MyProjects = () => {
 			        		open={open === 1}
 			        >
   			        <AccordionHeader className={`text-sm flex items-center justify-center hover:scale-105 hover:text-green-700 border-none ${open === 1 ? 'text-green-500 transition-colors delay-75' : 'transition-colors delay-75'}`} onClick={() => handleOpen(1)}>Description</AccordionHeader>
-  			        <AccordionBody className="text-justify text-sm">
-  			          {description}
+  			        <AccordionBody className="">
+  			          <Typography className="text-sm text-start lowercase first-letter:uppercase first-letter:text-xl">{description}</Typography>
+  			          <div className="flex flex-col mt-8">
+  			          		<span className="text-xs text-start">Project Link: </span>
+  			          		<a target="_blank" href={projectLink} className="text-xs hover:text-blue-400 italic lowercase flex items-center flex-row gap-1">{projectLink} <BsArrowUpRightSquare className="h-4 w-4" /></a>
+  			          </div>
   			        </AccordionBody>
   			      </Accordion>
 			    </div>
@@ -55,7 +60,7 @@ const MyProjects = () => {
 						})
 						.then(response => response.json())
 						.then(data => {
-									data.sort();
+									data.sort((a, b) => b.createdOn.localeCompare(a.createdOn));
 									if (data.length > 0) {
 												setProjects(data.map(item => {
 															return (
