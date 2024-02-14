@@ -23,7 +23,7 @@ const MyProjects = () => {
 			    				<Typography className={`capitalize tracking-wider ${open === 1 ? "transition-colors delay-75 text-green-500" : "transition-colors delay-75"}`} variant="h6"> {title} </Typography>
 			    		</div>
 			    			<div>
-			    					<img src={viewImage + imgUrl.slice(32,-20, imgUrl.length)} />
+			    					<img src={imgUrl} />
 			    			</div>
 			    			<div className={`flex flex-row text-xs gap-2 justify-center flex-wrap font-ibm ${open === 1 ? "transition-colors delay-75 text-green-500" : "transition-colors delay-75"}`}>
 			    					{

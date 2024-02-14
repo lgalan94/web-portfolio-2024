@@ -23,7 +23,7 @@ const MyCertificates = () => {
 			    				<Typography className="capitalize tracking-wider" variant="h6"> {title} </Typography>
 			    		</div>
 			    			<div>
-			    					<img src={viewImage + imgUrl} />
+			    					<img src={imgUrl} />
 			    			</div>
 			    			<Tooltip 
 			    					placement="top"
@@ -51,7 +51,7 @@ const MyCertificates = () => {
 			      <DialogHeader className="border border-b-gray-900/20 rounded-t-lg shadow justify-center"> {title} </DialogHeader>
 			      <DialogBody className="text-center font-leading h-full max-h-[72vh] overflow-y-auto scrollbar-thin">
 			        
-			        <img src={viewImage + imgUrl} />
+			        <img src={imgUrl} />
 			      		
 			      </DialogBody>
 			      <DialogFooter><Button onClick={handleOpen}>Close</Button></DialogFooter>
