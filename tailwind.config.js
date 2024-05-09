@@ -5,9 +5,12 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        defaultColor: '#E6EBE7',
+        defaultColor: '#F2F4F4',
         light: '#f5f5f5',
         dark: '#1f1f1f'
+      },
+      fontFamily: {
+        poetsen : ['Poetsen One', 'sans-serif'],
       },
     },
   },

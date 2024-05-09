@@ -20,6 +20,7 @@ const Contact = () => {
 
 	const navigate = useNavigate();
 
+	let emailAdd = "galanlito.94@gmail..com";
 	const [name, setName] = React.useState('');
 	const [email,  setEmail] = React.useState('');
 	const [message, setMessage] = React.useState('');
@@ -153,7 +154,7 @@ const Contact = () => {
 				<PageTitle title="Web Portfolio | Contact" />
 				<AppNavbar />
 				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
-				<AnimatedText text="For further questions, please email me at galanlito.94@gmail.com or message using the contact form below." className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
+				<AnimatedText text={`For further questions, please email me at galanlito.94gmail.com or message using the contact form below.`} className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
 				<Layout className="!h-[70vh] ">
 						<motion.div 
 								initial={{ opacity: 0 }}

@@ -13,6 +13,7 @@ import {
   useLocation,
   useNavigate
 } from 'react-router-dom';
+import { HiOutlineDownload } from "react-icons/hi";
  
 const AppNavbar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -43,7 +44,15 @@ const AppNavbar = () => {
     <ul className="mt-2 mb-6 lg:mb-0 lg:mt-0 text-sm flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
       <CustomLink endPoint="/" title="Home" className="lg:mr-1" location={location} />
       <CustomLink endPoint="/about" title="About" className="lg:mx-1" location={location} />
+      <CustomLink endPoint="/projects" title="Projects" className="lg:ml-1" location={location} />
       <CustomLink endPoint="/contact" title="Contact" className="lg:ml-1" location={location} />
+
+      <a 
+        href="/resume.pdf"
+        download
+        className="ml-3 flex items-center p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border border-solid border-dark/25 hover:scale-105 hover:border-neutral-800"
+      ><HiOutlineDownload className="mr-1" />  resume  </a>
+
     </ul>
   );
  
@@ -57,9 +66,13 @@ const AppNavbar = () => {
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <Logo />
+
           </Typography>
+          
           <div className="flex items-center gap-4">
-            <div className="mr-4 hidden lg:block">{navList}</div>
+            <div className="mr-4 hidden lg:block">
+             {navList}
+            </div>
             {/*<div className="flex items-center gap-x-1">
               <Button
                 variant="text"

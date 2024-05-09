@@ -63,7 +63,7 @@ const About = () => {
 																					<div className="flex flex-auto w-full items-center lg:w-64 p-10">
 																								<div className="flex flex-col items-start justify-start">
 																								 <motion.h2 
-																								   className="mb-2 text-lg font-bold uppercase text-cyan-600" >
+																								   className="mb-2 text-lg font-bold font-poetsen uppercase text-cyan-600" >
 																								   {`Who am I?`.split('').map((letter, index) => (
 																								     <motion.span
 																								       key={index}

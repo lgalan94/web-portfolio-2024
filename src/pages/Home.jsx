@@ -3,7 +3,9 @@ import { useState, useEffect, useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BsArrowUpRightSquare } from "react-icons/bs";
+import { GoProjectSymlink } from "react-icons/go";
 import DataContext from '../DataContext';
+import { Button } from '@material-tailwind/react';
 
 const Home = () => {
 
@@ -48,9 +50,9 @@ const Home = () => {
 																<div className="">
 																	  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
 																
-
+ 
 																	  <motion.h1
-																	  		className="tracking-wide text-center text-4xl md:text-5xl lg:text-7xl font-semibold"
+																	  		className="tracking-wide text-center text-4xl md:text-5xl lg:text-8xl font-bold"
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
@@ -92,11 +94,11 @@ const Home = () => {
 																	  		exit={{ opacity: 0 }}
 																	  		transition={{ duration: 2, delay: 0.3 }}
 																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
-																	    <a 
-																	      href="/resume.pdf"
-																	      download
-																	      className="flex items-center bg-black text-white p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border-2 border-solid border-transparent hover:border-neutral-800"
-																	    >Resume <BsArrowUpRightSquare className="w-6 ml-1" /> </a>
+																	    
+																	    <Link 
+																	    		as={Link}
+																	    		to="/projects"
+																	    	> <Button color="cyan" className="capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
 																	    <Link 
 																	    		as={Link}
 																	    		to="/contact"

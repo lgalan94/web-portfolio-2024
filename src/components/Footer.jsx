@@ -25,7 +25,7 @@ const Footer = () => {
          <span>{ new Date().getFullYear() } &copy; { isLoading ? loading : data.name  } </span>
          <a
            target="_blank"
-           className="font-md uppercase text-orange-500"
+           className="font-md uppercase text-teal-500"
            href=""
          > { isLoading ? '' : data.title } </a>
         </div>

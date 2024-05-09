@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
-import { Home, Contact, About, PageNotFound} from './pages'
+import { Home, Contact, About, Projects, PageNotFound} from './pages'
 import { AnimatePresence } from 'framer-motion';
 import { DataProvider } from './DataContext.js';
 import { useState, useEffect } from 'react'
@@ -60,6 +60,7 @@ function App() {
       <Routes location={location} key={location.pathname} >
         <Route index element={< Home />} />
         <Route path="/contact" element={< Contact />} />
+        <Route path="/projects" element={< Projects />} />
         <Route path="/about" element={< About />} />
         <Route path="/not-found" element={< PageNotFound />} />
         <Route path="*" element={< Inaccessible />} />

@@ -15,8 +15,8 @@ const Logo = ({ className }) => {
 							as={Link} to="/"
 							className="flex"
 							>
-							<div className="bg-white rounded-sm text-black">LM</div>
-							<div className="">GJ</div>
+							<div className="bg-white rounded-sm text-black">LI</div>
+							<div className="">TO</div>
 					</Link>
 					</motion.div>
 		)
