@@ -50,7 +50,7 @@ const AppNavbar = () => {
       <a 
         href="/resume.pdf"
         download
-        className="ml-3 flex items-center p-2 px-6 rounded-lg text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border border-solid border-dark/25 hover:scale-105 hover:border-neutral-800"
+        className="ml-3 flex items-center p-2 px-6 rounded-lg text-black/75 text-xs md:text-sm lg:text-md font-medium hover:bg-neutral-50 hover:text-neutral-700 border border-solid border-dark/25 hover:scale-105 hover:border-neutral-800"
       ><HiOutlineDownload className="mr-1" />  resume  </a>
 
     </ul>
