@@ -73,13 +73,13 @@ export default function ButtonGroupAbout() {
               <GiSkills className="h-4 w-4" />
               <Typography {...labelProps}>Skills</Typography>
             </SpeedDialAction>
-            <SpeedDialAction
+            {/*<SpeedDialAction
               title="Projects"
               onClick={() => scrollToSection("projects-section")}
             >
               <GoProjectSymlink className="h-4 w-4" />
               <Typography {...labelProps}>Projects</Typography>
-            </SpeedDialAction>
+            </SpeedDialAction>*/}
             <SpeedDialAction
               title="Certificates"
               onClick={() => scrollToSection("certificates-section")}

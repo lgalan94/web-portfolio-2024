@@ -98,7 +98,7 @@ const Home = () => {
 																	    <Link 
 																	    		as={Link}
 																	    		to="/projects"
-																	    	> <Button color="cyan" className="capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
+																	    	> <Button color="" className="capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
 																	    <Link 
 																	    		as={Link}
 																	    		to="/contact"

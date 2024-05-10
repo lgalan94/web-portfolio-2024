@@ -43,9 +43,9 @@ const EducationCard = (props) => {
 						    <Typography className="text-center text-[12px] justify-center flex flex-wrap">
 						      {address}
 						    </Typography>
-						    <Typography className="text-center text-[12px] justify-center flex flex-wrap">
+						    {/*<Typography className="text-center text-[12px] justify-center flex flex-wrap">
 						      {learnings}
-						    </Typography>
+						    </Typography>*/}
 						  </CardBody>
 						  <CardFooter className="pt-0 mx-auto">
 						    <Link to={`/admin/update/${_id}`}>

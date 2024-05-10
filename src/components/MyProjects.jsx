@@ -18,7 +18,7 @@ const MyProjects = () => {
 
 				return (
 					<>
-			    <div className={`text-center w-full max-w-[25rem] flex flex-col gap-4 p-4 uppercase border border-1 border-dark/25 rounded-md group shadow-lg ${open === 1 ? "transition-colors delay-75 bg-green-50" : "transition-colors delay-75" }`}> 
+			    <div className={`text-center w-full max-w-[25rem] flex flex-col gap-4 p-4 uppercase border outline outline-2.5 outline-dark/25 rounded-md group shadow-lg ${open === 1 ? "transition-colors delay-75 bg-green-50" : "transition-colors delay-75" }`}> 
 			    		<div>
 			    				<Typography className={`capitalize tracking-wider ${open === 1 ? "transition-colors delay-75 text-green-500" : "transition-colors delay-75"}`} variant="h6"> {title} </Typography>
 			    		</div>
@@ -81,8 +81,8 @@ const MyProjects = () => {
 	}, []);
 
 	let loading = (
-						<div className="flex flex-row gap-2 items-center mx-auto">
-								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching data... </span>
+						<div className="flex flex-row gap-2 items-center mx-auto min-h-[50vh]">
+								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching projects data... </span>
 						</div>
 		)
 

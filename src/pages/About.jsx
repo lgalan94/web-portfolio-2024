@@ -144,7 +144,7 @@ const About = () => {
 											<Layout className="mb-36">
 													
 													<div id="experience-section">
-															<AnimatedText text="experience" className="mt-24 mb-10 capitalize" />
+															<AnimatedText text="work experience" className="mt-24 mb-10 capitalize" />
 															<Experience />
 													</div>
 
@@ -156,11 +156,6 @@ const About = () => {
 													<div id="skills-section">
 															<AnimatedText text="skills" className="mt-24 mb-10 capitalize" />
 															<MySkills />
-													</div>
-
-													<div id="projects-section">
-															<AnimatedText text="projects" className="mt-24 mb-10 capitalize" />
-															<MyProjects />
 													</div>
 
 													<div id="certificates-section">

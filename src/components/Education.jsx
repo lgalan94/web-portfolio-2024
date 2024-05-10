@@ -23,9 +23,9 @@ const Details = (props) => {
 			<span className="capitalize text-dark/50 italic">
 				{timeRange} | {address}
 			</span>
-			<p className="tracking-wide">
+			{/*<p className="tracking-wide">
 				{learnings}
-			</p>
+			</p>*/}
 		</motion.div>
 	</li>
 }

@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle } from '../components'
+import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle, MyProjects } from '../components'
 import React, {useState} from 'react';
 import { ImSpinner2 } from "react-icons/im";
 import {
@@ -24,8 +24,10 @@ const Projects = () => {
 		<>
 				<PageTitle title="Web Portfolio | Projects" />
 				<AppNavbar />
-				<Layout className="!h-[70vh] ">
-						
+
+				<AnimatedText text="Projects" className="mt-4 mb-8 capitalize" />
+				<Layout className="mb-20">
+					<MyProjects />
 				</Layout>
 
 				<ToastContainer size="sm" position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
