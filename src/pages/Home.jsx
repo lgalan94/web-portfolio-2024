@@ -53,7 +53,7 @@ const Home = () => {
 																
  
 																	  <motion.h1
-																	  		className="tracking-wide text-[#837d7f] text-center text-4xl md:text-5xl lg:text-8xl font-bold"
+																	  		className="tracking-wide text-[#545454] text-center text-5xl md:text-6xl lg:text-8xl font-bold"
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
