@@ -37,22 +37,23 @@ const Home = () => {
 													{/*div #1*/}
 															<div className="basis-2/5 flex justify-center lg:justify-end ">
 																	<motion.img 
-																		src="pf2.png"
-																		className="w-96 h-auto" 
+																		src="profile-pic.png"
+																		className="w-[85%] mt-10 h-auto rounded-full border shadow shadow-lg border-[10px] border-gray-400" 
 																	  initial={{ opacity: 0 }}
 																	  animate={{ opacity: 1 }}
 																	  exit={{ opacity: 0 }}
 																	  transition={{ duration: 1 }}
 																	/>		
 															</div>
+
 															{/*div #2*/}
 															<div className="basis-3/5 flex justify-center items-center lg:pr-32">
 																<div className="">
-																	  <AnimatedText text={`Hi, I am`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
+																	  <AnimatedText text={`Hello, this is`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
 																
  
 																	  <motion.h1
-																	  		className="tracking-wide text-center text-4xl md:text-5xl lg:text-8xl font-bold"
+																	  		className="tracking-wide text-[#837d7f] text-center text-4xl md:text-5xl lg:text-8xl font-bold"
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
@@ -71,13 +72,13 @@ const Home = () => {
 																	  </motion.h1>
 
 																	  <motion.p
-																	  		className="tracking-wide text-center md:text-left lg:tracking-wider p-1 pb-6 text-sm md:text-md lg:text-lg"
+																	  		className="tracking-wide text-center md:text-left lg:tracking-wider p-1 pb-6 text-xs md:text-md lg:text-lg"
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`${data.banner}`.split('').map((letter, index) => (
+																	    {`I'm a ${data.banner}`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -70 }}
