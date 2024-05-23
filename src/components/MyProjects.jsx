@@ -11,7 +11,7 @@ const MyProjects = () => {
 
 	let CustomCard = (props) => {
 
-		const { _id, title, imgUrl, technologiesUsed, description, projectLink } = props.itemProps;
+		const { _id, title, imgUrl, technologiesUsed, description, projectLink, sourceCode } = props.itemProps;
 		const [open, setOpen] = useState(0);
 
 		const handleOpen = (value) => setOpen(open === value ? 0 : value);
@@ -44,6 +44,12 @@ const MyProjects = () => {
   			          		<span className="text-xs text-start">Project Link: </span>
   			          		<a target="_blank" href={projectLink} className="text-xs hover:text-blue-400 italic lowercase flex items-center flex-row gap-1">{projectLink} <BsArrowUpRightSquare className="h-4 w-4" /></a>
   			          </div>
+
+  			          <div className="flex flex-col mt-8">
+  			          		<span className="text-xs text-start">Source Code: </span>
+  			          		<a target="_blank" href={sourceCode} className="text-xs hover:text-blue-400 italic lowercase flex items-center flex-row gap-1">{sourceCode} <BsArrowUpRightSquare className="h-4 w-4" /></a>
+  			          </div>
+
   			        </AccordionBody>
   			      </Accordion>
 			    </div>
@@ -82,7 +88,7 @@ const MyProjects = () => {
 
 	let loading = (
 						<div className="flex flex-row gap-2 items-center mx-auto min-h-[50vh]">
-								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching projects data... </span>
+								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching projects data ... </span>
 						</div>
 		)
 

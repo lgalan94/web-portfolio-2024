@@ -48,7 +48,7 @@ const Home = () => {
 
 															{/*div #2*/}
 															<div className="basis-3/5 flex justify-center items-center lg:pr-32">
-																<div className="">
+																<div className="mt-6">
 																	  <AnimatedText text={`Hello, this is`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
 																
  
