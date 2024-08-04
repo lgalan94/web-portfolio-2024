@@ -14,7 +14,7 @@ const Home = () => {
 	const { data } = useContext(DataContext);
 
 	useEffect(() => {
-	  setTimeout(() => setIsLoading(false), 1000)
+	  setTimeout(() => setIsLoading(false), 2000)
 	}, []);
 
 	return (
