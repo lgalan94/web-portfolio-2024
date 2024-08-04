@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle, MyProjects } from '../components'
+import { AppNavbar, Footer, Layout, Logo, AnimatedText, PageTitle, MyProjects } from '../components'
 import React, {useState} from 'react';
 import { ImSpinner2 } from "react-icons/im";
 import {
@@ -36,5 +36,5 @@ const Projects = () => {
 	)
 }
 
-export default Transition(Projects)
+export default Projects
 

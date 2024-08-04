@@ -1,4 +1,4 @@
-import { AppNavbar, Footer, Layout, Logo, AnimatedText, Transition, PageTitle } from '../components'
+import { AppNavbar, Footer, Layout, Logo, AnimatedText, PageTitle } from '../components'
 import React, {useState} from 'react';
 import { ImSpinner2 } from "react-icons/im";
 import {
@@ -275,5 +275,5 @@ const Contact = () => {
 	)
 }
 
-export default Transition(Contact)
+export default Contact
 

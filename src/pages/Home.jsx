@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { BsArrowUpRightSquare } from "react-icons/bs";
 import { GoProjectSymlink } from "react-icons/go";
 import DataContext from '../DataContext';
-import { Button } from '@material-tailwind/react';
+import { Button, Typography } from '@material-tailwind/react';
 
 const Home = () => {
 
@@ -14,44 +14,121 @@ const Home = () => {
 	const { data } = useContext(DataContext);
 
 	useEffect(() => {
-	  if (data.name !== null && data.banner !== null) {
-	    setIsLoading(false);
-	  }
-	}, [data]);
+	  setTimeout(() => setIsLoading(false), 1000)
+	}, []);
 
 	return (
 		<>
 			<PageTitle title="Web Portfolio | Home" />
 
-			{
-				isLoading ? (
-							<Loading />
-					) : (
+			<AppNavbar />
+					<Layout className="h-[85vh]">
 
-							<>
+							<div className="flex flex-col lg:flex-row gap-6">
+							{/*div #1*/}
+									<div className="basis-2/5 flex justify-center lg:justify-end ">
+											
+										{
+												!isLoading ? (
+															<motion.img 
+																src="profile-pic.png"
+																className="w-[85%] mt-10 h-auto rounded-full border shadow shadow-lg border-[10px] border-gray-400" 
+															  initial={{ opacity: 0 }}
+															  animate={{ opacity: 1 }}
+															  exit={{ opacity: 0 }}
+															  transition={{ duration: 1, ease: 'easeOut' }}
+															/>
+													) : (
+															<div className="flex animate-pulse flex-wrap items-center gap-8">
+											      <div className="grid h-[300px] w-[300px] lg:h-[420px] lg:w-[420px] mt-10 rounded-full border shadow shadow-lg border-[10px] border-gray-400 place-items-center bg-gray-300">
+											        <svg
+											          xmlns="http://www.w3.org/2000/svg"
+											          fill="none"
+											          viewBox="0 0 24 24"
+											          strokeWidth={2}
+											          stroke="currentColor"
+											          className="h-12 w-12 text-gray-500"
+											        >
+											          <path
+											            strokeLinecap="round"
+											            strokeLinejoin="round"
+											            d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+											          />
+											        </svg>
+											      </div>
+											    </div>
+													)
+										}
 
-									<AppNavbar />
-											<Layout className="h-[85vh]">
+									</div>
 
-													<div className="flex flex-col lg:flex-row ">
-													{/*div #1*/}
-															<div className="basis-2/5 flex justify-center lg:justify-end ">
-																	<motion.img 
-																		src="profile-pic.png"
-																		className="w-[85%] mt-10 h-auto rounded-full border shadow shadow-lg border-[10px] border-gray-400" 
-																	  initial={{ opacity: 0 }}
-																	  animate={{ opacity: 1 }}
-																	  exit={{ opacity: 0 }}
-																	  transition={{ duration: 1 }}
-																	/>		
-															</div>
+									{/*div #2*/}
+									<div className="basis-3/5 flex items-center justify-center lg:justify-start">
+										
+										{
+												isLoading ? (
+																			<div className="mt-6 animate-pulse flex flex-col">
 
-															{/*div #2*/}
-															<div className="basis-3/5 flex justify-center items-center lg:pr-32">
+																      <Typography
+																        as="div"
+																        variant="h3"
+																        className="mb-4 h-8 lg:h-10 w-[60vw] lg:w-64 rounded-lg bg-gray-300 self-center lg:self-start"
+																      >
+																        &nbsp;
+																      </Typography>
+																      <Typography
+																        as="div"
+																        variant="h1"
+																        className="mb-4 h-16 w-[90vw] lg:w-[560px] rounded-lg bg-gray-300 self-center lg:self-start"
+																      >  
+																        &nbsp;
+																      </Typography>
+																      <Typography
+																        as="div"
+																        variant="paragraph"
+																        className="mb-8 h-4 w-80 rounded-lg bg-gray-300 self-center lg:self-start"
+																      >
+																        &nbsp;
+																      </Typography>
+																      <div className="flex flex-row gap-2 self-center lg:self-start">
+																      	<Typography
+																      	  as="div"
+																      	  variant="button"
+																      	  className="mb-2 h-10 w-24 rounded-lg bg-gray-300 "
+																      	>
+																      	  &nbsp;
+																      	</Typography>
+																      	<Typography
+																      	  as="div"
+																      	  variant="paragraph"
+																      	  className="mb-2 h-10 w-24 rounded-lg bg-gray-300 "
+																      	>
+																      	  &nbsp;
+																      	</Typography>
+																      </div>
+																    </div>
+													) : (
 																<div className="mt-6">
-																	  <AnimatedText text={`Hello, this is`} className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left" />
 																
- 
+																			<motion.p
+																					className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left"
+																			  initial={{ opacity: 0 }}
+																			  animate={{ opacity: 1 }}
+																			  exit={{ opacity: 0 }}
+																			  transition={{ duration: 1 }}
+																			>
+																			  {`Hello, this is`.split('').map((letter, index) => (
+																			    <motion.span
+																			      key={index}
+																			      initial={{ opacity: 0, x: -20 }}
+																			      animate={{ opacity: 1, x: 0 }}
+																			      transition={{ duration: 1, ease: "easeOut" }}
+																			    >
+																			      {letter}
+																			    </motion.span>
+																			  ))}
+																			</motion.p>
+
 																	  <motion.h1
 																	  		className="tracking-wide text-[#545454] text-center text-5xl md:text-6xl lg:text-8xl font-bold"
 																	    initial={{ opacity: 0 }}
@@ -59,12 +136,12 @@ const Home = () => {
 																	    exit={{ opacity: 0 }}
 																	    transition={{ duration: 1 }}
 																	  >
-																	    {`${data.name}`.split('').map((letter, index) => (
+																	    {`Lito Galan Jr`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -20 }}
 																	        animate={{ opacity: 1, x: 0 }}
-																	        transition={{ duration: 0.5, delay: index * 0.1 }}
+																	        transition={{ duration: 1, ease: "easeOut" }}
 																	      >
 																	        {letter}
 																	      </motion.span>
@@ -76,14 +153,14 @@ const Home = () => {
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
-																	    transition={{ duration: 1 }}
+																	    transition={{ duration: 0.2 }}
 																	  >
-																	    {`I'm a ${data.banner}`.split('').map((letter, index) => (
+																	    {`I'm a Full-stack Web Developer`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -70 }}
 																	        animate={{ opacity: 1, x: 0 }}
-																	        transition={{ duration: 2, delay: index * 0.1 }}
+																	        transition={{ duration: 0.2, ease: "easeOut" }}
 																	      >
 																	        {letter}
 																	      </motion.span>
@@ -93,7 +170,7 @@ const Home = () => {
 																	  		initial={{ opacity: 0 }}
 																	  		animate={{ opacity: 1 }}
 																	  		exit={{ opacity: 0 }}
-																	  		transition={{ duration: 2, delay: 0.3 }}
+																	  		transition={{ duration: 4, ease: "easeOut" }}
 																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
 																	    
 																	    <Link 
@@ -105,19 +182,16 @@ const Home = () => {
 																	    		to="/contact"
 																	    		className="ml-4 text-xs md:text-sm lg:text-md font-medium capitalize text-neutral-800 underline">Contact</Link>
 																	  </motion.div>
-																	  </div>
-																	</div>
+															 </div>
+													)
+										}
 
-													</div>
-												
-											</Layout>
-									<Footer />
-
-							</>
-
-					)
-			}
-
+										
+									</div>
+							</div>
+						
+					</Layout>
+			<Footer />
 			
 		</>
 	)
