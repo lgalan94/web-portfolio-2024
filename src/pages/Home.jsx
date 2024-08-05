@@ -7,6 +7,18 @@ import { GoProjectSymlink } from "react-icons/go";
 import DataContext from '../DataContext';
 import { Button, Typography } from '@material-tailwind/react';
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 }
+};
+
+const fadeIn2 = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 20 }
+};
+
 const Home = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -111,18 +123,21 @@ const Home = () => {
 																<div className="mt-6">
 																
 																			<motion.p
-																					className="text-xl p-0.5 lg:text-[40px] text-center lg:text-left"
-																			  initial={{ opacity: 0 }}
-																			  animate={{ opacity: 1 }}
-																			  exit={{ opacity: 0 }}
-																			  transition={{ duration: 1 }}
+																					className="text-xl p-0.5 text-black/70 lg:text-[40px] text-center lg:text-left"
+																					variants={fadeIn2}
+																			  initial="hidden"
+																			  animate="visible"
+																			  exit="exit"
+																			  transition={{ duration: 0.5 }}
+
+																			  transition={{ duration: 0.05 }}
 																			>
 																			  {`Hello, this is`.split('').map((letter, index) => (
 																			    <motion.span
 																			      key={index}
 																			      initial={{ opacity: 0, x: -20 }}
 																			      animate={{ opacity: 1, x: 0 }}
-																			      transition={{ duration: 1, ease: "easeOut" }}
+																			      transition={{ duration: 0.5, delay: index * 0.05 }}
 																			    >
 																			      {letter}
 																			    </motion.span>
@@ -130,7 +145,7 @@ const Home = () => {
 																			</motion.p>
 
 																	  <motion.h1
-																	  		className="tracking-wide text-[#545454] text-center text-5xl md:text-6xl lg:text-8xl font-bold"
+																	  		className="tracking-wide text-black/80 text-center text-5xl md:text-6xl lg:text-8xl font-bold"
 																	    initial={{ opacity: 0 }}
 																	    animate={{ opacity: 1 }}
 																	    exit={{ opacity: 0 }}
@@ -149,23 +164,25 @@ const Home = () => {
 																	  </motion.h1>
 
 																	  <motion.p
-																	  		className="tracking-wide text-center md:text-left lg:tracking-wider p-1 pb-6 text-xs md:text-md lg:text-lg"
-																	    initial={{ opacity: 0 }}
-																	    animate={{ opacity: 1 }}
-																	    exit={{ opacity: 0 }}
-																	    transition={{ duration: 0.2 }}
+																	    className="tracking-wide text-center md:text-left lg:tracking-wider p-1 pb-6 text-xs md:text-md lg:text-lg"
+																	    variants={fadeIn}
+																	    initial="hidden"
+																	    animate="visible"
+																	    exit="exit"
+																	    transition={{ duration: 0.5 }}
 																	  >
 																	    {`I'm a Full-stack Web Developer`.split('').map((letter, index) => (
 																	      <motion.span
 																	        key={index}
 																	        initial={{ opacity: 0, x: -70 }}
 																	        animate={{ opacity: 1, x: 0 }}
-																	        transition={{ duration: 0.2, ease: "easeOut" }}
+																	        transition={{ duration: 0.5, delay: index * 0.05 }}
 																	      >
 																	        {letter}
 																	      </motion.span>
 																	    ))}
 																	  </motion.p>
+
 																	  <motion.div 
 																	  		initial={{ opacity: 0 }}
 																	  		animate={{ opacity: 1 }}
@@ -173,14 +190,18 @@ const Home = () => {
 																	  		transition={{ duration: 4, ease: "easeOut" }}
 																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
 																	    
-																	    <Link 
+																	    
+																	    	<Link 
+																	    			as={Link}
+																	    			to="/contact"
+																	    		> <Button variant="outlined" className="capitalize flex flex-row gap-1 items-center">  Contact</Button> </Link>
+
+																	    		<Link 
 																	    		as={Link}
 																	    		to="/projects"
-																	    	> <Button color="" className="capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
-																	    <Link 
-																	    		as={Link}
-																	    		to="/contact"
-																	    		className="ml-4 text-xs md:text-sm lg:text-md font-medium capitalize text-neutral-800 underline">Contact</Link>
+																	    	> <Button color="" className="ml-4 capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
+
+																	    
 																	  </motion.div>
 															 </div>
 													)

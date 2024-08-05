@@ -60,15 +60,12 @@ const AppNavbar = () => {
     <div className="sticky top-0 z-10 max-h-[768px] w-full ">
       <Navbar className="z-10 h-max max-w-full rounded-none px-4 py-1 lg:px-8">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
-            <Logo />
-
-          </Typography>
-          
+          <Link as={Link} to="/">
+            <img
+              src="/apple-touch-icon.png"
+              className="mr-4 h-12 cursor-pointer"
+            />
+          </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">
              {navList}

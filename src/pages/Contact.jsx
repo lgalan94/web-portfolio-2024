@@ -16,6 +16,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { MdError } from "react-icons/md";
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 }
+};
+
 const Contact = () => {
 
 	const navigate = useNavigate();
@@ -153,8 +159,52 @@ const Contact = () => {
 		<>
 				<PageTitle title="Web Portfolio | Contact" />
 				<AppNavbar />
-				<AnimatedText text="contact me" className="mt-4 mb-2 capitalize" />
-				<AnimatedText text={`For further questions, please email me at galanlito.94gmail.com or message using the contact form below.`} className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50" />
+				<AnimatedText text="Send a message" className="mt-4 mb-2 capitalize" />
+
+				<motion.p
+				  className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50"
+				  variants={fadeIn}
+				  initial="hidden"
+				  animate="visible"
+				  exit="exit"
+				  transition={{ duration: 0.5 }}
+				>
+				  {`For further questions, please email me at `.split('').map((letter, index) => (
+				    <motion.span
+				      key={index}
+				      initial={{ opacity: 0, x: -20 }}
+				      animate={{ opacity: 1, x: 0 }}
+				      transition={{ duration: 0.5, delay: index * 0.05 }}
+				    >
+				      {letter}
+				    </motion.span>
+				  ))}
+				  <span className="text-blue-500 underline">
+				    {`galanlito.94@gmail.com`.split('').map((letter, index) => (
+				      <motion.span
+				        key={`email-${index}`}
+				        initial={{ opacity: 0, x: -20 }}
+				        animate={{ opacity: 1, x: 0 }}
+				        transition={{ duration: 0.5, delay: (index + 40) * 0.05 }} 
+				      >
+				        {letter}
+				      </motion.span>
+				    ))}
+				  </span>
+				  {` or message using the contact form below.`.split('').map((letter, index) => (
+				    <motion.span
+				      key={index + 20}
+				      initial={{ opacity: 0, x: -20 }}
+				      animate={{ opacity: 1, x: 0 }}
+				      transition={{ duration: 0.5, delay: (index + 60) * 0.05 }} 
+				    >
+				      {letter}
+				    </motion.span>
+				  ))}
+				</motion.p>
+
+
+
 				<Layout className="!h-[70vh] ">
 						<motion.div 
 								initial={{ opacity: 0 }}

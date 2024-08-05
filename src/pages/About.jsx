@@ -49,7 +49,6 @@ const About = () => {
 			
 			<ButtonGroupAbout />
 						
-
 						<Layout className="">
 							<div id="about-section"> 
 									<AnimatedText text="about me" className="mt-4 mb-2 lg:mb-5 capitalize" />
@@ -116,7 +115,7 @@ const About = () => {
 						  		             initial={{ opacity: 0 }}
 						  		             animate={{ opacity: 1 }}
 						  		             exit={{ opacity: 0 }}
-						  		             transition={{ duration: 2, delay: 0.2 }}
+						  		             transition={{ duration: 0.4, delay: 0.2 }}
 						  		           />
 						  		         </div>
 														  </div>
