@@ -66,7 +66,7 @@ const {scrollYProgress} = useScroll(
 	}, [education]);
 
 	let loading = Array.from({ length: education.length || 3 }).map((_, index) => (
-										<div key={index} className="ml-48 mb-2 max-w-full animate-pulse">
+										<div key={index} className="ml-8 lg:ml-48 mb-2 max-w-full animate-pulse">
 						      <Typography
 						        as="div"
 						        variant="h1"
@@ -77,56 +77,56 @@ const {scrollYProgress} = useScroll(
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>
 						      <Typography
 						        as="div"
 						        variant="paragraph"
-						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						        className="mb-2 h-2 w-56 lg:w-96 rounded-full bg-gray-300"
 						      >
 						        &nbsp;
 						      </Typography>

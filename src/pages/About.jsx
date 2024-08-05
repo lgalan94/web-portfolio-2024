@@ -69,56 +69,56 @@ const About = () => {
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
 																									      <Typography
 																									        as="div"
 																									        variant="paragraph"
-																									        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																									        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																									      >
 																									        &nbsp;
 																									      </Typography>
@@ -165,56 +165,56 @@ const About = () => {
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
 																			 						      <Typography
 																			 						        as="div"
 																			 						        variant="paragraph"
-																			 						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+																			 						        className="mb-2 h-2 w-80 lg:w-96 rounded-full bg-gray-300"
 																			 						      >
 																			 						        &nbsp;
 																			 						      </Typography>
