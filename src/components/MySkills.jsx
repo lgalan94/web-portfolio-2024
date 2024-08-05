@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Typography } from '@material-tailwind/react';
 
 const MySkills = () => {
 
 	const [skills, setSkills] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const Skill = ({ text }) => {
 			return (
@@ -21,7 +23,9 @@ const MySkills = () => {
 	        setSkills(data.map((skill) => (
 	        		<Skill text={skill.name} key={skill._id} />
 	        )))
+	        setIsLoading(false);
 	      } else {
+	      setIsLoading(false)
       	setSkills(<div className="font-semibold text-center text-4xl w-[72vw] md:w-[82vw] lg:w-[85vw]">No data in database!</div>
 )
 	      }
@@ -32,9 +36,23 @@ const MySkills = () => {
 	  fetchSkills();
 	}, [skills]);
 
+	let loading = Array.from({ length: skills.length || 10 }).map((_, index) => (
+										<div key={index} className="max-w-full animate-pulse">
+						      <Typography
+						        as="div"
+						        variant="h1"
+						        className="mb-4 h-5 w-36 rounded-sm bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						    </div>
+		));
+
 		return (
 					<div className="w-full md:w-[85vw] lg:w-[80vw] flex flex-row justify-center mx-auto gap-4 flex-wrap">
-					 {skills}
+					 {
+					 		isLoading ? loading : skills
+					 }
 					</div>
 		)
 }

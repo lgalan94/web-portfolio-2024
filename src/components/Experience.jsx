@@ -63,11 +63,73 @@ const {scrollYProgress} = useScroll(
 	  fetchData();
 	}, [experience]);
 
-	let loading = (
-						<div className="flex flex-row gap-2 items-center mx-auto">
-								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching data... </span>
-						</div>
-		)
+	let loading = Array.from({ length: experience.length || 3 }).map((_, index) => (
+										<div key={index} className="ml-48 mb-2 max-w-full animate-pulse">
+						      <Typography
+						        as="div"
+						        variant="h1"
+						        className="mb-4 h-5 w-48 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						      <Typography
+						        as="div"
+						        variant="paragraph"
+						        className="mb-2 h-2 w-96 rounded-full bg-gray-300"
+						      >
+						        &nbsp;
+						      </Typography>
+						    </div>
+		));
 
 	return (
 		<div ref={ref} className="w-[75%] mx-auto relative">

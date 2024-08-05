@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Typography, Tooltip, Dialog, DialogHeader, DialogBody, DialogFooter, Button } from '@material-tailwind/react';
+import { Typography, Tooltip, Dialog, DialogHeader, DialogBody, DialogFooter, Button, Card, CardHeader } from '@material-tailwind/react';
 import { ImSpinner2 } from "react-icons/im";
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
 
@@ -90,11 +90,30 @@ const MyCertificates = () => {
 	  fetchCertificates();
 	}, []);
 
-	let loading = (
-						<div className="flex flex-row gap-2 items-center mx-auto">
-								<ImSpinner2 className="w-7 h-7 animate-spin" /> <span className="text-sm"> Fetching data... </span>
-						</div>
-		)
+	const loading = Array.from({ length: certificates.length || 5 }).map((_, index) => (
+	  <Card key={index} className="w-96 animate-pulse">
+	    <CardHeader
+	      shadow={false}
+	      floated={false}
+	      className="relative mb-4 grid h-56 place-items-center bg-gray-300"
+	    >
+	      <svg
+	        xmlns="http://www.w3.org/2000/svg"
+	        fill="none"
+	        viewBox="0 0 24 24"
+	        strokeWidth={2}
+	        stroke="currentColor"
+	        className="h-12 w-12 text-gray-500"
+	      >
+	        <path
+	          strokeLinecap="round"
+	          strokeLinejoin="round"
+	          d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+	        />
+	      </svg>
+	    </CardHeader>
+	  </Card>
+	));
 
 		return (
 						<>	

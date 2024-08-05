@@ -85,7 +85,7 @@ const MyProjects = () => {
     fetchProjects();
   }, []);
 
-  const loading = Array.from({ length: loadingCount }).map((_, index) => (
+  const loading = Array.from({ length: projects.length || 3 }).map((_, index) => (
     <Card key={index} className="w-96 animate-pulse">
       <Typography
         as="div"
