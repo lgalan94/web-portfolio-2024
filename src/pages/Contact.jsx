@@ -162,7 +162,7 @@ const Contact = () => {
 				<AnimatedText text="Send a message" className="mt-4 mb-2 capitalize" />
 
 				<motion.p
-				  className="!font-semibold !text-lg text-center px-2 md:px-10 mb-5 text-dark/50"
+				  className="!font-semibold !text-lg text-center px-12 md:px-48 lg:px-96 mb-5 text-dark/50"
 				  variants={fadeIn}
 				  initial="hidden"
 				  animate="visible"
@@ -202,8 +202,6 @@ const Contact = () => {
 				    </motion.span>
 				  ))}
 				</motion.p>
-
-
 
 				<Layout className="!h-[70vh] ">
 						<motion.div 

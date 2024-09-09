@@ -129,8 +129,6 @@ const Home = () => {
 																			  animate="visible"
 																			  exit="exit"
 																			  transition={{ duration: 0.5 }}
-
-																			  transition={{ duration: 0.05 }}
 																			>
 																			  {`Hello, this is`.split('').map((letter, index) => (
 																			    <motion.span
