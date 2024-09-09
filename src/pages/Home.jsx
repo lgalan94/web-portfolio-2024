@@ -186,18 +186,18 @@ const Home = () => {
 																	  		animate={{ opacity: 1 }}
 																	  		exit={{ opacity: 0 }}
 																	  		transition={{ duration: 4, ease: "easeOut" }}
-																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2">
+																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2 gap-4">
 																	    
 																	    
 																	    	<Link 
 																	    			as={Link}
 																	    			to="/contact"
-																	    		> <Button variant="outlined" className="capitalize flex flex-row gap-1 items-center">  Contact</Button> </Link>
+																	    		> <Button variant="outlined" className="hover:scale-105 capitalize rounded-full flex flex-row gap-1 items-center">  Contact</Button> </Link>
 
 																	    		<Link 
 																	    		as={Link}
 																	    		to="/projects"
-																	    	> <Button color="" className="ml-4 capitalize flex flex-row gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
+																	    	> <Button color="" className="hover:scale-105 capitalize flex flex-row rounded-full gap-1 items-center"> <GoProjectSymlink /> Projects</Button> </Link>
 
 																	    
 																	  </motion.div>
