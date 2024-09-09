@@ -102,18 +102,18 @@ const Home = () => {
 																      >
 																        &nbsp;
 																      </Typography>
-																      <div className="flex flex-row gap-2 self-center lg:self-start">
+																      <div className="flex flex-row gap-3 self-center lg:self-start">
 																      	<Typography
 																      	  as="div"
 																      	  variant="button"
-																      	  className="mb-2 h-10 w-24 rounded-lg bg-gray-300 "
+																      	  className="mb-2 h-10 w-24 rounded-full bg-gray-300 "
 																      	>
 																      	  &nbsp;
 																      	</Typography>
 																      	<Typography
 																      	  as="div"
 																      	  variant="paragraph"
-																      	  className="mb-2 h-10 w-24 rounded-lg bg-gray-300 "
+																      	  className="mb-2 h-10 w-24 rounded-full bg-gray-300 "
 																      	>
 																      	  &nbsp;
 																      	</Typography>
@@ -186,7 +186,7 @@ const Home = () => {
 																	  		animate={{ opacity: 1 }}
 																	  		exit={{ opacity: 0 }}
 																	  		transition={{ duration: 4, ease: "easeOut" }}
-																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2 gap-4">
+																	  		className="flex justify-center lg:justify-start items-center mt-1 lg:mt-2 gap-3">
 																	    
 																	    
 																	    	<Link 
